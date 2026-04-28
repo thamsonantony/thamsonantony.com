@@ -3,201 +3,412 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thamson Antony Arockiasamy — Business Analytics Consultant</title>
-  <meta name="description" content="Business Analytics Consultant. Turning data into decisions." />
+  <title>Thamson Antony Arockiasamy</title>
+  <meta
+    name="description"
+    content="Thamson Antony Arockiasamy builds clear, modern analytics systems that turn complexity into decisions."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg: #f3efe7;
+      --panel: rgba(255, 252, 246, 0.74);
+      --panel-strong: rgba(255, 252, 246, 0.92);
+      --text: #161412;
+      --muted: #62584b;
+      --line: rgba(22, 20, 18, 0.12);
+      --accent: #0f6a5b;
+      --accent-soft: rgba(15, 106, 91, 0.12);
+      --shadow: 0 24px 80px rgba(54, 43, 30, 0.12);
     }
 
-    :root {
-      --bg: #fafaf8;
-      --text: #111111;
-      --muted: #6b6b6b;
-      --border: #e5e4e1;
+    * {
+      box-sizing: border-box;
     }
 
     html {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      margin: 0;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(15, 106, 91, 0.12), transparent 24%),
+        linear-gradient(180deg, #f8f5ef 0%, #f3efe7 48%, #ece5da 100%);
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 700px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(22, 20, 18, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22, 20, 18, 0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 72%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 96px 40px 72px;
-      width: 100%;
+      padding: 28px 0 36px;
     }
 
-    .eyebrow {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       margin-bottom: 28px;
     }
 
-    h1 {
-      font-size: clamp(2.25rem, 5.5vw, 3.25rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--text);
-      margin-bottom: 6px;
+    .brand,
+    .status {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 252, 246, 0.58);
+      backdrop-filter: blur(16px);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    h1 em {
-      font-style: normal;
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--panel);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+      padding: 52px;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -30% 42%;
+      height: 360px;
+      background: radial-gradient(circle, rgba(15, 106, 91, 0.16), transparent 62%);
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+      gap: 40px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.35rem, 8vw, 6.6rem);
+      line-height: 0.93;
+      font-weight: 600;
+      max-width: 8ch;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 33rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button,
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    }
+
+    .button {
+      background: var(--text);
+      color: #f8f5ef;
+      border: 1px solid var(--text);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .text-link:hover,
+    .text-link:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .text-link {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      color: var(--text);
+    }
+
+    .summary {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      background: var(--panel-strong);
+    }
+
+    .card-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card strong {
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .meta {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .meta-item {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .meta-item strong {
+      font-size: 1rem;
       font-weight: 600;
     }
 
-    .surname {
-      color: var(--muted);
-    }
-
-    .role {
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--muted);
-      margin-top: 14px;
-      letter-spacing: 0.01em;
-    }
-
-    .rule {
-      width: 36px;
-      height: 1px;
-      background: var(--border);
-      margin: 44px 0;
-    }
-
-    .bio {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.75;
-      color: #3a3a3a;
-      max-width: 500px;
-      margin-bottom: 52px;
-    }
-
-    .links {
+    .footer {
       display: flex;
-      align-items: center;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
-
-    .links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      position: relative;
-      padding-bottom: 3px;
-      transition: color 0.15s ease;
-    }
-
-    .links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--text);
-      transition: width 0.22s ease;
-    }
-
-    .links a:hover::after {
-      width: 100%;
-    }
-
-    .links .sep {
-      width: 1px;
-      height: 14px;
-      background: var(--border);
-      display: inline-block;
-    }
-
-    footer {
-      padding: 28px 40px;
-      max-width: 700px;
-      margin: 0 auto;
-      width: 100%;
-      border-top: 1px solid var(--border);
-    }
-
-    footer p {
-      font-size: 0.72rem;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 4px 0;
       color: var(--muted);
-      letter-spacing: 0.02em;
+      font-size: 0.85rem;
     }
 
-    @media (max-width: 520px) {
-      main {
-        padding: 72px 28px 56px;
+    @media (max-width: 900px) {
+      .hero {
+        padding: 36px 26px;
       }
-      footer {
-        padding: 24px 28px;
+
+      .hero-grid {
+        grid-template-columns: 1fr;
       }
-      .links {
-        gap: 20px;
+
+      h1 {
+        max-width: 100%;
       }
-      .links .sep {
-        display: none;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+        padding-top: 18px;
+      }
+
+      .topbar,
+      .footer,
+      .meta {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .meta {
+        display: grid;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 16vw, 4.5rem);
+      }
+
+      .lead {
+        font-size: 0.98rem;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .button,
+      .text-link {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">thamsonantony.com</div>
+      <div class="status">Available for select collaborations</div>
+    </header>
 
-  <main>
-    <p class="eyebrow">thamsonantony.com</p>
+    <main class="hero">
+      <div class="hero-grid">
+        <section>
+          <div class="eyebrow">Analytics and decision systems</div>
+          <h1>Thamson Antony Arockiasamy</h1>
+          <p class="lead">
+            I design clean analytics experiences for teams that need signal, not noise.
+            From dashboards to decision frameworks, I turn raw data into something people
+            can actually use.
+          </p>
 
-    <h1>
-      <em>Thamson Antony</em><br>
-      <span class="surname">Arockiasamy</span>
-    </h1>
-    <p class="role">Business Analytics Consultant</p>
+          <div class="actions">
+            <a class="button" href="mailto:athamsonantony08@gmail.com">Start a conversation</a>
+            <a
+              class="text-link"
+              href="https://linkedin.com/in/thamsonantony"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              class="text-link"
+              href="https://github.com/thamsonantony"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
+        </section>
 
-    <div class="rule"></div>
+        <aside class="summary" aria-label="Profile summary">
+          <section class="card">
+            <span class="card-label">Focus</span>
+            <strong>Business analytics with a product mindset.</strong>
+            <p>
+              Strategy, reporting, and interface clarity working together instead of competing
+              for attention.
+            </p>
+          </section>
 
-    <p class="bio">
-      I help organisations make sense of their data — translating numbers
-      into clear strategy, sharper decisions, and measurable outcomes.
-    </p>
+          <section class="card">
+            <span class="card-label">Approach</span>
+            <strong>Minimal by design.</strong>
+            <p>
+              Fewer moving parts, stronger narratives, and metrics that help teams decide with
+              confidence.
+            </p>
+          </section>
+        </aside>
+      </div>
 
-    <nav class="links">
-      <a href="https://github.com/thamsonantony" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <span class="sep" aria-hidden="true"></span>
-      <a href="https://linkedin.com/in/thamsonantony" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <span class="sep" aria-hidden="true"></span>
-      <a href="mailto:athamsonantony08@gmail.com">Email</a>
-    </nav>
-  </main>
+      <section class="meta" aria-label="Key details">
+        <div class="meta-item">
+          <span>Based In</span>
+          <strong>United States</strong>
+        </div>
+        <div class="meta-item">
+          <span>Specialty</span>
+          <strong>Clarity from complexity</strong>
+        </div>
+        <div class="meta-item">
+          <span>Primary Work</span>
+          <strong>Insights, systems, decisions</strong>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-    <p>© 2026 Thamson Antony Arockiasamy</p>
-  </footer>
-
+    <footer class="footer">
+      <span>&copy; 2026 Thamson Antony Arockiasamy</span>
+      <span>Built to feel quiet, sharp, and modern.</span>
+    </footer>
+  </div>
 </body>
 </html>
