@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thamson Antony Arockiasamy — Business Analytics Consultant</title>
+  <meta name="description" content="Business Analytics Consultant. Turning data into decisions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fafaf8;
+      --text: #111111;
+      --muted: #6b6b6b;
+      --border: #e5e4e1;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 96px 40px 72px;
+      width: 100%;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    h1 em {
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .surname {
+      color: var(--muted);
+    }
+
+    .role {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 14px;
+      letter-spacing: 0.01em;
+    }
+
+    .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--border);
+      margin: 44px 0;
+    }
+
+    .bio {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #3a3a3a;
+      max-width: 500px;
+      margin-bottom: 52px;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.15s ease;
+    }
+
+    .links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--text);
+      transition: width 0.22s ease;
+    }
+
+    .links a:hover::after {
+      width: 100%;
+    }
+
+    .links .sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+      display: inline-block;
+    }
+
+    footer {
+      padding: 28px 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      width: 100%;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 520px) {
+      main {
+        padding: 72px 28px 56px;
+      }
+      footer {
+        padding: 24px 28px;
+      }
+      .links {
+        gap: 20px;
+      }
+      .links .sep {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <p class="eyebrow">thamsonantony.com</p>
+
+    <h1>
+      <em>Thamson Antony</em><br>
+      <span class="surname">Arockiasamy</span>
+    </h1>
+    <p class="role">Business Analytics Consultant</p>
+
+    <div class="rule"></div>
+
+    <p class="bio">
+      I help organisations make sense of their data — translating numbers
+      into clear strategy, sharper decisions, and measurable outcomes.
+    </p>
+
+    <nav class="links">
+      <a href="https://github.com/thamsonantony" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a href="https://linkedin.com/in/thamsonantony" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a href="mailto:athamsonantony08@gmail.com">Email</a>
+    </nav>
+  </main>
+
+  <footer>
+    <p>© 2026 Thamson Antony Arockiasamy</p>
+  </footer>
+
+</body>
+</html>
