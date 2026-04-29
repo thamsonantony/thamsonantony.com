@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thamson Antony</title>
+  <link rel="icon" type="image/png" href="the_crown_white.png" sizes="128x128" />
   <meta name="description" content="Thamson Antony — Business Analytics Consultant" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,6 +44,17 @@
       width: 100% !important;
       height: 100% !important;
       display: block;
+    }
+
+    /* ── Crown logo ── */
+    .crown {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
     }
 
     /* ── Nav bar ── */
@@ -269,6 +281,8 @@
 </head>
 <body>
   <div id="gradient-bg"></div>
+
+  <img src="the_crown_black.png" alt="Crown" class="crown" />
 
   <nav class="nav-bar">
     <a href="index.html" class="nav-btn" aria-label="Home">
