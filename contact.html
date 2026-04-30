@@ -322,6 +322,7 @@
     .nav-btn {
       width: 48px;
       height: 48px;
+      padding: 0 0 0 14px;
       border-radius: 9999px;
       border: 1px solid var(--border-50);
       background: var(--card-bg);
@@ -329,22 +330,36 @@
       -webkit-backdrop-filter: blur(40px);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 8px;
       cursor: pointer;
       text-decoration: none;
       color: var(--fg);
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
     .nav-btn:hover {
+      width: 108px;
       background: var(--inner-bg);
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       transform: translateY(-2px);
     }
-    .nav-btn svg { width: 20px; height: 20px; }
+    .nav-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-btn:hover .nav-label { opacity: 1; }
+
     .nav-contact {
+      width: 48px;
       height: 48px;
-      padding: 0 22px;
+      padding: 0 0 0 14px;
       border-radius: 9999px;
       border: 1px solid rgba(180,40,40,0.3);
       background: rgba(180,40,40,0.18);
@@ -352,18 +367,30 @@
       -webkit-backdrop-filter: blur(40px);
       display: flex;
       align-items: center;
-      font-size: 14px;
-      font-weight: 600;
+      justify-content: flex-start;
+      gap: 8px;
       color: rgba(140,20,20,0.95);
       text-decoration: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
     .nav-contact:hover {
+      width: 124px;
       background: rgba(180,40,40,0.28);
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       transform: translateY(-2px);
     }
+    .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-contact-label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-contact:hover .nav-contact-label { opacity: 1; }
 
     /* ── Entrance animations ── */
     .anim-card {
@@ -392,13 +419,20 @@
   <div id="gradient-bg"></div>
 
   <nav class="nav-bar">
-    <a href="index.html" class="nav-btn" aria-label="Home">
+    <a href="home.html" class="nav-btn" aria-label="Home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
         <path d="M9 21V12h6v9"/>
       </svg>
+      <span class="nav-label">Home</span>
     </a>
-    <a href="contact.html" class="nav-contact">Contact</a>
+    <a href="contact.html" class="nav-contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <span class="nav-contact-label">Contact</span>
+    </a>
   </nav>
 
   <section class="section">

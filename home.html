@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thamson Antony</title>
+  <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
+  <meta name="description" content="Thamson Antony — Business Analytics Consultant" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Design tokens ── */
+    :root {
+      --bg:         #ffffff;
+      --fg:         #0a0a0a;
+      --fg-70:      rgba(10,10,10,0.7);
+      --fg-40:      rgba(10,10,10,0.4);
+      --fg-05:      rgba(10,10,10,0.05);
+      --border:     rgba(10,10,10,0.2);
+      --border-50:  rgba(10,10,10,0.12);
+      --primary-15: rgba(100,100,100,0.15);
+      --primary-20: rgba(100,100,100,0.2);
+      --card-bg:    rgba(160,160,160,0.35);
+      --inner-bg:   rgba(145,145,145,0.3);
+      --social-bg:  rgba(135,135,135,0.32);
+      --shadow:     0 25px 60px rgba(0,0,0,0.4);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--fg);
+      background: #000;
+    }
+
+    /* ── Gradient background ── */
+    #gradient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    #gradient-bg canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+
+
+    /* ── Nav bar ── */
+    .nav-bar {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      padding: 0 0 0 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-btn:hover {
+      width: 108px;
+      background: var(--inner-bg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    .nav-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-btn:hover .nav-label { opacity: 1; }
+
+    .nav-contact {
+      width: 48px;
+      height: 48px;
+      padding: 0 0 0 14px;
+      border-radius: 9999px;
+      border: 1px solid rgba(180,40,40,0.3);
+      background: rgba(180,40,40,0.18);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      color: rgba(140,20,20,0.95);
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-contact:hover {
+      width: 124px;
+      background: rgba(180,40,40,0.28);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-contact-label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-contact:hover .nav-contact-label { opacity: 1; }
+
+    /* ── Layout ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 96px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* ── Glass card — centered, narrow ── */
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 2.5rem;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      padding: 40px;
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+    }
+
+    .glass-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--fg-05), transparent, transparent);
+      pointer-events: none;
+    }
+
+    /* ── Profile card ── */
+    .profile-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: 2.5rem;
+      background: linear-gradient(to bottom, var(--primary-15), transparent, transparent);
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .profile-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .avatar-wrap { position: relative; margin-bottom: 24px; }
+
+    .avatar-glow {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 128px;
+      height: 128px;
+      border-radius: 9999px;
+      background: var(--primary-20);
+      filter: blur(32px);
+    }
+
+    .avatar {
+      position: relative;
+      width: 128px;
+      height: 128px;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 1px solid var(--border-50);
+      box-shadow: var(--shadow);
+      display: block;
+      transform: rotate(-3deg);
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+
+    .profile-role {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #000000;
+    }
+
+    .profile-welcome {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .profile-bio {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--fg-70);
+      text-align: justify;
+    }
+
+    /* ── Skills nav button ── */
+    .nav-skills {
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-skills:hover .nav-skills-label { opacity: 1; }
+
+    /* ── Experience nav button ── */
+    .nav-experience {
+      width: 48px;
+      height: 48px;
+      padding: 0 0 0 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-experience:hover {
+      width: 126px;
+      background: var(--inner-bg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    .nav-experience svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-experience-label {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-experience:hover .nav-experience-label { opacity: 1; }
+
+    /* ── Below-card Experience button ── */
+    .card-below-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .card-below-btn:hover {
+      background: var(--inner-bg);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+    .card-below-btn svg { width: 16px; height: 16px; }
+
+    /* ── Entrance animations ── */
+    .anim-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .anim {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .anim-scale {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .anim.visible, .anim-card.visible, .anim-scale.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="gradient-bg"></div>
+
+  <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="timeline.html" class="nav-experience" aria-label="Timeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span class="nav-experience-label">Timeline</span>
+    </a>
+    <a href="skills.html" class="nav-skills" aria-label="Skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+        <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+        <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+      </svg>
+      <span class="nav-skills-label">Skills</span>
+    </a>
+    <a href="contact.html" class="nav-contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <span class="nav-contact-label">Contact</span>
+    </a>
+  </nav>
+
+  <section class="section">
+    <div class="glass-card anim-card" data-observe>
+      <div class="glass-overlay"></div>
+      <div class="profile-glow"></div>
+
+      <div class="profile-top">
+        <div class="avatar-wrap anim-scale" data-observe>
+          <div class="avatar-glow"></div>
+          <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+        </div>
+
+        <div class="anim" style="--delay:.2s" data-observe>
+          <p class="profile-name">Thamson Antony</p>
+          <p class="profile-role">Business Analytics Consultant</p>
+        </div>
+
+        <p class="profile-welcome anim" style="--delay:.28s" data-observe>Welcome!</p>
+
+        <p class="profile-bio anim" style="--delay:.3s" data-observe>
+          I'm a Business Analytics Consultant with an MS in Business Analytics and 8 years of experience in IT. Technical expertise in Python, SQL, and Tableau enabling the architecture of robust ETL pipelines and predictive models. Transforming complex data into unified architectures and real-time dashboards to bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level goals, evidence-based decision-making is integrated into the core of organizational strategy.
+        </p>
+      </div>
+
+    </div>
+
+    <a href="timeline.html" class="card-below-btn anim" style="--delay:.5s" data-observe>
+      Timeline <span style="font-size:16px;line-height:1">›</span>
+    </a>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+  </script>
+
+  <script type="importmap">
+    { "imports": { "ogl": "https://esm.sh/ogl" } }
+  </script>
+  <script type="module">
+    import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
+
+    const vert = `
+      attribute vec2 uv;
+      attribute vec2 position;
+      varying vec2 vUv;
+      void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
+    `;
+    const frag = `
+      precision highp float;
+      uniform float uTime, uSwirl, uSpeed, uScale, uOffsetX, uOffsetY, uRotation;
+      uniform float uWaveAmp, uWaveFreq, uWaveSpeed, uGrain;
+      uniform vec3 uColorA, uColorB, uColorC, uResolution;
+      varying vec2 vUv;
+      float wave(vec2 uv, float freq, float speed, float time) {
+        return sin(uv.x * freq + time * speed) * cos(uv.y * freq + time * speed);
+      }
+      float random(vec2 st) {
+        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+      }
+      vec3 colorDodge(vec3 base, vec3 blend) {
+        return min(base / (1.0 - blend + 0.0001), 1.0);
+      }
+      void main() {
+        float mr = min(uResolution.x, uResolution.y);
+        vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
+        uv = uv * uScale + vec2(uOffsetX, uOffsetY);
+        float cosR = cos(uRotation); float sinR = sin(uRotation);
+        uv = vec2(uv.x * cosR - uv.y * sinR, uv.x * sinR + uv.y * cosR);
+        uv.x += wave(uv, uWaveFreq, uWaveSpeed, uTime) * uWaveAmp;
+        uv.y += wave(uv + 10.0, uWaveFreq * 1.5, uWaveSpeed * 0.8, uTime) * uWaveAmp * 0.5;
+        float angle = atan(uv.y, uv.x); float radius = length(uv);
+        angle += uSwirl * radius;
+        uv = vec2(cos(angle), sin(angle)) * radius;
+        float d = -uTime * 0.5 * uSpeed; float a = 0.0;
+        for (float i = 0.0; i < 5.0; ++i) { a += cos(i - d - a * uv.x); d += sin(uv.y * i + a); }
+        d += uTime * 0.5 * uSpeed;
+        vec3 col = mix(uColorA, uColorB, (sin(d) + 1.0) * 0.5);
+        col = mix(col, uColorC, (cos(a) + 1.0) * 0.5);
+        float grain = (random(gl_FragCoord.xy + uTime) - 0.5) * uGrain;
+        col = colorDodge(col, vec3(0.5 + grain));
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const hexToRgb = hex => { const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
+    const [cA, cB, cC] = ['#888888','#555555','#333333'].map(hexToRgb);
+
+    const ctn = document.getElementById('gradient-bg');
+    const renderer = new Renderer({ alpha: false });
+    const gl = renderer.gl;
+    gl.clearColor(0,0,0,1);
+
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex: vert, fragment: frag,
+      uniforms: {
+        uTime: {value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
+        uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
+        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.0},
+        uResolution:{value: new Color(1,1,1)},
+        uColorA:{value: new Color(...cA)}, uColorB:{value: new Color(...cB)}, uColorC:{value: new Color(...cC)},
+      },
+    });
+    const mesh = new Mesh(gl, { geometry, program });
+    ctn.appendChild(gl.canvas);
+
+    function resize() {
+      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+      program.uniforms.uResolution.value = new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width/gl.canvas.height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    (function update(t) {
+      requestAnimationFrame(update);
+      program.uniforms.uTime.value = t * 0.001;
+      renderer.render({ scene: mesh });
+    })(0);
+  </script>
+</body>
+</html>
