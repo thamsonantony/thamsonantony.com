@@ -683,40 +683,6 @@
 
     document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
 
-  // ── Page transition ──
-  (function(){
-    const SEL='.glass-card,.page-card';
-    function mkBg(){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9998;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(140,140,140,0.15);pointer-events:none;';return d;}
-    function mkGl(cp){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(160,160,160,0.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(10,10,10,0.12);pointer-events:none;will-change:clip-path;';if(cp)d.style.clipPath=cp;return d;}
-    const raw=sessionStorage.getItem('pt');
-    if(raw){
-      try{
-        const s=JSON.parse(raw);sessionStorage.removeItem('pt');
-        const vw=innerWidth,vh=innerHeight;
-        const bg=mkBg(),gl=mkGl(`inset(${s.t}px ${s.r}px ${s.b}px ${s.l}px round 40px)`);
-        document.body.appendChild(bg);document.body.appendChild(gl);
-        requestAnimationFrame(()=>requestAnimationFrame(()=>{
-          const c=document.querySelector(SEL);if(!c){bg.remove();gl.remove();return;}
-          const r=c.getBoundingClientRect();
-          gl.style.transition='clip-path 0.52s cubic-bezier(0.4,0,0.2,1)';
-          gl.style.clipPath=`inset(${Math.round(r.top)}px ${Math.round(vw-r.right)}px ${Math.round(vh-r.bottom)}px ${Math.round(r.left)}px round 40px)`;
-          setTimeout(()=>{bg.style.transition=gl.style.transition='opacity 0.22s ease';bg.style.opacity=gl.style.opacity='0';setTimeout(()=>{bg.remove();gl.remove();},240);},520);
-        }));
-      }catch(e){sessionStorage.removeItem('pt');}
-    }
-    document.addEventListener('click',e=>{
-      const a=e.target.closest('a[href]');if(!a)return;
-      const h=a.getAttribute('href');
-      if(!h||h.startsWith('#')||/^https?:/.test(h)||h.startsWith('mailto'))return;
-      const c=document.querySelector(SEL);if(!c)return;
-      e.preventDefault();
-      const r=c.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
-      sessionStorage.setItem('pt',JSON.stringify({t:Math.round(r.top),r:Math.round(vw-r.right),b:Math.round(vh-r.bottom),l:Math.round(r.left)}));
-      const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:9999;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);background:rgba(160,160,160,0.35);pointer-events:none;';
-      document.body.appendChild(o);
-      window.location.href=a.href;
-    });
-  })();
   </script>
 
   <!-- OGL gradient mesh background -->
