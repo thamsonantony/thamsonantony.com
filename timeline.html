@@ -106,10 +106,8 @@
     .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
     .nav-contact:hover .nav-contact-label { opacity: 1; }
 
-    /* ── Section + Page card ── */
-    .section { position:relative; z-index:1; padding:88px 24px 48px; display:flex; justify-content:center; }
-    .page-card { position:relative; overflow:hidden; width:100%; max-width:1200px; border-radius:2.5rem; border:1px solid var(--border-50); background:var(--card-bg); padding:44px 44px 36px; backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
-    .page-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,10,10,0.05),transparent); pointer-events:none; }
+    /* ── Page wrapper ── */
+    .page { position: relative; z-index: 1; padding: 96px 48px 80px; }
 
     .page-header {
       text-align: center;
@@ -137,9 +135,9 @@
 
     .tl-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(220px, 1fr));
-      grid-template-rows: auto 32px auto;
-      min-width: 900px;
+      grid-template-columns: repeat(4, minmax(260px, 1fr));
+      grid-template-rows: auto 44px auto;
+      min-width: 880px;
       position: relative;
     }
 
@@ -229,11 +227,11 @@
     /* ── Timeline card ── */
     .tl-card {
       width: 100%;
-      height: 160px;
+      height: 190px;
       border-radius: 1.5rem;
       border: 1px solid var(--border-50);
       background: var(--card-bg);
-      padding: 20px 112px 20px 22px;
+      padding: 24px 120px 24px 28px;
       backdrop-filter: blur(40px);
       -webkit-backdrop-filter: blur(40px);
       position: relative;
@@ -349,8 +347,7 @@
       }
       .nav-label, .nav-timeline-label, .nav-skills-label, .nav-contact-label { display: none; }
       .nav-bar a.active::after { bottom: 4px; left: 50%; }
-      .section { padding: 80px 16px 110px; }
-      .page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+      .page { padding: 80px 16px 110px; }
     }
 
     /* ── Mobile: collapse to vertical ── */
@@ -435,8 +432,7 @@
     </a>
   </nav>
 
-  <div class="section">
-    <div class="page-card">
+  <div class="page">
 
     <div class="page-header anim-up" data-observe>
       <h1>Timeline</h1>
@@ -527,8 +523,7 @@
       <a href="skills.html" class="page-nav-btn">Skills &#x203a;</a>
     </div>
 
-    </div><!-- /.page-card -->
-  </div><!-- /.section -->
+  </div><!-- /.page -->
 
   <script>
     const observer = new IntersectionObserver(
