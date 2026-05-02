@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thamson Antony</title>
   <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
-  <meta name="description" content="Thamson Antony — Business Analytics Consultant" />
+  <meta name="description" content="Thamson Antony – Business Analytics Consultant" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── Design tokens ── */
     :root {
       --bg:         #ffffff;
       --fg:         #0a0a0a;
@@ -33,7 +32,6 @@
       background: #000;
     }
 
-    /* ── Gradient background ── */
     #gradient-bg {
       position: fixed;
       inset: 0;
@@ -46,9 +44,6 @@
       display: block;
     }
 
-
-
-    /* ── Nav bar ── */
     .nav-bar {
       position: fixed;
       top: 24px;
@@ -60,79 +55,76 @@
       gap: 8px;
     }
     .nav-btn {
-      width: 48px;
-      height: 48px;
-      padding: 0 0 0 14px;
-      border-radius: 9999px;
-      border: 1px solid var(--border-50);
-      background: var(--card-bg);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      overflow: hidden;
-      white-space: nowrap;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
       transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .nav-btn:hover {
-      width: 108px;
-      background: var(--inner-bg);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
+    .nav-btn:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
     .nav-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-label {
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0;
-      flex-shrink: 0;
-      transition: opacity 0.15s ease 0.12s;
-    }
+    .nav-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
     .nav-btn:hover .nav-label { opacity: 1; }
 
-    .nav-contact {
-      width: 48px;
-      height: 48px;
-      padding: 0 0 0 14px;
-      border-radius: 9999px;
-      border: 1px solid rgba(180,40,40,0.3);
-      background: rgba(180,40,40,0.18);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      color: rgba(140,20,20,0.95);
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      overflow: hidden;
-      white-space: nowrap;
+    .nav-experience {
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
       transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .nav-contact:hover {
-      width: 124px;
-      background: rgba(180,40,40,0.28);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
+    .nav-experience:hover { width: 126px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-experience svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-experience-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-experience:hover .nav-experience-label { opacity: 1; }
+
+    .nav-skills {
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
+    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-skills:hover .nav-skills-label { opacity: 1; }
+
+    .nav-certs {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-certs:hover { width: 148px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-certs svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-certs-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-certs:hover .nav-certs-label { opacity: 1; }
+
+    .nav-contact {
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid rgba(180,40,40,0.3); background: rgba(180,40,40,0.18);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      color: rgba(140,20,20,0.95); text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-contact:hover { width: 124px; background: rgba(180,40,40,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
     .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-contact-label {
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0;
-      flex-shrink: 0;
-      transition: opacity 0.15s ease 0.12s;
-    }
+    .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
     .nav-contact:hover .nav-contact-label { opacity: 1; }
 
-    /* ── Layout ── */
     .section {
       position: relative;
       z-index: 1;
@@ -145,7 +137,6 @@
       gap: 20px;
     }
 
-    /* ── Glass card — centered, narrow ── */
     .glass-card {
       position: relative;
       overflow: hidden;
@@ -166,7 +157,6 @@
       pointer-events: none;
     }
 
-    /* ── Profile card ── */
     .profile-glow {
       position: absolute;
       inset: 0;
@@ -190,8 +180,7 @@
       position: absolute;
       inset: 0;
       margin: auto;
-      width: 128px;
-      height: 128px;
+      width: 128px; height: 128px;
       border-radius: 9999px;
       background: var(--primary-20);
       filter: blur(32px);
@@ -199,8 +188,7 @@
 
     .avatar {
       position: relative;
-      width: 128px;
-      height: 128px;
+      width: 128px; height: 128px;
       border-radius: 9999px;
       object-fit: cover;
       border: 1px solid var(--border-50);
@@ -236,63 +224,9 @@
       font-size: 14px;
       line-height: 1.65;
       color: var(--fg-70);
-      text-align: justify;
+      text-align: center;
     }
 
-    /* ── Skills nav button ── */
-    .nav-skills {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-skills:hover .nav-skills-label { opacity: 1; }
-
-    /* ── Experience nav button ── */
-    .nav-experience {
-      width: 48px;
-      height: 48px;
-      padding: 0 0 0 14px;
-      border-radius: 9999px;
-      border: 1px solid var(--border-50);
-      background: var(--card-bg);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      overflow: hidden;
-      white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .nav-experience:hover {
-      width: 126px;
-      background: var(--inner-bg);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
-    .nav-experience svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-experience-label {
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0;
-      flex-shrink: 0;
-      transition: opacity 0.15s ease 0.12s;
-    }
-    .nav-experience:hover .nav-experience-label { opacity: 1; }
-
-    /* ── Below-card Experience button ── */
     .card-below-btn {
       display: flex;
       align-items: center;
@@ -310,33 +244,44 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
       transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .card-below-btn:hover {
-      background: var(--inner-bg);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      transform: translateY(-2px);
-    }
-    .card-below-btn svg { width: 16px; height: 16px; }
+    .card-below-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-    /* ── Entrance animations ── */
-    .anim-card {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .anim-card { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .anim { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--delay, 0s); }
+    .anim-scale { opacity: 0; transform: scale(0.8); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .anim.visible, .anim-card.visible, .anim-scale.visible { opacity: 1; transform: none; }
+
+    .nav-bar a { position: relative; }
+    .nav-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 5px; left: 24px;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #000;
+      pointer-events: none;
     }
-    .anim {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      transition-delay: var(--delay, 0s);
-    }
-    .anim-scale {
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .anim.visible, .anim-card.visible, .anim-scale.visible {
-      opacity: 1;
-      transform: none;
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        top: auto; bottom: 18px;
+        padding: 6px;
+        background: rgba(160,160,160,0.4);
+        border: 1px solid var(--border-50);
+        border-radius: 9999px;
+        backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      }
+      .nav-btn, .nav-experience, .nav-skills, .nav-contact {
+        width: 44px; height: 44px; padding: 0; justify-content: center;
+        background: transparent; border: none; box-shadow: none;
+      }
+      .nav-btn:hover, .nav-experience:hover, .nav-skills:hover, .nav-contact:hover {
+        width: 44px; background: rgba(255,255,255,0.18); transform: none; box-shadow: none;
+      }
+      .nav-label, .nav-experience-label, .nav-skills-label, .nav-contact-label { display: none; }
+      .nav-bar a.active::after { bottom: 4px; left: 50%; }
     }
   </style>
 </head>
@@ -344,7 +289,7 @@
   <div id="gradient-bg"></div>
 
   <nav class="nav-bar">
-    <a href="home.html" class="nav-btn" aria-label="Home">
+    <a href="home.html" class="nav-btn active" aria-label="Home" aria-current="page">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
         <path d="M9 21V12h6v9"/>
@@ -366,6 +311,13 @@
         <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
       </svg>
       <span class="nav-skills-label">Skills</span>
+    </a>
+    <a href="certifications.html" class="nav-certs" aria-label="Certifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="6"/>
+        <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+      </svg>
+      <span class="nav-certs-label">Certifications</span>
     </a>
     <a href="contact.html" class="nav-contact" aria-label="Contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -402,7 +354,7 @@
     </div>
 
     <a href="timeline.html" class="card-below-btn anim" style="--delay:.5s" data-observe>
-      Timeline <span style="font-size:16px;line-height:1">›</span>
+      Timeline <span style="font-size:16px;line-height:1">&#x203a;</span>
     </a>
   </section>
 
@@ -414,6 +366,41 @@
       { threshold: 0.12 }
     );
     document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+
+  // ── Page transition ──
+  (function(){
+    const SEL='.glass-card,.page-card';
+    function mkBg(){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9998;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(140,140,140,0.15);pointer-events:none;';return d;}
+    function mkGl(cp){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(160,160,160,0.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(10,10,10,0.12);pointer-events:none;will-change:clip-path;';if(cp)d.style.clipPath=cp;return d;}
+    const raw=sessionStorage.getItem('pt');
+    if(raw){
+      try{
+        const s=JSON.parse(raw);sessionStorage.removeItem('pt');
+        const vw=innerWidth,vh=innerHeight;
+        const bg=mkBg(),gl=mkGl(`inset(${s.t}px ${s.r}px ${s.b}px ${s.l}px round 40px)`);
+        document.body.appendChild(bg);document.body.appendChild(gl);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          const c=document.querySelector(SEL);if(!c){bg.remove();gl.remove();return;}
+          const r=c.getBoundingClientRect();
+          gl.style.transition='clip-path 0.52s cubic-bezier(0.4,0,0.2,1)';
+          gl.style.clipPath=`inset(${Math.round(r.top)}px ${Math.round(vw-r.right)}px ${Math.round(vh-r.bottom)}px ${Math.round(r.left)}px round 40px)`;
+          setTimeout(()=>{bg.style.transition=gl.style.transition='opacity 0.22s ease';bg.style.opacity=gl.style.opacity='0';setTimeout(()=>{bg.remove();gl.remove();},240);},520);
+        }));
+      }catch(e){sessionStorage.removeItem('pt');}
+    }
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href]');if(!a)return;
+      const h=a.getAttribute('href');
+      if(!h||h.startsWith('#')||/^https?:/.test(h)||h.startsWith('mailto'))return;
+      const c=document.querySelector(SEL);if(!c)return;
+      e.preventDefault();
+      const r=c.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
+      sessionStorage.setItem('pt',JSON.stringify({t:Math.round(r.top),r:Math.round(vw-r.right),b:Math.round(vh-r.bottom),l:Math.round(r.left)}));
+      const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:9999;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);background:rgba(160,160,160,0.35);pointer-events:none;';
+      document.body.appendChild(o);
+      window.location.href=a.href;
+    });
+  })();
   </script>
 
   <script type="importmap">
@@ -423,9 +410,7 @@
     import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 
     const vert = `
-      attribute vec2 uv;
-      attribute vec2 position;
-      varying vec2 vUv;
+      attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
       void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
     `;
     const frag = `
@@ -440,9 +425,7 @@
       float random(vec2 st) {
         return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
       }
-      vec3 colorDodge(vec3 base, vec3 blend) {
-        return min(base / (1.0 - blend + 0.0001), 1.0);
-      }
+      vec3 colorDodge(vec3 base, vec3 blend) { return min(base / (1.0 - blend + 0.0001), 1.0); }
       void main() {
         float mr = min(uResolution.x, uResolution.y);
         vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
@@ -477,7 +460,7 @@
     const program = new Program(gl, {
       vertex: vert, fragment: frag,
       uniforms: {
-        uTime: {value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
+        uTime:{value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
         uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
         uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.0},
         uResolution:{value: new Color(1,1,1)},

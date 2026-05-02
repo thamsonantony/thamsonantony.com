@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications – Thamson Antony</title>
+  <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
+  <meta name="description" content="Thamson Antony – Certifications" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #ffffff;
+      --fg:         #0a0a0a;
+      --fg-70:      rgba(10,10,10,0.7);
+      --fg-50:      rgba(10,10,10,0.5);
+      --fg-40:      rgba(10,10,10,0.4);
+      --fg-25:      rgba(10,10,10,0.25);
+      --fg-12:      rgba(10,10,10,0.12);
+      --fg-05:      rgba(10,10,10,0.05);
+      --border:     rgba(10,10,10,0.2);
+      --border-50:  rgba(10,10,10,0.12);
+      --card-bg:    rgba(160,160,160,0.35);
+      --card-bg-strong: rgba(160,160,160,0.45);
+      --inner-bg:   rgba(145,145,145,0.3);
+      --chip-bg:    rgba(255,255,255,0.22);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--fg);
+      background: #000;
+    }
+
+    /* ── Gradient background ── */
+    #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
+
+    /* ── Nav bar ── */
+    .nav-bar {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 100; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-btn, .nav-timeline, .nav-skills, .nav-certs {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-btn:hover       { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-timeline:hover  { width: 126px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-skills:hover    { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-certs:hover     { width: 148px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+    .nav-btn svg, .nav-timeline svg, .nav-skills svg, .nav-certs svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-label, .nav-timeline-label, .nav-skills-label, .nav-certs-label {
+      font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-btn:hover .nav-label,
+    .nav-timeline:hover .nav-timeline-label,
+    .nav-skills:hover .nav-skills-label,
+    .nav-certs:hover .nav-certs-label { opacity: 1; }
+
+    .nav-contact {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid rgba(180,40,40,0.3); background: rgba(180,40,40,0.18);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      color: rgba(140,20,20,0.95); text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); white-space: nowrap; overflow: hidden;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-contact:hover { width: 124px; background: rgba(180,40,40,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-contact:hover .nav-contact-label { opacity: 1; }
+
+    /* ── Active page indicator (dot) ── */
+    .nav-bar a { position: relative; }
+    .nav-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 5px; left: 24px;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #000;
+      pointer-events: none;
+    }
+
+    /* ── Section + Page card ── */
+    .section { position:relative; z-index:1; padding:88px 24px 48px; display:flex; justify-content:center; }
+    .page-card { position:relative; overflow:hidden; width:100%; max-width:1000px; border-radius:2.5rem; border:1px solid var(--border-50); background:var(--card-bg); padding:44px 44px 36px; backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
+    .page-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,10,10,0.05),transparent); pointer-events:none; }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #000;
+    }
+    .page-header p {
+      margin-top: 8px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+    }
+
+    /* ── Cert grid ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    @media (max-width: 720px) {
+      .cert-grid { grid-template-columns: 1fr; }
+    }
+
+    .cert-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      padding: 24px 24px 22px;
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--fg-05), transparent 60%);
+      pointer-events: none;
+    }
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      border-color: var(--border);
+    }
+
+    /* ── Badge (placeholder square) ── */
+    .cert-badge {
+      flex-shrink: 0;
+      width: 84px; height: 84px;
+      border-radius: 18px;
+      border: 1px solid var(--border-50);
+      background: var(--inner-bg);
+      display: grid; place-items: center;
+      color: var(--fg-70);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .cert-badge::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(0,0,0,0.08), transparent 55%);
+      pointer-events: none;
+    }
+    .cert-badge svg { width: 36px; height: 36px; position: relative; z-index: 1; }
+
+    .cert-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cert-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--fg-40);
+    }
+    .cert-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+      line-height: 1.3;
+    }
+    .cert-issuer {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg-70);
+      margin-top: 2px;
+    }
+    .cert-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--fg-50);
+      flex-wrap: wrap;
+    }
+    .cert-meta .dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--fg-25);
+    }
+    .cert-id {
+      font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      color: var(--fg-50);
+    }
+
+    .cert-verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--chip-bg);
+      backdrop-filter: blur(8px);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      width: fit-content;
+    }
+    .cert-verify:hover {
+      background: rgba(255,255,255,0.34);
+      border-color: var(--border);
+      transform: translateY(-1px);
+    }
+    .cert-verify svg { width: 12px; height: 12px; }
+
+    /* ── Bottom page nav ── */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .page-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .page-nav-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+    /* ── Mobile: nav anchored to bottom ── */
+    @media (max-width: 640px) {
+      .nav-bar {
+        top: auto;
+        bottom: 18px;
+        padding: 6px;
+        background: rgba(160,160,160,0.4);
+        border: 1px solid var(--border-50);
+        border-radius: 9999px;
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      }
+      .nav-btn, .nav-timeline, .nav-skills, .nav-certs, .nav-contact {
+        width: 44px; height: 44px;
+        padding: 0;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .nav-btn:hover, .nav-timeline:hover,
+      .nav-skills:hover, .nav-certs:hover, .nav-contact:hover {
+        width: 44px;
+        background: rgba(255,255,255,0.18);
+        transform: none;
+        box-shadow: none;
+      }
+      .nav-btn svg, .nav-timeline svg, .nav-skills svg, .nav-certs svg, .nav-contact svg {
+        width: 22px; height: 22px;
+      }
+      .nav-label, .nav-timeline-label,
+      .nav-skills-label, .nav-certs-label, .nav-contact-label { display: none; }
+      .nav-bar a.active::after {
+        bottom: 4px;
+        left: 50%;
+      }
+      .section { padding: 32px 20px 110px; }
+      .page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+      .cert-card { padding: 20px; gap: 16px; }
+      .cert-badge { width: 64px; height: 64px; border-radius: 14px; }
+      .cert-badge svg { width: 28px; height: 28px; }
+    }
+
+    /* ── Entrance animations ── */
+    .anim-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .anim-up.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+  <div id="gradient-bg"></div>
+
+  <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="timeline.html" class="nav-timeline" aria-label="Timeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span class="nav-timeline-label">Timeline</span>
+    </a>
+    <a href="skills.html" class="nav-skills" aria-label="Skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+        <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+        <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+      </svg>
+      <span class="nav-skills-label">Skills</span>
+    </a>
+    <a href="certifications.html" class="nav-certs active" aria-label="Certifications" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="6"/>
+        <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+      </svg>
+      <span class="nav-certs-label">Certifications</span>
+    </a>
+    <a href="contact.html" class="nav-contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <span class="nav-contact-label">Contact</span>
+    </a>
+  </nav>
+
+  <div class="section">
+    <div class="page-card">
+
+    <div class="page-header anim-up" data-observe>
+      <h1>Certifications</h1>
+      <p>Credentials &amp; Continued Learning</p>
+    </div>
+
+    <div class="cert-grid">
+
+      <!-- 1 -->
+      <div class="cert-card anim-up" style="--delay:.05s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">01 · Cloud</span>
+          <div class="cert-title">AWS Certified Solutions Architect – Associate</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+          <div class="cert-meta">
+            <span>Issued 2024</span>
+            <span class="dot"></span>
+            <span class="cert-id">SAA-C03 · ID 4F92-A1B7</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify on Credly">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="cert-card anim-up" style="--delay:.12s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">02 · Data</span>
+          <div class="cert-title">Microsoft Certified: Azure Data Engineer Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+          <div class="cert-meta">
+            <span>Issued 2023</span>
+            <span class="dot"></span>
+            <span class="cert-id">DP-203 · ID MS-7C81</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify with Microsoft Learn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="cert-card anim-up" style="--delay:.19s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">03 · Analytics</span>
+          <div class="cert-title">Tableau Desktop Specialist</div>
+          <div class="cert-issuer">Tableau / Salesforce</div>
+          <div class="cert-meta">
+            <span>Issued 2023</span>
+            <span class="dot"></span>
+            <span class="cert-id">TDS-2023</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify on Tableau">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="cert-card anim-up" style="--delay:.26s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">04 · Data Warehouse</span>
+          <div class="cert-title">SnowPro Core Certified</div>
+          <div class="cert-issuer">Snowflake</div>
+          <div class="cert-meta">
+            <span>Issued 2024</span>
+            <span class="dot"></span>
+            <span class="cert-id">COF-C02</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify on Snowflake">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="cert-card anim-up" style="--delay:.33s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">05 · Methodology</span>
+          <div class="cert-title">Certified ScrumMaster (CSM)</div>
+          <div class="cert-issuer">Scrum Alliance</div>
+          <div class="cert-meta">
+            <span>Issued 2022</span>
+            <span class="dot"></span>
+            <span class="cert-id">CSM · ID 1234567</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify on Scrum Alliance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="cert-card anim-up" style="--delay:.40s" data-observe>
+        <div class="cert-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+          </svg>
+        </div>
+        <div class="cert-body">
+          <span class="cert-eyebrow">06 · Programming</span>
+          <div class="cert-title">Python for Data Science &amp; ML – Specialization</div>
+          <div class="cert-issuer">IBM via Coursera</div>
+          <div class="cert-meta">
+            <span>Issued 2022</span>
+            <span class="dot"></span>
+            <span class="cert-id">Coursera · IBM-DS</span>
+          </div>
+          <a href="#" class="cert-verify" aria-label="Verify on Coursera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Verify
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.cert-grid -->
+
+    <div class="page-nav anim-up" style="--delay:.5s" data-observe>
+      <a href="skills.html" class="page-nav-btn">&#x2039; Skills</a>
+      <a href="contact.html" class="page-nav-btn">Contact &#x203a;</a>
+    </div>
+
+    </div><!-- /.page-card -->
+  </div><!-- /.section -->
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+
+  // ── Page transition ──
+  (function(){
+    const SEL='.glass-card,.page-card';
+    function mkBg(){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9998;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(140,140,140,0.15);pointer-events:none;';return d;}
+    function mkGl(cp){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(160,160,160,0.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(10,10,10,0.12);pointer-events:none;will-change:clip-path;';if(cp)d.style.clipPath=cp;return d;}
+    const raw=sessionStorage.getItem('pt');
+    if(raw){
+      try{
+        const s=JSON.parse(raw);sessionStorage.removeItem('pt');
+        const vw=innerWidth,vh=innerHeight;
+        const bg=mkBg(),gl=mkGl(`inset(${s.t}px ${s.r}px ${s.b}px ${s.l}px round 40px)`);
+        document.body.appendChild(bg);document.body.appendChild(gl);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          const c=document.querySelector(SEL);if(!c){bg.remove();gl.remove();return;}
+          const r=c.getBoundingClientRect();
+          gl.style.transition='clip-path 0.52s cubic-bezier(0.4,0,0.2,1)';
+          gl.style.clipPath=`inset(${Math.round(r.top)}px ${Math.round(vw-r.right)}px ${Math.round(vh-r.bottom)}px ${Math.round(r.left)}px round 40px)`;
+          setTimeout(()=>{bg.style.transition=gl.style.transition='opacity 0.22s ease';bg.style.opacity=gl.style.opacity='0';setTimeout(()=>{bg.remove();gl.remove();},240);},520);
+        }));
+      }catch(e){sessionStorage.removeItem('pt');}
+    }
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href]');if(!a)return;
+      const h=a.getAttribute('href');
+      if(!h||h.startsWith('#')||/^https?:/.test(h)||h.startsWith('mailto'))return;
+      const c=document.querySelector(SEL);if(!c)return;
+      e.preventDefault();
+      const r=c.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
+      sessionStorage.setItem('pt',JSON.stringify({t:Math.round(r.top),r:Math.round(vw-r.right),b:Math.round(vh-r.bottom),l:Math.round(r.left)}));
+      const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:9999;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);background:rgba(160,160,160,0.35);pointer-events:none;';
+      document.body.appendChild(o);
+      window.location.href=a.href;
+    });
+  })();
+  </script>
+
+  <!-- OGL gradient mesh – same aurora wash as other pages -->
+  <script type="importmap">
+    { "imports": { "ogl": "https://esm.sh/ogl" } }
+  </script>
+  <script type="module">
+    import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
+
+    const vert = `
+      attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
+      void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
+    `;
+    const frag = `
+      precision highp float;
+      uniform float uTime, uSwirl, uSpeed, uScale, uOffsetX, uOffsetY, uRotation;
+      uniform float uWaveAmp, uWaveFreq, uWaveSpeed, uGrain;
+      uniform vec3 uColorA, uColorB, uColorC, uResolution;
+      varying vec2 vUv;
+      float wave(vec2 uv, float freq, float speed, float time) {
+        return sin(uv.x * freq + time * speed) * cos(uv.y * freq + time * speed);
+      }
+      float random(vec2 st) {
+        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+      }
+      vec3 colorDodge(vec3 base, vec3 blend) { return min(base / (1.0 - blend + 0.0001), 1.0); }
+      void main() {
+        float mr = min(uResolution.x, uResolution.y);
+        vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
+        uv = uv * uScale + vec2(uOffsetX, uOffsetY);
+        float cosR = cos(uRotation); float sinR = sin(uRotation);
+        uv = vec2(uv.x * cosR - uv.y * sinR, uv.x * sinR + uv.y * cosR);
+        uv.x += wave(uv, uWaveFreq, uWaveSpeed, uTime) * uWaveAmp;
+        uv.y += wave(uv + 10.0, uWaveFreq * 1.5, uWaveSpeed * 0.8, uTime) * uWaveAmp * 0.5;
+        float angle = atan(uv.y, uv.x); float radius = length(uv);
+        angle += uSwirl * radius;
+        uv = vec2(cos(angle), sin(angle)) * radius;
+        float d = -uTime * 0.5 * uSpeed; float a = 0.0;
+        for (float i = 0.0; i < 5.0; ++i) { a += cos(i - d - a * uv.x); d += sin(uv.y * i + a); }
+        d += uTime * 0.5 * uSpeed;
+        vec3 col = mix(uColorA, uColorB, (sin(d) + 1.0) * 0.5);
+        col = mix(col, uColorC, (cos(a) + 1.0) * 0.5);
+        float grain = (random(gl_FragCoord.xy + uTime) - 0.5) * uGrain;
+        col = colorDodge(col, vec3(0.5 + grain));
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const hexToRgb = hex => { const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
+    const [cA, cB, cC] = ['#888888','#555555','#333333'].map(hexToRgb);
+
+    const ctn = document.getElementById('gradient-bg');
+    const renderer = new Renderer({ alpha: false });
+    const gl = renderer.gl;
+    gl.clearColor(0,0,0,1);
+
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex: vert, fragment: frag,
+      uniforms: {
+        uTime:{value:0},
+        uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
+        uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
+        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.0},
+        uResolution:{value: new Color(1,1,1)},
+        uColorA:{value: new Color(...cA)}, uColorB:{value: new Color(...cB)}, uColorC:{value: new Color(...cC)},
+      },
+    });
+    const mesh = new Mesh(gl, { geometry, program });
+    ctn.appendChild(gl.canvas);
+
+    function resize() {
+      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+      program.uniforms.uResolution.value = new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width/gl.canvas.height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    (function update(t) {
+      requestAnimationFrame(update);
+      program.uniforms.uTime.value = t * 0.001;
+      renderer.render({ scene: mesh });
+    })(0);
+  </script>
+</body>
+</html>

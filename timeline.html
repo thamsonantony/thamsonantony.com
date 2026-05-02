@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeline — Thamson Antony</title>
+  <title>Timeline – Thamson Antony</title>
   <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,6 +63,35 @@
     .nav-timeline-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
     .nav-timeline:hover .nav-timeline-label { opacity: 1; }
 
+    .nav-skills {
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-skills:hover .nav-skills-label { opacity: 1; }
+
+    .nav-certs {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-certs:hover { width: 148px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-certs svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-certs-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-certs:hover .nav-certs-label { opacity: 1; }
+
     .nav-contact {
       width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
       border: 1px solid rgba(180,40,40,0.3); background: rgba(180,40,40,0.18);
@@ -77,14 +106,11 @@
     .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
     .nav-contact:hover .nav-contact-label { opacity: 1; }
 
-    /* ── Page ── */
-    .page {
-      position: relative;
-      z-index: 1;
-      padding: 110px 32px 80px;
-    }
+    /* ── Section + Page card ── */
+    .section { position:relative; z-index:1; padding:88px 24px 48px; display:flex; justify-content:center; }
+    .page-card { position:relative; overflow:hidden; width:100%; max-width:1200px; border-radius:2.5rem; border:1px solid var(--border-50); background:var(--card-bg); padding:44px 44px 36px; backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
+    .page-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,10,10,0.05),transparent); pointer-events:none; }
 
-    /* ── Page header ── */
     .page-header {
       text-align: center;
       margin-bottom: 56px;
@@ -109,12 +135,6 @@
       padding-bottom: 8px;
     }
 
-    /*
-      Grid layout:
-        row 1 → education cards (top), aligned to bottom
-        row 2 → horizontal line + dots (32px)
-        row 3 → experience cards (bottom), aligned to top
-    */
     .tl-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(220px, 1fr));
@@ -123,7 +143,6 @@
       position: relative;
     }
 
-    /* Horizontal line spanning all cols, sitting in row 2 */
     .tl-h-line {
       grid-row: 2;
       grid-column: 1 / -1;
@@ -140,7 +159,6 @@
       z-index: 0;
     }
 
-    /* Dot cells in row 2 */
     .tl-dot-wrap {
       grid-row: 2;
       display: flex;
@@ -149,8 +167,7 @@
       z-index: 1;
     }
     .tl-dot {
-      width: 12px;
-      height: 12px;
+      width: 12px; height: 12px;
       border-radius: 50%;
       background: rgba(0,0,0,0.75);
       border: 2px solid rgba(0,0,0,0.3);
@@ -162,7 +179,6 @@
       box-shadow: 0 0 18px rgba(0,0,0,0.25);
     }
 
-    /* Top-row cells (education) — card sits at bottom, stem points down */
     .tl-top {
       grid-row: 1;
       padding: 0 10px;
@@ -174,14 +190,12 @@
     .tl-top.empty { min-height: 40px; }
     .tl-top:not(.empty)::after {
       content: '';
-      width: 1px;
-      height: 14px;
+      width: 1px; height: 14px;
       flex-shrink: 0;
       background: rgba(0,0,0,0.3);
       margin-top: 6px;
     }
 
-    /* Bottom-row cells (experience) — stem points up, card sits below */
     .tl-bot {
       grid-row: 3;
       padding: 0 10px;
@@ -193,8 +207,7 @@
     .tl-bot.empty { min-height: 40px; }
     .tl-bot:not(.empty)::before {
       content: '';
-      width: 1px;
-      height: 14px;
+      width: 1px; height: 14px;
       flex-shrink: 0;
       background: rgba(0,0,0,0.3);
       margin-bottom: 6px;
@@ -237,7 +250,7 @@
       pointer-events: none;
     }
 
-.tl-year {
+    .tl-year {
       display: block;
       font-size: 11px;
       font-weight: 600;
@@ -267,21 +280,6 @@
       border: 1px solid var(--border-50);
     }
 
-    /* ── Nav skills button ── */
-    .nav-skills {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-skills:hover .nav-skills-label { opacity: 1; }
-
     /* ── Bottom page nav ── */
     .page-nav {
       display: flex;
@@ -309,25 +307,6 @@
     }
     .page-nav-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-    /* ── Row side-labels ── */
-    .tl-side-labels {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(220px, 1fr));
-      min-width: 900px;
-      margin-bottom: 8px;
-    }
-    .tl-side-label {
-      grid-column: 1 / -1;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      padding: 0 10px;
-      margin-bottom: 4px;
-    }
-    .tl-side-label.exp { margin-top: 4px; }
-
     /* ── Entrance animations ── */
     .anim-up {
       opacity: 0;
@@ -337,10 +316,46 @@
     }
     .anim-up.visible { opacity: 1; transform: none; }
 
+    /* ── Active page indicator (dot) ── */
+    .nav-bar a { position: relative; }
+    .nav-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 5px; left: 24px;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #000;
+      pointer-events: none;
+    }
+
+    /* ── Mobile: nav anchored to bottom ── */
+    @media (max-width: 640px) {
+      .nav-bar {
+        top: auto; bottom: 18px;
+        padding: 6px;
+        background: rgba(160,160,160,0.4);
+        border: 1px solid var(--border-50);
+        border-radius: 9999px;
+        backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      }
+      .nav-btn, .nav-timeline, .nav-skills, .nav-contact {
+        width: 44px; height: 44px; padding: 0; justify-content: center;
+        background: transparent; border: none; box-shadow: none;
+      }
+      .nav-btn:hover, .nav-timeline:hover, .nav-skills:hover, .nav-contact:hover {
+        width: 44px; background: rgba(255,255,255,0.18); transform: none; box-shadow: none;
+      }
+      .nav-label, .nav-timeline-label, .nav-skills-label, .nav-contact-label { display: none; }
+      .nav-bar a.active::after { bottom: 4px; left: 50%; }
+      .section { padding: 80px 16px 110px; }
+      .page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+    }
+
     /* ── Mobile: collapse to vertical ── */
     @media (max-width: 700px) {
       .tl-outer { overflow-x: visible; }
-      .tl-side-labels { display: none; }
       .tl-grid {
         display: flex;
         flex-direction: column;
@@ -368,8 +383,7 @@
       .tl-card::after {
         content: '';
         position: absolute;
-        left: -23px;
-        top: 18px;
+        left: -23px; top: 18px;
         width: 10px; height: 10px;
         border-radius: 50%;
         background: rgba(0,0,0,0.7);
@@ -389,7 +403,7 @@
       </svg>
       <span class="nav-label">Home</span>
     </a>
-    <a href="timeline.html" class="nav-timeline" aria-label="Timeline">
+    <a href="timeline.html" class="nav-timeline active" aria-label="Timeline" aria-current="page">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/>
         <polyline points="12 6 12 12 16 14"/>
@@ -405,6 +419,13 @@
       </svg>
       <span class="nav-skills-label">Skills</span>
     </a>
+    <a href="certifications.html" class="nav-certs" aria-label="Certifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="6"/>
+        <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+      </svg>
+      <span class="nav-certs-label">Certifications</span>
+    </a>
     <a href="contact.html" class="nav-contact" aria-label="Contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -414,7 +435,8 @@
     </a>
   </nav>
 
-  <div class="page">
+  <div class="section">
+    <div class="page-card">
 
     <div class="page-header anim-up" data-observe>
       <h1>Timeline</h1>
@@ -489,7 +511,7 @@
             <span class="tl-year">2022 – 2023</span>
             <p class="tl-title">IT Analyst</p>
             <p class="tl-org">Tata Consultancy Services</p>
-            <p class="tl-sub">for Citi — Private Banking &amp; Wealth Management</p>
+            <p class="tl-sub">for Citi – Private Banking &amp; Wealth Management</p>
           </div>
         </div>
 
@@ -501,11 +523,12 @@
     </div><!-- /.tl-outer -->
 
     <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="home.html" class="page-nav-btn">‹ Home</a>
-      <a href="skills.html" class="page-nav-btn">Skills ›</a>
+      <a href="home.html" class="page-nav-btn">&#x2039; Home</a>
+      <a href="skills.html" class="page-nav-btn">Skills &#x203a;</a>
     </div>
 
-  </div><!-- /.page -->
+    </div><!-- /.page-card -->
+  </div><!-- /.section -->
 
   <script>
     const observer = new IntersectionObserver(
@@ -515,6 +538,41 @@
       { threshold: 0.08 }
     );
     document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+
+  // ── Page transition ──
+  (function(){
+    const SEL='.glass-card,.page-card';
+    function mkBg(){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9998;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(140,140,140,0.15);pointer-events:none;';return d;}
+    function mkGl(cp){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(160,160,160,0.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(10,10,10,0.12);pointer-events:none;will-change:clip-path;';if(cp)d.style.clipPath=cp;return d;}
+    const raw=sessionStorage.getItem('pt');
+    if(raw){
+      try{
+        const s=JSON.parse(raw);sessionStorage.removeItem('pt');
+        const vw=innerWidth,vh=innerHeight;
+        const bg=mkBg(),gl=mkGl(`inset(${s.t}px ${s.r}px ${s.b}px ${s.l}px round 40px)`);
+        document.body.appendChild(bg);document.body.appendChild(gl);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          const c=document.querySelector(SEL);if(!c){bg.remove();gl.remove();return;}
+          const r=c.getBoundingClientRect();
+          gl.style.transition='clip-path 0.52s cubic-bezier(0.4,0,0.2,1)';
+          gl.style.clipPath=`inset(${Math.round(r.top)}px ${Math.round(vw-r.right)}px ${Math.round(vh-r.bottom)}px ${Math.round(r.left)}px round 40px)`;
+          setTimeout(()=>{bg.style.transition=gl.style.transition='opacity 0.22s ease';bg.style.opacity=gl.style.opacity='0';setTimeout(()=>{bg.remove();gl.remove();},240);},520);
+        }));
+      }catch(e){sessionStorage.removeItem('pt');}
+    }
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href]');if(!a)return;
+      const h=a.getAttribute('href');
+      if(!h||h.startsWith('#')||/^https?:/.test(h)||h.startsWith('mailto'))return;
+      const c=document.querySelector(SEL);if(!c)return;
+      e.preventDefault();
+      const r=c.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
+      sessionStorage.setItem('pt',JSON.stringify({t:Math.round(r.top),r:Math.round(vw-r.right),b:Math.round(vh-r.bottom),l:Math.round(r.left)}));
+      const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:9999;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);background:rgba(160,160,160,0.35);pointer-events:none;';
+      document.body.appendChild(o);
+      window.location.href=a.href;
+    });
+  })();
   </script>
 
   <script type="importmap">

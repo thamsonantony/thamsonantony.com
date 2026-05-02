@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills – Thamson Antony</title>
+  <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
+  <meta name="description" content="Thamson Antony – Skills & Expertise" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #ffffff;
+      --fg:         #0a0a0a;
+      --fg-70:      rgba(10,10,10,0.7);
+      --fg-50:      rgba(10,10,10,0.5);
+      --fg-40:      rgba(10,10,10,0.4);
+      --fg-25:      rgba(10,10,10,0.25);
+      --fg-12:      rgba(10,10,10,0.12);
+      --fg-05:      rgba(10,10,10,0.05);
+      --border:     rgba(10,10,10,0.2);
+      --border-50:  rgba(10,10,10,0.12);
+      --primary-15: rgba(100,100,100,0.15);
+      --primary-20: rgba(100,100,100,0.2);
+      --card-bg:    rgba(160,160,160,0.35);
+      --card-bg-strong: rgba(160,160,160,0.45);
+      --inner-bg:   rgba(145,145,145,0.3);
+      --chip-bg:    rgba(255,255,255,0.22);
+      --shadow:     0 25px 60px rgba(0,0,0,0.4);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--fg);
+      background: #000;
+    }
+
+    /* ── Gradient background ── */
+    #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
+
+    /* ── Nav bar ── */
+    .nav-bar {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 100; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-btn, .nav-timeline, .nav-skills {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: visible; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-btn:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-timeline:hover { width: 126px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+    /* Hide overflow on the inner pill, but allow the dot to show */
+    .nav-btn, .nav-timeline, .nav-skills, .nav-contact {
+      overflow: hidden;
+    }
+    .nav-btn .nav-pill-inner, .nav-timeline .nav-pill-inner,
+    .nav-skills .nav-pill-inner, .nav-contact .nav-pill-inner {
+      display: contents;
+    }
+
+    .nav-btn svg, .nav-timeline svg, .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-label, .nav-timeline-label, .nav-skills-label {
+      font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0;
+      transition: opacity 0.15s ease 0.12s;
+    }
+    .nav-btn:hover .nav-label,
+    .nav-timeline:hover .nav-timeline-label,
+    .nav-skills:hover .nav-skills-label { opacity: 1; }
+
+    /* ── Certifications nav button ── */
+    .nav-certs {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      cursor: pointer; text-decoration: none; color: var(--fg);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-certs:hover { width: 148px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-certs svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-certs-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-certs:hover .nav-certs-label { opacity: 1; }
+
+    .nav-contact {
+      position: relative;
+      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
+      border: 1px solid rgba(180,40,40,0.3); background: rgba(180,40,40,0.18);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+      color: rgba(140,20,20,0.95); text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15); white-space: nowrap;
+      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-contact:hover { width: 124px; background: rgba(180,40,40,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
+    .nav-contact:hover .nav-contact-label { opacity: 1; }
+
+    /* ── Active page indicator (dot under current nav pill) ── */
+    .nav-bar a { position: relative; }
+    .nav-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 24px;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #000;
+      pointer-events: none;
+    }
+
+    /* ── Section + Page card ── */
+    .section { position:relative; z-index:1; padding:88px 24px 48px; display:flex; justify-content:center; }
+    .page-card { position:relative; overflow:hidden; width:100%; max-width:1100px; border-radius:2.5rem; border:1px solid var(--border-50); background:var(--card-bg); padding:44px 44px 36px; backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); box-shadow:0 25px 60px rgba(0,0,0,0.25); }
+    .page-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(10,10,10,0.05),transparent); pointer-events:none; }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #000;
+    }
+    .page-header p {
+      margin-top: 8px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+    }
+
+    /* ── Stats strip (3 stats, equal width) ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 700px) {
+      .stats-strip { grid-template-columns: 1fr; }
+    }
+    .stat {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-50);
+      background: var(--inner-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      padding: 18px 18px 16px;
+    }
+    .stat-num {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      line-height: 1.1;
+    }
+    .stat-num .unit {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--fg-50);
+      margin-left: 2px;
+    }
+    .stat-label {
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-50);
+    }
+
+    /* ── Skills grid: 6 columns, with hierarchy spans ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 20px;
+    }
+    /* Primary (large) cards span 3 cols, secondary span 2 */
+    .skill-card.primary   { grid-column: span 3; }
+    .skill-card.secondary { grid-column: span 2; }
+    /* 6 cards: 3+3 row, then 2+2+2 row */
+    @media (max-width: 1080px) {
+      .skill-card.primary   { grid-column: span 3; }
+      .skill-card.secondary { grid-column: span 3; }
+    }
+    @media (max-width: 720px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-card.primary, .skill-card.secondary { grid-column: 1 / -1; }
+    }
+
+    .skill-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.75rem;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      padding: 26px 26px 22px;
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .skill-card.primary {
+      background: var(--card-bg-strong);
+      padding: 32px 32px 28px;
+    }
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+      border-color: var(--border);
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--fg-05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .skill-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+    .skill-icon {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--border-50);
+      background: var(--inner-bg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--fg);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .skill-card.primary .skill-icon { width: 48px; height: 48px; border-radius: 16px; }
+    .skill-icon svg { width: 20px; height: 20px; }
+    .skill-card.primary .skill-icon svg { width: 22px; height: 22px; }
+
+    .skill-meta { display: flex; flex-direction: column; gap: 2px; }
+    .skill-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--fg-40);
+    }
+    .skill-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--fg);
+    }
+    .skill-card.primary .skill-title { font-size: 1.2rem; }
+
+    .skill-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--fg-70);
+      margin: 14px 0 16px;
+    }
+    .skill-card.primary .skill-desc { font-size: 14px; }
+
+    /* ── Tiered chip groups: Daily / Working / Familiar ── */
+    .tier {
+      margin-top: 14px;
+    }
+    .tier-label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-40);
+      margin-bottom: 8px;
+    }
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 11px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--chip-bg);
+      backdrop-filter: blur(8px);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg);
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .chip:hover {
+      background: rgba(255,255,255,0.34);
+      border-color: var(--border);
+      transform: translateY(-1px);
+    }
+    /* Tier visual weighting */
+    .tier.tier-daily   .chip { background: rgba(255,255,255,0.32); color: var(--fg); }
+    .tier.tier-working .chip { background: rgba(255,255,255,0.20); color: var(--fg); }
+    .tier.tier-familiar .chip {
+      background: transparent;
+      color: var(--fg-70);
+      border-color: var(--border-50);
+    }
+
+    /* ── Bottom page nav ── */
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .page-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: 1px solid var(--border-50);
+      background: var(--card-bg);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .page-nav-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
+
+    /* ── Mobile: nav anchored to bottom ── */
+    @media (max-width: 640px) {
+      .nav-bar {
+        top: auto;
+        bottom: 18px;
+        padding: 6px;
+        background: rgba(160,160,160,0.4);
+        border: 1px solid var(--border-50);
+        border-radius: 9999px;
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+      }
+      .nav-btn, .nav-timeline, .nav-skills, .nav-contact {
+        width: 44px; height: 44px;
+        padding: 0;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .nav-btn:hover, .nav-timeline:hover,
+      .nav-skills:hover, .nav-contact:hover {
+        width: 44px;
+        background: rgba(255,255,255,0.18);
+        transform: none;
+        box-shadow: none;
+      }
+      .nav-btn svg, .nav-timeline svg, .nav-skills svg, .nav-contact svg {
+        width: 22px; height: 22px;
+      }
+      .nav-label, .nav-timeline-label,
+      .nav-skills-label, .nav-contact-label { display: none; }
+      .nav-bar a.active::after {
+        bottom: 4px;
+        left: 50%;
+      }
+      .section { padding: 32px 20px 110px; }
+      .page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+    }
+
+    /* ── Entrance animations ── */
+    .anim-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      transition-delay: var(--delay, 0s);
+    }
+    .anim-up.visible { opacity: 1; transform: none; }
+
+    /* ── Page transition removed ── */
+    body.page-leaving { opacity: 0; }
+  </style>
+</head>
+<body>
+  <div id="gradient-bg"></div>
+
+  <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="timeline.html" class="nav-timeline" aria-label="Timeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span class="nav-timeline-label">Timeline</span>
+    </a>
+    <a href="skills.html" class="nav-skills active" aria-label="Skills" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
+        <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
+        <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
+      </svg>
+      <span class="nav-skills-label">Skills</span>
+    </a>
+    <a href="certifications.html" class="nav-certs" aria-label="Certifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="6"/>
+        <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
+      </svg>
+      <span class="nav-certs-label">Certifications</span>
+    </a>
+    <a href="contact.html" class="nav-contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <span class="nav-contact-label">Contact</span>
+    </a>
+  </nav>
+
+  <div class="section">
+    <div class="page-card">
+
+    <div class="page-header anim-up" data-observe>
+      <h1>Skills</h1>
+      <p>Education &amp; Expertise</p>
+    </div>
+
+    <!-- ── Stats strip (3 honest stats) ── -->
+    <div class="stats-strip">
+      <div class="stat anim-up" style="--delay:.05s" data-observe>
+        <div class="stat-num">8<span class="unit">yrs</span></div>
+        <div class="stat-label">In IT &amp; Analytics</div>
+      </div>
+      <div class="stat anim-up" style="--delay:.1s" data-observe>
+        <div class="stat-num">3.9<span class="unit">/4</span></div>
+        <div class="stat-label">M.S. Analytics GPA</div>
+      </div>
+      <div class="stat anim-up" style="--delay:.15s" data-observe>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Fortune 500 Clients</div>
+      </div>
+    </div>
+
+    <!-- ── Skills grid ── -->
+    <div class="skills-grid">
+
+      <!-- Primary 1: Programming & Data -->
+      <div class="skill-card primary anim-up" style="--delay:.1s" data-observe>
+        <div class="skill-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <div class="skill-meta">
+            <span class="skill-eyebrow">01 · Foundations</span>
+            <span class="skill-title">Programming &amp; Data</span>
+          </div>
+        </div>
+        <p class="skill-desc">Writing the queries, scripts, and pipelines that move data from raw source to ready-to-use.</p>
+
+        <div class="tier tier-daily">
+          <span class="tier-label">Daily</span>
+          <div class="chip-list">
+            <span class="chip">SQL</span>
+            <span class="chip">Python</span>
+            <span class="chip">Pandas</span>
+          </div>
+        </div>
+        <div class="tier tier-working">
+          <span class="tier-label">Working</span>
+          <div class="chip-list">
+            <span class="chip">NumPy</span>
+            <span class="chip">PySpark</span>
+          </div>
+        </div>
+        <div class="tier tier-familiar">
+          <span class="tier-label">Familiar</span>
+          <div class="chip-list">
+            <span class="chip">R</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary 2: Analytics & BI -->
+      <div class="skill-card primary anim-up" style="--delay:.18s" data-observe>
+        <div class="skill-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+              <line x1="3" y1="20" x2="21" y2="20"/>
+            </svg>
+          </div>
+          <div class="skill-meta">
+            <span class="skill-eyebrow">02 · Visualization</span>
+            <span class="skill-title">Analytics &amp; BI</span>
+          </div>
+        </div>
+        <p class="skill-desc">Turning models and metrics into dashboards executives actually use to make decisions.</p>
+
+        <div class="tier tier-daily">
+          <span class="tier-label">Daily</span>
+          <div class="chip-list">
+            <span class="chip">Tableau</span>
+            <span class="chip">Excel / VBA</span>
+          </div>
+        </div>
+        <div class="tier tier-working">
+          <span class="tier-label">Working</span>
+          <div class="chip-list">
+            <span class="chip">Power BI</span>
+            <span class="chip">Looker</span>
+          </div>
+        </div>
+        <div class="tier tier-familiar">
+          <span class="tier-label">Familiar</span>
+          <div class="chip-list">
+            <span class="chip">Plotly</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary: Data Engineering -->
+      <div class="skill-card secondary anim-up" style="--delay:.26s" data-observe>
+        <div class="skill-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <div class="skill-meta">
+            <span class="skill-eyebrow">03 · Pipelines</span>
+            <span class="skill-title">Data Engineering &amp; ETL</span>
+          </div>
+        </div>
+        <p class="skill-desc">Durable ETL flows, warehouses, and integrations across cloud and on-prem systems.</p>
+
+        <div class="tier tier-daily">
+          <span class="tier-label">Daily</span>
+          <div class="chip-list">
+            <span class="chip">Informatica</span>
+            <span class="chip">Snowflake</span>
+          </div>
+        </div>
+        <div class="tier tier-working">
+          <span class="tier-label">Working</span>
+          <div class="chip-list">
+            <span class="chip">Airflow</span>
+            <span class="chip">AWS</span>
+          </div>
+        </div>
+        <div class="tier tier-familiar">
+          <span class="tier-label">Familiar</span>
+          <div class="chip-list">
+            <span class="chip">Azure Data Factory</span>
+            <span class="chip">dbt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary: Statistics & ML -->
+      <div class="skill-card secondary anim-up" style="--delay:.34s" data-observe>
+        <div class="skill-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 10v6"/>
+              <path d="M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24"/>
+              <path d="M1 12h6m10 0h6"/>
+              <path d="M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/>
+            </svg>
+          </div>
+          <div class="skill-meta">
+            <span class="skill-eyebrow">04 · Modeling</span>
+            <span class="skill-title">Statistics &amp; ML</span>
+          </div>
+        </div>
+        <p class="skill-desc">Predictive models, forecasts, and experiments grounded in solid statistical methodology.</p>
+
+        <div class="tier tier-daily">
+          <span class="tier-label">Daily</span>
+          <div class="chip-list">
+            <span class="chip">Regression</span>
+            <span class="chip">scikit-learn</span>
+          </div>
+        </div>
+        <div class="tier tier-working">
+          <span class="tier-label">Working</span>
+          <div class="chip-list">
+            <span class="chip">Forecasting</span>
+            <span class="chip">A/B Testing</span>
+          </div>
+        </div>
+        <div class="tier tier-familiar">
+          <span class="tier-label">Familiar</span>
+          <div class="chip-list">
+            <span class="chip">XGBoost</span>
+            <span class="chip">TensorFlow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary: Business & Domain -->
+      <div class="skill-card secondary anim-up" style="--delay:.42s" data-observe>
+        <div class="skill-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 7h-7L10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+              <line x1="12" y1="13" x2="12" y2="17"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div class="skill-meta">
+            <span class="skill-eyebrow">05 · Consulting</span>
+            <span class="skill-title">Business &amp; Domain</span>
+          </div>
+        </div>
+        <p class="skill-desc">Translating between technical teams and executives – aligning data work with strategic outcomes.</p>
+
+        <div class="tier tier-daily">
+          <span class="tier-label">Daily</span>
+          <div class="chip-list">
+            <span class="chip">Stakeholder Mgmt</span>
+            <span class="chip">Requirements</span>
+          </div>
+        </div>
+        <div class="tier tier-working">
+          <span class="tier-label">Working</span>
+          <div class="chip-list">
+            <span class="chip">Energy &amp; Utilities</span>
+            <span class="chip">Wealth Mgmt</span>
+            <span class="chip">Agile / Scrum</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.skills-grid -->
+
+    <div class="page-nav anim-up" style="--delay:.55s" data-observe>
+      <a href="timeline.html" class="page-nav-btn">&#x2039; Timeline</a>
+      <a href="contact.html" class="page-nav-btn">Contact &#x203a;</a>
+    </div>
+
+    </div><!-- /.page-card -->
+  </div><!-- /.section -->
+
+  <script>
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+
+  // ── Page transition ──
+  (function(){
+    const SEL='.glass-card,.page-card';
+    function mkBg(){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9998;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(140,140,140,0.15);pointer-events:none;';return d;}
+    function mkGl(cp){const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(160,160,160,0.35);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(10,10,10,0.12);pointer-events:none;will-change:clip-path;';if(cp)d.style.clipPath=cp;return d;}
+    const raw=sessionStorage.getItem('pt');
+    if(raw){
+      try{
+        const s=JSON.parse(raw);sessionStorage.removeItem('pt');
+        const vw=innerWidth,vh=innerHeight;
+        const bg=mkBg(),gl=mkGl(`inset(${s.t}px ${s.r}px ${s.b}px ${s.l}px round 40px)`);
+        document.body.appendChild(bg);document.body.appendChild(gl);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          const c=document.querySelector(SEL);if(!c){bg.remove();gl.remove();return;}
+          const r=c.getBoundingClientRect();
+          gl.style.transition='clip-path 0.52s cubic-bezier(0.4,0,0.2,1)';
+          gl.style.clipPath=`inset(${Math.round(r.top)}px ${Math.round(vw-r.right)}px ${Math.round(vh-r.bottom)}px ${Math.round(r.left)}px round 40px)`;
+          setTimeout(()=>{bg.style.transition=gl.style.transition='opacity 0.22s ease';bg.style.opacity=gl.style.opacity='0';setTimeout(()=>{bg.remove();gl.remove();},240);},520);
+        }));
+      }catch(e){sessionStorage.removeItem('pt');}
+    }
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href]');if(!a)return;
+      const h=a.getAttribute('href');
+      if(!h||h.startsWith('#')||/^https?:/.test(h)||h.startsWith('mailto'))return;
+      const c=document.querySelector(SEL);if(!c)return;
+      e.preventDefault();
+      const r=c.getBoundingClientRect(),vw=innerWidth,vh=innerHeight;
+      sessionStorage.setItem('pt',JSON.stringify({t:Math.round(r.top),r:Math.round(vw-r.right),b:Math.round(vh-r.bottom),l:Math.round(r.left)}));
+      const o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:9999;backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);background:rgba(160,160,160,0.35);pointer-events:none;';
+      document.body.appendChild(o);
+      window.location.href=a.href;
+    });
+  })();
+  </script>
+
+  <!-- OGL gradient mesh – slowed aurora wash -->
+  <script type="importmap">
+    { "imports": { "ogl": "https://esm.sh/ogl" } }
+  </script>
+  <script type="module">
+    import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
+
+    const vert = `
+      attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
+      void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
+    `;
+    const frag = `
+      precision highp float;
+      uniform float uTime, uSwirl, uSpeed, uScale, uOffsetX, uOffsetY, uRotation;
+      uniform float uWaveAmp, uWaveFreq, uWaveSpeed, uGrain;
+      uniform vec3 uColorA, uColorB, uColorC, uResolution;
+      varying vec2 vUv;
+      float wave(vec2 uv, float freq, float speed, float time) {
+        return sin(uv.x * freq + time * speed) * cos(uv.y * freq + time * speed);
+      }
+      float random(vec2 st) {
+        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+      }
+      vec3 colorDodge(vec3 base, vec3 blend) { return min(base / (1.0 - blend + 0.0001), 1.0); }
+      void main() {
+        float mr = min(uResolution.x, uResolution.y);
+        vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
+        uv = uv * uScale + vec2(uOffsetX, uOffsetY);
+        float cosR = cos(uRotation); float sinR = sin(uRotation);
+        uv = vec2(uv.x * cosR - uv.y * sinR, uv.x * sinR + uv.y * cosR);
+        uv.x += wave(uv, uWaveFreq, uWaveSpeed, uTime) * uWaveAmp;
+        uv.y += wave(uv + 10.0, uWaveFreq * 1.5, uWaveSpeed * 0.8, uTime) * uWaveAmp * 0.5;
+        float angle = atan(uv.y, uv.x); float radius = length(uv);
+        angle += uSwirl * radius;
+        uv = vec2(cos(angle), sin(angle)) * radius;
+        float d = -uTime * 0.5 * uSpeed; float a = 0.0;
+        for (float i = 0.0; i < 5.0; ++i) { a += cos(i - d - a * uv.x); d += sin(uv.y * i + a); }
+        d += uTime * 0.5 * uSpeed;
+        vec3 col = mix(uColorA, uColorB, (sin(d) + 1.0) * 0.5);
+        col = mix(col, uColorC, (cos(a) + 1.0) * 0.5);
+        float grain = (random(gl_FragCoord.xy + uTime) - 0.5) * uGrain;
+        col = colorDodge(col, vec3(0.5 + grain));
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const hexToRgb = hex => { const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
+    const [cA, cB, cC] = ['#888888','#555555','#333333'].map(hexToRgb);
+
+    const ctn = document.getElementById('gradient-bg');
+    const renderer = new Renderer({ alpha: false });
+    const gl = renderer.gl;
+    gl.clearColor(0,0,0,1);
+
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex: vert, fragment: frag,
+      uniforms: {
+        uTime:{value:0},
+        uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
+        uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
+        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.0},
+        uResolution:{value: new Color(1,1,1)},
+        uColorA:{value: new Color(...cA)}, uColorB:{value: new Color(...cB)}, uColorC:{value: new Color(...cC)},
+      },
+    });
+    const mesh = new Mesh(gl, { geometry, program });
+    ctn.appendChild(gl.canvas);
+
+    function resize() {
+      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+      program.uniforms.uResolution.value = new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width/gl.canvas.height);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    (function update(t) {
+      requestAnimationFrame(update);
+      program.uniforms.uTime.value = t * 0.001;
+      renderer.render({ scene: mesh });
+    })(0);
+  </script>
+</body>
+</html>
