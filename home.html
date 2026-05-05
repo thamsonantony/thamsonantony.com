@@ -19,7 +19,7 @@
       --border-50:  rgba(10,10,10,0.12);
       --primary-15: rgba(100,100,100,0.15);
       --primary-20: rgba(100,100,100,0.2);
-      --card-bg:    rgba(160,160,160,0.35);
+      --card-bg:    rgba(160,160,160,0.18);
       --inner-bg:   rgba(145,145,145,0.3);
       --social-bg:  rgba(135,135,135,0.32);
       --shadow:     0 25px 60px rgba(0,0,0,0.4);
@@ -139,15 +139,16 @@
 
     .glass-card {
       position: relative;
+      z-index: 1;
       overflow: hidden;
       width: 100%;
-      max-width: 500px;
+      max-width: 1020px;
       border-radius: 2.5rem;
       border: 1px solid var(--border-50);
       background: var(--card-bg);
-      padding: 40px;
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
+      padding: 88px 100px;
+      backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
+      -webkit-backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
     }
 
     .glass-overlay {
@@ -180,29 +181,36 @@
       position: absolute;
       inset: 0;
       margin: auto;
-      width: 128px; height: 128px;
+      width: 148px; height: 148px;
       border-radius: 9999px;
       background: var(--primary-20);
       filter: blur(32px);
     }
 
-    .avatar {
+    .avatar-frame {
       position: relative;
-      width: 128px; height: 128px;
+      width: 148px; height: 148px;
       border-radius: 9999px;
-      object-fit: cover;
       border: 1px solid var(--border-50);
       box-shadow: var(--shadow);
-      display: block;
-      transform: rotate(-3deg);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 115%; height: 115%;
+      object-fit: cover;
+      transform: translate(-50%, -50%) rotate(-3deg);
     }
 
     .profile-name {
-      font-size: 1.5rem;
-      font-weight: 600;
-      letter-spacing: -0.025em;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: var(--fg);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .profile-role {
@@ -213,8 +221,8 @@
     }
 
     .profile-welcome {
-      margin-top: 18px;
-      margin-bottom: 18px;
+      margin-top: 16px;
+      margin-bottom: 14px;
       font-size: 15px;
       font-weight: 600;
       color: var(--fg);
@@ -228,6 +236,8 @@
     }
 
     .card-below-btn {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -345,15 +355,16 @@
       <div class="profile-top">
         <div class="avatar-wrap anim-scale" data-observe>
           <div class="avatar-glow"></div>
-          <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+          <div class="avatar-frame">
+            <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+          </div>
         </div>
 
         <div class="anim" style="--delay:.2s" data-observe>
-          <p class="profile-name">Thamson Antony</p>
-          <p class="profile-role">Business Analytics Consultant</p>
+          <p class="profile-name">Hello! I'm Thamson</p>
+          <p class="profile-role">Business Analytics Professional</p>
+          <br>
         </div>
-
-        <p class="profile-welcome anim" style="--delay:.28s" data-observe>Welcome!</p>
 
         <p class="profile-bio anim" style="--delay:.3s" data-observe>
           I'm a Business Analytics Consultant with an MS in Business Analytics and 8 years of experience in IT. Technical expertise in Python, SQL, and Tableau enabling the architecture of robust ETL pipelines and predictive models. Transforming complex data into unified architectures and real-time dashboards to bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level goals, evidence-based decision-making is integrated into the core of organizational strategy.
@@ -363,7 +374,7 @@
     </div>
 
     <a href="timeline.html" class="card-below-btn anim" style="--delay:.5s" data-observe>
-      Timeline <span style="font-size:16px;line-height:1">&#x203a;</span>
+      Timeline <span style="font-size:14px;line-height:1">v</span>
     </a>
   </section>
 
@@ -393,6 +404,7 @@
       uniform float uTime, uSwirl, uSpeed, uScale, uOffsetX, uOffsetY, uRotation;
       uniform float uWaveAmp, uWaveFreq, uWaveSpeed, uGrain;
       uniform vec3 uColorA, uColorB, uColorC, uResolution;
+      uniform vec2 uMouse;
       varying vec2 vUv;
       float wave(vec2 uv, float freq, float speed, float time) {
         return sin(uv.x * freq + time * speed) * cos(uv.y * freq + time * speed);
@@ -412,19 +424,20 @@
         float angle = atan(uv.y, uv.x); float radius = length(uv);
         angle += uSwirl * radius;
         uv = vec2(cos(angle), sin(angle)) * radius;
+        vec2 fuv = uv - uMouse * 1.8;
         float d = -uTime * 0.5 * uSpeed; float a = 0.0;
-        for (float i = 0.0; i < 5.0; ++i) { a += cos(i - d - a * uv.x); d += sin(uv.y * i + a); }
+        for (float i = 0.0; i < 5.0; ++i) { a += cos(i - d - a * fuv.x); d += sin(fuv.y * i + a); }
         d += uTime * 0.5 * uSpeed;
         vec3 col = mix(uColorA, uColorB, (sin(d) + 1.0) * 0.5);
         col = mix(col, uColorC, (cos(a) + 1.0) * 0.5);
-        float grain = (random(gl_FragCoord.xy + uTime) - 0.5) * uGrain;
+        float grain = (random(gl_FragCoord.xy + floor(uTime * 60.0) * vec2(127.1, 311.7)) - 0.5) * uGrain;
         col = colorDodge(col, vec3(0.5 + grain));
         gl_FragColor = vec4(col, 1.0);
       }
     `;
 
     const hexToRgb = hex => { const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
-    const [cA, cB, cC] = ['#888888','#555555','#333333'].map(hexToRgb);
+    const [cA, cB, cC] = ['#666666','#333333','#1a1a1a'].map(hexToRgb);
 
     const ctn = document.getElementById('gradient-bg');
     const renderer = new Renderer({ alpha: false });
@@ -437,7 +450,8 @@
       uniforms: {
         uTime:{value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
         uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
-        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.0},
+        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.04},
+        uMouse:{value: [0, 0]},
         uResolution:{value: new Color(1,1,1)},
         uColorA:{value: new Color(...cA)}, uColorB:{value: new Color(...cB)}, uColorC:{value: new Color(...cC)},
       },
@@ -452,11 +466,21 @@
     window.addEventListener('resize', resize);
     resize();
 
+    const bgMouse = { tx: 0, ty: 0, cx: 0, cy: 0 };
+    document.addEventListener('mousemove', e => {
+      bgMouse.tx =  (e.clientX / innerWidth)  * 2 - 1;
+      bgMouse.ty = -((e.clientY / innerHeight) * 2 - 1);
+    });
+
     (function update(t) {
       requestAnimationFrame(update);
       program.uniforms.uTime.value = t * 0.001;
+      bgMouse.cx += (bgMouse.tx - bgMouse.cx) * 0.045;
+      bgMouse.cy += (bgMouse.ty - bgMouse.cy) * 0.045;
+      program.uniforms.uMouse.value = [bgMouse.cx, bgMouse.cy];
       renderer.render({ scene: mesh });
     })(0);
   </script>
+
 </body>
 </html>
