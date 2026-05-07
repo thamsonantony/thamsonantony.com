@@ -227,7 +227,7 @@
     /* ── Timeline card ── */
     .tl-card {
       width: 100%;
-      height: 190px;
+      min-height: 190px;
       border-radius: 1.5rem;
       border: 1px solid var(--border-50);
       background: var(--card-bg);
@@ -276,6 +276,27 @@
       border-radius: 9999px;
       background: var(--fg-05);
       border: 1px solid var(--border-50);
+    }
+
+    .tl-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      margin-bottom: 6px;
+    }
+    .tl-label--edu {
+      color: #2563eb;
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.25);
+    }
+    .tl-label--exp {
+      color: #dc2626;
+      background: rgba(220,38,38,0.1);
+      border: 1px solid rgba(220,38,38,0.25);
     }
 
     /* ── Bottom page nav ── */
@@ -446,7 +467,6 @@
 
     <div class="page-header anim-up" data-observe>
       <h1>Timeline</h1>
-      <p>Education &amp; Experience</p>
     </div>
 
     <div class="tl-outer">
@@ -468,6 +488,7 @@
         <div class="tl-top" style="grid-column:1">
           <div class="tl-card anim-up" style="--delay:.15s" data-observe>
             <img src="anna university.png" class="tl-logo" alt="Anna University">
+            <span class="tl-label tl-label--edu">Education</span>
             <span class="tl-year">2012 – 2016</span>
             <p class="tl-title">Bachelor of Engineering (B.E.) in Computer Science</p>
             <p class="tl-org">Anna University</p>
@@ -486,6 +507,7 @@
         <div class="tl-top" style="grid-column:4">
           <div class="tl-card anim-up" style="--delay:.3s" data-observe>
             <img src="shu.png" class="tl-logo" alt="Sacred Heart University">
+            <span class="tl-label tl-label--edu">Education</span>
             <span class="tl-year">2023 – 2025</span>
             <p class="tl-title">Master of Science (M.S.) in Business Analytics</p>
             <p class="tl-org">Sacred Heart University</p>
@@ -503,6 +525,7 @@
         <div class="tl-bot" style="grid-column:2">
           <div class="tl-card anim-up" style="--delay:.2s" data-observe>
             <img src="cognizant.png" class="tl-logo" alt="Cognizant">
+            <span class="tl-label tl-label--exp">Work</span>
             <span class="tl-year">2016 – 2022</span>
             <p class="tl-title">Associate &amp; Team Lead</p>
             <p class="tl-org">Cognizant</p>
@@ -514,6 +537,7 @@
         <div class="tl-bot" style="grid-column:3">
           <div class="tl-card anim-up" style="--delay:.25s" data-observe>
             <img src="TCS.png" class="tl-logo" alt="Tata Consultancy Services">
+            <span class="tl-label tl-label--exp">Work</span>
             <span class="tl-year">2022 – 2023</span>
             <p class="tl-title">IT Analyst</p>
             <p class="tl-org">Tata Consultancy Services</p>

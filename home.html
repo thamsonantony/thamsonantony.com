@@ -5,403 +5,953 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thamson Antony</title>
   <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
   <meta name="description" content="Thamson Antony – Business Analytics Consultant" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #ffffff;
-      --fg:         #0a0a0a;
-      --fg-70:      rgba(10,10,10,0.7);
-      --fg-40:      rgba(10,10,10,0.4);
-      --fg-05:      rgba(10,10,10,0.05);
-      --border:     rgba(10,10,10,0.2);
-      --border-50:  rgba(10,10,10,0.12);
-      --primary-15: rgba(100,100,100,0.15);
-      --primary-20: rgba(100,100,100,0.2);
-      --card-bg:    rgba(160,160,160,0.18);
-      --inner-bg:   rgba(145,145,145,0.3);
-      --social-bg:  rgba(135,135,135,0.32);
-      --shadow:     0 25px 60px rgba(0,0,0,0.4);
+      --bg:              #ede9ff;
+      --fg:              #0d0d14;
+      --fg-70:           rgba(13,13,20,0.7);
+      --fg-50:           rgba(13,13,20,0.5);
+      --fg-40:           rgba(13,13,20,0.4);
+      --fg-25:           rgba(13,13,20,0.25);
+      --fg-05:           rgba(13,13,20,0.05);
+      --border:          rgba(13,13,20,0.18);
+      --border-50:       rgba(13,13,20,0.10);
+      --primary-15:      rgba(100,100,100,0.12);
+      --primary-20:      rgba(100,100,100,0.18);
+      --card-bg:         rgba(255,255,255,0.08);
+      --card-bg-mid:     rgba(255,255,255,0.13);
+      --card-bg-strong:  rgba(255,255,255,0.18);
+      --inner-bg:        rgba(255,255,255,0.08);
+      --social-bg:       rgba(255,255,255,0.09);
+      --chip-bg:         rgba(255,255,255,0.14);
+      --shadow:          0 25px 60px rgba(0,0,0,0.12);
+    }
+
+    html.dark {
+      --bg:              #040810;
+      --fg:              #ffffff;
+      --fg-70:           rgba(255,255,255,0.7);
+      --fg-50:           rgba(255,255,255,0.5);
+      --fg-40:           rgba(255,255,255,0.4);
+      --fg-25:           rgba(255,255,255,0.25);
+      --fg-05:           rgba(255,255,255,0.05);
+      --border:          rgba(255,255,255,0.18);
+      --border-50:       rgba(255,255,255,0.10);
+      --primary-15:      rgba(255,255,255,0.05);
+      --primary-20:      rgba(255,255,255,0.08);
+      --card-bg:         rgba(255,255,255,0.04);
+      --card-bg-mid:     rgba(255,255,255,0.08);
+      --card-bg-strong:  rgba(255,255,255,0.14);
+      --inner-bg:        rgba(255,255,255,0.06);
+      --social-bg:       rgba(255,255,255,0.07);
+      --chip-bg:         rgba(255,255,255,0.08);
+      --shadow:          0 25px 60px rgba(0,0,0,0.6);
     }
 
     html, body {
       min-height: 100%;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
       color: var(--fg);
-      background: #000;
+      background: var(--bg);
+      transition: background 0.35s ease, color 0.25s ease;
     }
 
-    #gradient-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-    }
-    #gradient-bg canvas {
-      width: 100% !important;
-      height: 100% !important;
-      display: block;
-    }
+    #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
 
+    /* ── Nav ── */
     .nav-bar {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .nav-btn {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 100; display: flex; align-items: center; gap: 2px;
+      background: var(--card-bg-mid); border: 1px solid var(--border-50);
+      border-radius: 9999px; padding: 10px 26px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
-    .nav-btn:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-btn:hover .nav-label { opacity: 1; }
+    .nav-item {
+      display: flex; align-items: center; gap: 6px; padding: 8px 14px;
+      border-radius: 9999px; font-size: 13px; font-weight: 600; white-space: nowrap;
+      color: var(--fg-50); text-decoration: none; position: relative;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .nav-item:hover { color: var(--fg); background: var(--inner-bg); }
+    .nav-item.active { color: var(--fg); }
+    .nav-contact-item { color: rgba(140,20,20,0.85); }
+    .nav-contact-item:hover { color: rgba(120,10,10,1); background: rgba(120,10,10,0.08); }
+    .nav-contact-item.active { color: rgba(120,10,10,1); }
+    .nav-indicator {
+      position: absolute; bottom: 11px; height: 4px; width: 22px; border-radius: 9999px;
+      background: var(--fg); pointer-events: none; opacity: 0;
+      transition: left 0.35s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.2s, background 0.25s;
+    }
+    .nav-contact-item.active ~ .nav-indicator,
+    html:has(.nav-contact-item.active) .nav-indicator { background: rgba(120,10,10,0.9); }
+    .nav-sep { width: 1px; height: 18px; background: var(--border-50); margin: 0 4px; flex-shrink: 0; }
 
-    .nav-experience {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      position: fixed; top: 24px; right: 24px; z-index: 101;
+      width: 44px; height: 44px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg-mid);
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--fg); box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s, color 0.25s;
     }
-    .nav-experience:hover { width: 126px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-experience svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-experience-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-experience:hover .nav-experience-label { opacity: 1; }
+    .theme-toggle:hover { background: var(--inner-bg); transform: scale(1.08); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    html.dark .icon-sun  { display: block; }
+    html.dark .icon-moon { display: none; }
 
-    .nav-skills {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
+    /* ── Shared page-nav ── */
+    .page-nav {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      gap: 16px; padding: 16px 0 48px; position: relative; z-index: 1;
+    }
+    .page-nav-btn {
+      display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--card-bg-mid);
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+      font-size: 14px; font-weight: 600; color: var(--fg); text-decoration: none;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .nav-skills:hover { width: 108px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-skills svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-skills-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-skills:hover .nav-skills-label { opacity: 1; }
+    .page-nav-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-    .nav-certs {
-      position: relative;
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      cursor: pointer; text-decoration: none; color: var(--fg);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
+    /* ── Animations ── */
+    .anim-card  { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .anim       { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--delay, 0s); }
+    .anim-scale { opacity: 0; transform: scale(0.8);       transition: opacity 0.5s ease, transform 0.5s ease; }
+    .anim-up    { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; transition-delay: var(--delay, 0s); }
+    .anim.visible, .anim-card.visible, .anim-scale.visible, .anim-up.visible { opacity: 1; transform: none; }
+
+    /* ════════════════════════ HOME ════════════════════════ */
+    #home {
+      position: relative; z-index: 1; min-height: 100vh;
+      padding: 96px 24px 40px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
     }
-    .nav-certs:hover { width: 148px; background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-certs svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-certs-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-certs:hover .nav-certs-label { opacity: 1; }
-
-    .nav-contact {
-      width: 48px; height: 48px; padding: 0 0 0 14px; border-radius: 9999px;
-      border: 1px solid rgba(180,40,40,0.3); background: rgba(180,40,40,0.18);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      display: flex; align-items: center; justify-content: flex-start; gap: 8px;
-      color: rgba(140,20,20,0.95); text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15); overflow: hidden; white-space: nowrap;
-      transition: width 0.35s cubic-bezier(0.4,0,0.2,1), background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .nav-contact:hover { width: 124px; background: rgba(180,40,40,0.28); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-    .nav-contact svg { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-contact-label { font-size: 14px; font-weight: 600; opacity: 0; flex-shrink: 0; transition: opacity 0.15s ease 0.12s; }
-    .nav-contact:hover .nav-contact-label { opacity: 1; }
-
-    .section {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      padding: 96px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
     .glass-card {
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-      width: 100%;
-      max-width: 1020px;
-      border-radius: 2.5rem;
-      border: 1px solid var(--border-50);
-      background: var(--card-bg);
+      position: relative; z-index: 1; overflow: hidden; width: 100%; max-width: 1020px;
+      border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg);
       padding: 88px 100px;
       backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
       -webkit-backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
     }
 
-    .glass-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--fg-05), transparent, transparent);
-      pointer-events: none;
+    /* ── Flip card ── */
+    .flip-scene {
+      width: 100%; max-width: 1020px; position: relative; z-index: 1;
+      perspective: 1400px;
     }
-
-    .profile-glow {
-      position: absolute;
-      inset: 0;
-      border-radius: 2.5rem;
-      background: linear-gradient(to bottom, var(--primary-15), transparent, transparent);
-      filter: blur(48px);
-      pointer-events: none;
+    .flip-card {
+      width: 100%; position: relative;
+      display: grid;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .profile-top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 0;
+    .flip-card.flipped { transform: rotateY(180deg); }
+    .flip-face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-front.glass-card { width: 100%; max-width: none; display: flex; flex-direction: column; justify-content: center; }
+    .flip-back.glass-card {
+      width: 100%; max-width: none;
+      transform: rotateY(180deg); padding: 56px 72px;
+      display: flex; flex-direction: column;
     }
-
-    .avatar-wrap { position: relative; margin-bottom: 24px; }
-
-    .avatar-glow {
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      width: 148px; height: 148px;
-      border-radius: 9999px;
-      background: var(--primary-20);
-      filter: blur(32px);
+    .back-header { text-align: center; margin-bottom: 36px; }
+    .back-header h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); }
+    .back-header p  { font-size: 13px; color: var(--fg-50); margin-top: 6px; letter-spacing: 0.02em; }
+    .back-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; }
+    .back-col-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 14px; }
+    .back-item {
+      padding: 16px 18px; border-radius: 1.25rem;
+      border: 1px solid var(--border-50); background: var(--inner-bg);
+      margin-bottom: 12px;
     }
-
-    .avatar-frame {
-      position: relative;
-      width: 148px; height: 148px;
-      border-radius: 9999px;
-      border: 1px solid var(--border-50);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      flex-shrink: 0;
+    .back-item-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+    .back-item-desc  { font-size: 12px; line-height: 1.6; color: var(--fg-70); }
+    .flip-back-btn {
+      align-self: center; margin-top: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 26px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--inner-bg);
+      font-size: 13px; font-weight: 600; color: var(--fg);
+      cursor: pointer; transition: background 0.2s, transform 0.15s;
     }
-
-    .avatar {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 115%; height: 115%;
-      object-fit: cover;
-      transform: translate(-50%, -50%) rotate(-3deg);
-    }
-
-    .profile-name {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--fg);
-      margin-bottom: 8px;
-    }
-
-    .profile-role {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: #000000;
-    }
-
-    .profile-welcome {
-      margin-top: 16px;
-      margin-bottom: 14px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--fg);
-    }
-
-    .profile-bio {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--fg-70);
-      text-align: center;
-    }
-
+    .flip-back-btn:hover { background: var(--card-bg-mid); transform: translateY(-1px); }
+    .glass-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent, transparent); pointer-events: none; }
+    .profile-glow  { position: absolute; inset: 0; border-radius: 2.5rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
+    .profile-top   { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .avatar-wrap   { position: relative; margin-bottom: 24px; }
+    .avatar-glow   { position: absolute; inset: 0; margin: auto; width: 148px; height: 148px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
+    .avatar-frame  { position: relative; width: 148px; height: 148px; border-radius: 9999px; border: 1px solid var(--border-50); box-shadow: var(--shadow); overflow: hidden; flex-shrink: 0; }
+    .avatar        { position: absolute; top: 50%; left: 50%; width: 115%; height: 115%; object-fit: cover; transform: translate(-50%,-50%) rotate(-3deg); }
+    .profile-name  { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); margin-bottom: 8px; }
+    .profile-role  { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-70); }
+    .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); text-align: center; }
     .card-below-btn {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 9999px;
-      border: 1px solid var(--border-50);
-      background: var(--card-bg);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--fg);
-      text-decoration: none;
+      position: relative; z-index: 1; display: flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 9999px; border: 1px solid var(--border-50);
+      background: var(--card-bg-mid); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      font-size: 14px; font-weight: 600; color: var(--fg); text-decoration: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
       transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     }
     .card-below-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-    .anim-card { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .anim { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--delay, 0s); }
-    .anim-scale { opacity: 0; transform: scale(0.8); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .anim.visible, .anim-card.visible, .anim-scale.visible { opacity: 1; transform: none; }
-
-    .nav-bar a { position: relative; }
-    .nav-bar a.active::after {
-      content: '';
-      position: absolute;
-      bottom: 5px; left: 24px;
-      transform: translateX(-50%);
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: #000;
-      pointer-events: none;
+    /* ════════════════════════ TIMELINE ════════════════════════ */
+    #timeline { position: relative; z-index: 1; padding: 140px 24px 60px; }
+    .page-header { text-align: center; margin-bottom: 24px; }
+    .page-header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); }
+    .page-header p  { margin-top: 8px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-50); }
+    .tl-glass {
+      max-width: 1440px; margin: 0 auto; width: 100%;
+      border-radius: 2rem; border: 1px solid var(--border-50);
+      background: var(--card-bg-mid); padding: 64px 64px 56px;
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
     }
+    .tl-glass::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; border-radius: inherit; }
+    .tl-outer { overflow-x: auto; padding-bottom: 8px; }
+    .tl-grid  { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); grid-template-rows: auto 44px auto; min-width: 1020px; position: relative; }
+    .tl-h-line { grid-row: 2; grid-column: 1/-1; align-self: center; height: 1px; background: linear-gradient(to right, transparent, var(--border) 6%, var(--border) 94%, transparent); pointer-events: none; z-index: 0; }
+    .tl-dot-wrap { grid-row: 2; display: flex; align-items: center; justify-content: center; z-index: 1; }
+    .tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--fg-70); border: 2px solid var(--border-50); box-shadow: 0 0 10px rgba(0,0,0,0.15); flex-shrink: 0; }
+    .tl-dot.current { background: var(--fg); box-shadow: 0 0 18px rgba(0,0,0,0.25); }
+    .tl-top { grid-row: 1; padding: 0 10px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+    .tl-top.empty { min-height: 40px; }
+    .tl-top:not(.empty)::after { content: ''; width: 1px; height: 14px; flex-shrink: 0; background: var(--border-50); margin-top: 6px; }
+    .tl-bot { grid-row: 3; padding: 0 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; }
+    .tl-bot.empty { min-height: 40px; }
+    .tl-bot:not(.empty)::before { content: ''; width: 1px; height: 14px; flex-shrink: 0; background: var(--border-50); margin-bottom: 6px; }
+    .tl-logo { position: absolute; top: 16px; right: 16px; height: 44px; width: auto; max-width: 80px; object-fit: contain; opacity: 0.72; }
+    .tl-card { width: 100%; min-height: 200px; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 22px 100px 22px 24px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+    .tl-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; }
+    .tl-type  { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
+    .tl-type-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .tl-type--edu { color: #2563eb; }
+    .tl-type--work { color: #dc2626; }
+    .tl-year  { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--fg-40); margin-bottom: 4px; }
+    .tl-title { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 2px; line-height: 1.35; }
+    .tl-org   { font-size: 12px; font-weight: 600; color: var(--fg-70); }
+    .tl-sub   { font-size: 11px; color: var(--fg-50); margin-top: 2px; }
+    .tl-meta  { display: inline-block; font-size: 9px; font-weight: 600; color: var(--fg-50); margin-top: 4px; }
 
+    /* ════════════════════════ SKILLS ════════════════════════ */
+    #skills { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .page-card { position: relative; overflow: hidden; width: 100%; max-width: 1480px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+    .page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
+    .stats-strip { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .stat { position: relative; overflow: hidden; border-radius: 1.25rem; border: 1px solid var(--border-50); background: var(--inner-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); padding: 18px 18px 16px; }
+    .stat-num   { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; color: var(--fg); line-height: 1.1; }
+    .stat-num .unit { font-size: 1rem; font-weight: 600; color: var(--fg-50); margin-left: 2px; }
+    .stat-label { margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-50); }
+    .skills-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 24px; }
+    .skill-card.primary   { grid-column: span 3; }
+    .skill-card.secondary { grid-column: span 2; }
+    .skill-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 26px 26px 22px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .skill-card.primary { background: var(--card-bg-strong); padding: 32px 32px 28px; }
+    .skill-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
+    .skill-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
+    .skill-head  { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+    .skill-icon  { flex-shrink: 0; width: 42px; height: 42px; border-radius: 14px; border: 1px solid var(--border-50); background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .skill-card.primary .skill-icon { width: 48px; height: 48px; border-radius: 16px; }
+    .skill-icon svg { width: 20px; height: 20px; }
+    .skill-card.primary .skill-icon svg { width: 22px; height: 22px; }
+    .skill-meta    { display: flex; flex-direction: column; gap: 2px; }
+    .skill-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); }
+    .skill-title   { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); }
+    .skill-card.primary .skill-title { font-size: 1.2rem; }
+    .skill-desc  { font-size: 13px; line-height: 1.6; color: var(--fg-70); margin: 14px 0 16px; }
+    .skill-card.primary .skill-desc { font-size: 14px; }
+    .tier        { margin-top: 14px; }
+    .tier-label  { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
+    .chip-list   { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip { display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); transition: background 0.2s, transform 0.2s, border-color 0.2s; }
+    .chip:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    .tier.tier-daily   .chip { background: rgba(255,255,255,0.32); color: var(--fg); }
+    .tier.tier-working .chip { background: rgba(255,255,255,0.20); color: var(--fg); }
+    .tier.tier-familiar .chip { background: transparent; color: var(--fg-70); border-color: var(--border-50); }
+
+    /* ════════════════════════ CERTIFICATIONS ════════════════════════ */
+    #certifications { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
+    .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1000px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+    .cert-page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
+    .cert-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
+    .cert-card { position: relative; overflow: hidden; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 24px 24px 22px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; gap: 20px; align-items: flex-start; }
+    .cert-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
+    .cert-badge { flex-shrink: 0; width: 84px; height: 84px; border-radius: 18px; border: 1px solid var(--border-50); background: var(--inner-bg); display: grid; place-items: center; color: var(--fg-70); box-shadow: 0 6px 18px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+    .cert-badge::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.08), transparent 55%); pointer-events: none; }
+    .cert-badge svg { width: 36px; height: 36px; position: relative; z-index: 1; }
+    .cert-body    { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+    .cert-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); }
+    .cert-title   { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
+    .cert-issuer  { font-size: 13px; font-weight: 600; color: var(--fg-70); margin-top: 2px; }
+    .cert-meta    { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 12px; color: var(--fg-50); flex-wrap: wrap; }
+    .cert-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--fg-25); }
+    .cert-id { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.02em; color: var(--fg-50); }
+    .cert-verify { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 8px 14px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
+    .cert-verify:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    .cert-verify svg { width: 12px; height: 12px; }
+
+    /* ════════════════════════ CONTACT ════════════════════════ */
+    #contact { position: relative; z-index: 1; min-height: 100vh; overflow: hidden; padding: 96px 24px; display: flex; align-items: center; }
+    .contact-container { width: 100%; max-width: 72rem; margin: 0 auto; }
+    .contact-glass { position: relative; overflow: hidden; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 48px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .grid-2col { position: relative; display: grid; gap: 48px; }
+    @media (min-width: 1024px) { .grid-2col { grid-template-columns: 1fr 1fr; } }
+    .left-col  { display: flex; flex-direction: column; gap: 32px; }
+    .badge { display: inline-flex; align-items: center; width: fit-content; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 6px 16px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--fg-70); backdrop-filter: blur(8px); transition: background 0.2s; }
+    .badge:hover { background: var(--social-bg); }
+    .title-block    { display: flex; flex-direction: column; gap: 16px; }
+    .title-block h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.3; color: var(--fg); }
+    .title-block p  { max-width: 36rem; font-size: 1rem; line-height: 1.75; color: var(--fg-70); }
+    .highlights { display: flex; flex-direction: column; gap: 16px; }
+    .highlight-card { border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 20px; backdrop-filter: blur(8px); transition: border-color 0.2s, box-shadow 0.2s, transform 0.25s; cursor: default; }
+    .highlight-card:hover { border-color: var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-4px); }
+    .highlight-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.25em; color: var(--fg-40); margin-bottom: 8px; }
+    .highlight-text  { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 32px; border-radius: 9999px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.25em; background: var(--fg); color: var(--bg); text-decoration: none; border: none; cursor: pointer; transition: box-shadow 0.2s, transform 0.15s; }
+    .cta-btn:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.18); transform: translateY(-1px); }
+    .cta-btn svg { width: 16px; height: 16px; }
+    .right-col { position: relative; }
+    .contact-profile-glow { position: absolute; inset: 0; border-radius: 2rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
+    .profile-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; height: 100%; overflow: hidden; border-radius: 2.75rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .contact-profile-top { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .contact-avatar-wrap { position: relative; margin-bottom: 24px; }
+    .contact-avatar-glow { position: absolute; inset: 0; margin: auto; width: 128px; height: 128px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
+    .contact-avatar { position: relative; width: 128px; height: 128px; border-radius: 9999px; object-fit: cover; border: 1px solid var(--border-50); box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
+    .contact-name { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; color: var(--fg); margin-bottom: 4px; }
+    .contact-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.35em; color: var(--fg-40); }
+    .contact-bio  { margin-top: 16px; max-width: 24rem; font-size: 14px; line-height: 1.65; color: var(--fg-70); }
+    .social-list { display: flex; flex-direction: column; gap: 12px; }
+    .social-link { display: flex; align-items: center; justify-content: space-between; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--social-bg); padding: 12px 16px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    .social-link:hover { transform: translateY(-2px) scale(1.01); border-color: var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+    .social-left { display: flex; align-items: center; gap: 12px; }
+    .social-icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--inner-bg); color: var(--fg-70); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+    .social-icon svg { width: 16px; height: 16px; }
+    .social-label  { font-size: 14px; font-weight: 600; color: var(--fg); }
+    .social-handle { font-size: 12px; color: var(--fg-40); }
+    .social-arrow  { color: var(--fg-40); transition: transform 0.2s, color 0.2s; }
+    .social-link:hover .social-arrow { transform: translate(2px,-2px); color: var(--fg-70); }
+    .social-arrow svg { width: 16px; height: 16px; display: block; }
+
+    /* ════════════════════════ MOBILE ════════════════════════ */
     @media (max-width: 640px) {
-      .nav-bar {
-        top: auto; bottom: 18px;
-        padding: 6px;
-        background: rgba(160,160,160,0.4);
-        border: 1px solid var(--border-50);
-        border-radius: 9999px;
-        backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-        box-shadow: 0 8px 28px rgba(0,0,0,0.2);
-      }
-      .nav-btn, .nav-experience, .nav-skills, .nav-contact {
-        width: 44px; height: 44px; padding: 0; justify-content: center;
-        background: transparent; border: none; box-shadow: none;
-      }
-      .nav-btn:hover, .nav-experience:hover, .nav-skills:hover, .nav-contact:hover {
-        width: 44px; background: rgba(255,255,255,0.18); transform: none; box-shadow: none;
-      }
-      .nav-label, .nav-experience-label, .nav-skills-label, .nav-contact-label { display: none; }
-      .nav-bar a.active::after { bottom: 4px; left: 50%; }
+      .nav-bar { top: auto; bottom: 18px; left: 50%; transform: translateX(-50%); padding: 5px 7px; }
+      .nav-item span { display: none; }
+      .nav-item { padding: 9px 11px; }
+      .nav-sep { height: 16px; }
+      .nav-indicator { bottom: auto; top: 7px; }
+      .theme-toggle { top: auto; bottom: 18px; right: 16px; width: 40px; height: 40px; }
+      .glass-card { padding: 48px 24px; }
+      #timeline { padding: 80px 16px 60px; }
+      #skills, #certifications { padding: 100px 16px 60px; }
+      .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+      .stats-strip { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-card.primary, .skill-card.secondary { grid-column: 1/-1; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-card { padding: 20px; gap: 16px; }
+      .cert-badge { width: 64px; height: 64px; border-radius: 14px; }
+      .cert-badge svg { width: 28px; height: 28px; }
+      #contact { padding: 80px 16px; }
+      .contact-glass { padding: 28px 20px; }
+    }
+    @media (max-width: 700px) {
+      .tl-glass { padding: 24px 16px 20px; border-radius: 1.5rem; }
+      .tl-outer { overflow-x: visible; }
+      .tl-grid  { display: flex; flex-direction: column; gap: 0; min-width: unset; }
+      .tl-h-line { display: none; }
+      .tl-top, .tl-bot { grid-row: unset; grid-column: unset; padding: 0; align-items: flex-start; }
+      .tl-top.empty, .tl-bot.empty { display: none; }
+      .tl-top::after, .tl-bot::before { display: none; }
+      .tl-dot-wrap { display: none; }
+      .tl-card { margin-bottom: 16px; padding: 20px 100px 20px 20px; }
+      /* Chronological order on mobile: 2012→2016→2022→2023 */
+      .tl-item-1 { order: 1; }
+      .tl-item-2 { order: 2; }
+      .tl-item-3 { order: 3; }
+      .tl-item-4 { order: 4; }
+    }
+    @media (max-width: 1080px) {
+      .skill-card.primary   { grid-column: span 3; }
+      .skill-card.secondary { grid-column: span 3; }
     }
   </style>
 </head>
 <body>
   <div id="gradient-bg"></div>
 
-  <nav class="nav-bar">
-    <a href="home.html" class="nav-btn active" aria-label="Home" aria-current="page">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
-        <path d="M9 21V12h6v9"/>
-      </svg>
-      <span class="nav-label">Home</span>
+  <div style="position:fixed;top:20px;left:20px;z-index:200;padding:4px 12px;border-radius:9999px;background:var(--chip-bg);border:1px solid var(--border-50);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--fg-50);">BETA</div>
+
+  <nav class="nav-bar" id="main-nav">
+    <a href="#home" class="nav-item" data-section="home" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      <span>About Me</span>
     </a>
-    <a href="timeline.html" class="nav-experience" aria-label="Timeline">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <polyline points="12 6 12 12 16 14"/>
-      </svg>
-      <span class="nav-experience-label">Timeline</span>
+    <a href="#timeline" class="nav-item" data-section="timeline" aria-label="Timeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Timeline</span>
     </a>
-    <a href="skills.html" class="nav-skills" aria-label="Skills">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/>
-        <line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/>
-        <line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/>
-        <line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>
-      </svg>
-      <span class="nav-skills-label">Skills</span>
+    <a href="#skills" class="nav-item" data-section="skills" aria-label="Skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+      <span>Skills</span>
     </a>
-    <a href="certifications.html" class="nav-certs" aria-label="Certifications">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="8" r="6"/>
-        <polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/>
-      </svg>
-      <span class="nav-certs-label">Certifications</span>
+    <a href="#certifications" class="nav-item" data-section="certifications" aria-label="Certifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg>
+      <span>Certifications</span>
     </a>
-    <a href="contact.html" class="nav-contact" aria-label="Contact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-      <span class="nav-contact-label">Contact</span>
+    <div class="nav-sep"></div>
+    <a href="#contact" class="nav-item nav-contact-item" data-section="contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Contact</span>
     </a>
-    <a href="labs.html" class="nav-btn" aria-label="Labs">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M10 2v7.27L6 16a4 4 0 003.56 5.82h4.88A4 4 0 0018 16l-4-6.73V2"/>
-        <line x1="10" y1="2" x2="14" y2="2"/>
-        <circle cx="9.5" cy="18.5" r="1" fill="currentColor" stroke="none"/>
-        <circle cx="13.5" cy="16.5" r="1" fill="currentColor" stroke="none"/>
-      </svg>
-      <span class="nav-label">Labs</span>
-    </a>
+    <div class="nav-indicator" id="nav-indicator"></div>
   </nav>
 
-  <section class="section">
-    <div class="glass-card anim-card" data-observe>
-      <div class="glass-overlay"></div>
-      <div class="profile-glow"></div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
 
-      <div class="profile-top">
-        <div class="avatar-wrap anim-scale" data-observe>
-          <div class="avatar-glow"></div>
-          <div class="avatar-frame">
-            <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+  <!-- ══════════════ HOME ══════════════ -->
+  <section id="home">
+    <div class="flip-scene anim-card" data-observe>
+      <div class="flip-card" id="home-flip">
+
+        <!-- FRONT -->
+        <div class="flip-face flip-front glass-card">
+          <div class="glass-overlay"></div>
+          <div class="profile-glow"></div>
+          <div class="profile-top">
+            <div class="avatar-wrap anim-scale" data-observe>
+              <div class="avatar-glow"></div>
+              <div class="avatar-frame">
+                <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+              </div>
+            </div>
+            <div class="anim" style="--delay:.2s" data-observe>
+              <p class="profile-name">Hello!</p>
+              <p class="profile-role">Business Analytics Professional</p>
+              <br>
+            </div>
+            <p class="profile-bio anim" style="--delay:.3s" data-observe>
+              I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with an MS in Business Analytics and 8 years of experience in IT. Technical expertise in Python, SQL, and Tableau enabling the architecture of robust ETL pipelines and predictive models. Transforming complex data into unified architectures and real-time dashboards to bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level goals, evidence-based decision-making is integrated into the core of organizational strategy.
+            </p>
           </div>
         </div>
 
-        <div class="anim" style="--delay:.2s" data-observe>
-          <p class="profile-name">Hello!</p>
-          <p class="profile-role">Business Analytics Professional</p>
-          <br>
-          <br>
+        <!-- BACK -->
+        <div class="flip-face flip-back glass-card">
+          <div class="glass-overlay"></div>
+          <div class="profile-glow"></div>
+          <div class="stats-strip" style="margin-bottom:28px;">
+            <div class="stat">
+              <div class="stat-num">8<span class="unit">yrs</span></div>
+              <div class="stat-label">In IT &amp; Analytics</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">3.9<span class="unit">/4</span></div>
+              <div class="stat-label">M.S. Analytics GPA</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">2</div>
+              <div class="stat-label">Fortune 500 Clients</div>
+            </div>
+          </div>
+          <div class="back-header">
+            <h2>Why Work With Me</h2>
+            <p>Core competencies &amp; what I bring to the table</p>
+          </div>
+          <div class="back-cols">
+            <div>
+              <p class="back-col-label">Core Competencies</p>
+              <div class="back-item">
+                <p class="back-item-title">Data Engineering &amp; ETL</p>
+                <p class="back-item-desc">Python, SQL, Informatica, Airflow, Snowflake — architecting pipelines that move raw data to production-ready state reliably at scale.</p>
+              </div>
+              <div class="back-item">
+                <p class="back-item-title">Analytics &amp; Predictive Modeling</p>
+                <p class="back-item-desc">Tableau, scikit-learn, regression, A/B testing, forecasting — translating model outputs into dashboards executives can act on.</p>
+              </div>
+              <div class="back-item">
+                <p class="back-item-title">Cloud &amp; Platform Architecture</p>
+                <p class="back-item-desc">AWS, Azure Data Factory, dbt, Snowflake — designing scalable data platforms aligned to business and compliance requirements.</p>
+              </div>
+            </div>
+            <div>
+              <p class="back-col-label">Why Hire Me</p>
+              <div class="back-item">
+                <p class="back-item-title">8 Years IT + MS Analytics</p>
+                <p class="back-item-desc">Deep technical grounding combined with graduate-level analytical training — I speak both languages fluently, from SQL to stakeholder decks.</p>
+              </div>
+              <div class="back-item">
+                <p class="back-item-title">Bridge Between Teams &amp; Leaders</p>
+                <p class="back-item-desc">I align engineering roadmaps with executive goals — turning complex technical work into narratives that drive decisions and secure buy-in.</p>
+              </div>
+              <div class="back-item">
+                <p class="back-item-title">Measurable, Evidence-Based Outcomes</p>
+                <p class="back-item-desc">Every recommendation is backed by data. I integrate evidence-based thinking into strategy so organisations move with confidence, not guesswork.</p>
+              </div>
+            </div>
+          </div>
+          <button class="flip-back-btn" id="flip-back-btn">↩ Back to profile</button>
         </div>
 
-        <p class="profile-bio anim" style="--delay:.3s" data-observe>
-          I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with an MS in Business Analytics and 8 years of experience in IT. Technical expertise in Python, SQL, and Tableau enabling the architecture of robust ETL pipelines and predictive models. Transforming complex data into unified architectures and real-time dashboards to bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level goals, evidence-based decision-making is integrated into the core of organizational strategy.
-        </p>
       </div>
-
     </div>
-
-    <a href="timeline.html" class="card-below-btn anim" style="--delay:.5s" data-observe>
-      Timeline <span style="font-size:14px;line-height:1">v</span>
+    <a href="#timeline" class="card-below-btn anim" style="--delay:.5s" data-observe>
+      Timeline <span style="font-size:14px;line-height:1">↓</span>
     </a>
   </section>
 
+  <!-- ══════════════ TIMELINE ══════════════ -->
+  <section id="timeline">
+    <div class="page-header anim-up" data-observe>
+      <h1>Timeline</h1>
+    </div>
+    <div class="tl-glass anim-up" data-observe>
+      <div class="tl-outer">
+        <div class="tl-grid">
+          <div class="tl-h-line"></div>
+          <div class="tl-dot-wrap" style="grid-column:1"><div class="tl-dot"></div></div>
+          <div class="tl-dot-wrap" style="grid-column:2"><div class="tl-dot"></div></div>
+          <div class="tl-dot-wrap" style="grid-column:3"><div class="tl-dot"></div></div>
+          <div class="tl-dot-wrap" style="grid-column:4"><div class="tl-dot current"></div></div>
+          <!-- Top: col1=BE 2012, col2=empty, col3=TCS 2022, col4=empty -->
+          <div class="tl-top tl-item-1" style="grid-column:1">
+            <div class="tl-card anim-up" style="--delay:.15s" data-observe>
+              <img src="anna university.png" class="tl-logo" alt="Anna University">
+              <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
+              <span class="tl-year">2012 – 2016</span>
+              <p class="tl-title">Bachelor of Engineering (B.E.) in Computer Science</p>
+              <p class="tl-org">Anna University</p>
+              <p class="tl-sub">NPR College of Engineering</p>
+              <p class="tl-sub">Tamil Nadu, India</p>
+              <span class="tl-meta">CGPA 7.86 / 10</span>
+            </div>
+          </div>
+          <div class="tl-top empty" style="grid-column:2"></div>
+          <div class="tl-top tl-item-3" style="grid-column:3">
+            <div class="tl-card anim-up" style="--delay:.25s" data-observe>
+              <img src="TCS.png" class="tl-logo" alt="Tata Consultancy Services">
+              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
+              <span class="tl-year">2022 – 2023</span>
+              <p class="tl-title">IT Analyst</p>
+              <p class="tl-org">Tata Consultancy Services</p>
+              <p class="tl-sub">for Citi – Private Banking &amp; Wealth Management</p>
+              <p class="tl-sub">Chennai, India</p>
+            </div>
+          </div>
+          <div class="tl-top empty" style="grid-column:4"></div>
+          <!-- Bottom: col1=empty, col2=Cognizant 2016, col3=empty, col4=SHU 2023 -->
+          <div class="tl-bot empty" style="grid-column:1"></div>
+          <div class="tl-bot tl-item-2" style="grid-column:2">
+            <div class="tl-card anim-up" style="--delay:.2s" data-observe>
+              <img src="cognizant.png" class="tl-logo" alt="Cognizant">
+              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
+              <span class="tl-year">2016 – 2022</span>
+              <p class="tl-title">Associate &amp; Team Lead</p>
+              <p class="tl-org">Cognizant</p>
+              <p class="tl-sub">for Florida Power &amp; Light · NextEra Energy</p>
+              <p class="tl-sub">Chennai, India</p>
+            </div>
+          </div>
+          <div class="tl-bot empty" style="grid-column:3"></div>
+          <div class="tl-bot tl-item-4" style="grid-column:4">
+            <div class="tl-card anim-up" style="--delay:.3s" data-observe>
+              <img src="shu.png" class="tl-logo" alt="Sacred Heart University">
+              <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
+              <span class="tl-year">2024 – 2025</span>
+              <p class="tl-title">Master of Science (M.S.) in Business Analytics</p>
+              <p class="tl-org">Sacred Heart University</p>
+              <p class="tl-sub">Jack Welch College of Business · Fairfield, CT</p>
+              <span class="tl-meta">CGPA 3.9 / 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
+      <a href="#home" class="page-nav-btn">↑ Home</a>
+      <a href="#skills" class="page-nav-btn">Skills ↓</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ SKILLS ══════════════ -->
+  <section id="skills">
+    <div class="page-header anim-up" data-observe>
+      <h1>Skills</h1>
+    </div>
+    <div class="page-card">
+      <div class="skills-grid">
+        <div class="skill-card primary anim-up" style="--delay:.1s" data-observe>
+          <div class="skill-head">
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">01 · Foundations</span><span class="skill-title">Programming &amp; Data</span></div>
+          </div>
+          <p class="skill-desc">Writing the queries, scripts, and pipelines that move data from raw source to ready-to-use.</p>
+          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Pandas</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">NumPy</span><span class="chip">PySpark</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">R</span></div></div>
+        </div>
+        <div class="skill-card primary anim-up" style="--delay:.18s" data-observe>
+          <div class="skill-head">
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">02 · Visualization</span><span class="skill-title">Analytics &amp; BI</span></div>
+          </div>
+          <p class="skill-desc">Turning models and metrics into dashboards executives actually use to make decisions.</p>
+          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Tableau</span><span class="chip">Excel / VBA</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Power BI</span><span class="chip">Looker</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">Plotly</span></div></div>
+        </div>
+        <div class="skill-card secondary anim-up" style="--delay:.26s" data-observe>
+          <div class="skill-head">
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">03 · Pipelines</span><span class="skill-title">Data Engineering &amp; ETL</span></div>
+          </div>
+          <p class="skill-desc">Durable ETL flows, warehouses, and integrations across cloud and on-prem systems.</p>
+          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Informatica</span><span class="chip">Snowflake</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Airflow</span><span class="chip">AWS</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">Azure Data Factory</span><span class="chip">dbt</span></div></div>
+        </div>
+        <div class="skill-card secondary anim-up" style="--delay:.34s" data-observe>
+          <div class="skill-head">
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6"/><path d="M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24"/><path d="M1 12h6m10 0h6"/><path d="M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">04 · Modeling</span><span class="skill-title">Statistics &amp; ML</span></div>
+          </div>
+          <p class="skill-desc">Predictive models, forecasts, and experiments grounded in solid statistical methodology.</p>
+          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Regression</span><span class="chip">scikit-learn</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Forecasting</span><span class="chip">A/B Testing</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">XGBoost</span><span class="chip">TensorFlow</span></div></div>
+        </div>
+        <div class="skill-card secondary anim-up" style="--delay:.42s" data-observe>
+          <div class="skill-head">
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-7L10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><line x1="12" y1="13" x2="12" y2="17"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">05 · Consulting</span><span class="skill-title">Business &amp; Domain</span></div>
+          </div>
+          <p class="skill-desc">Translating between technical teams and executives – aligning data work with strategic outcomes.</p>
+          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Stakeholder Mgmt</span><span class="chip">Requirements</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Energy &amp; Utilities</span><span class="chip">Wealth Mgmt</span><span class="chip">Agile / Scrum</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-nav anim-up" style="--delay:.55s" data-observe>
+      <a href="#timeline" class="page-nav-btn">↑ Timeline</a>
+      <a href="#certifications" class="page-nav-btn">Certifications ↓</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ CERTIFICATIONS ══════════════ -->
+  <section id="certifications">
+    <div class="page-header anim-up" data-observe>
+      <h1>Certifications</h1>
+    </div>
+    <div class="cert-page-card">
+      <div class="cert-grid">
+        <div class="cert-card anim-up" style="--delay:.05s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">01 · Cloud</span>
+            <div class="cert-title">AWS Certified Solutions Architect – Associate</div>
+            <div class="cert-issuer">Amazon Web Services</div>
+            <div class="cert-meta"><span>Issued 2024</span><span class="dot"></span><span class="cert-id">SAA-C03 · ID 4F92-A1B7</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.12s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">02 · Data</span>
+            <div class="cert-title">Microsoft Certified: Azure Data Engineer Associate</div>
+            <div class="cert-issuer">Microsoft</div>
+            <div class="cert-meta"><span>Issued 2023</span><span class="dot"></span><span class="cert-id">DP-203 · ID MS-7C81</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.19s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">03 · Analytics</span>
+            <div class="cert-title">Tableau Desktop Specialist</div>
+            <div class="cert-issuer">Tableau / Salesforce</div>
+            <div class="cert-meta"><span>Issued 2023</span><span class="dot"></span><span class="cert-id">TDS-2023</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.26s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">04 · Data Warehouse</span>
+            <div class="cert-title">SnowPro Core Certified</div>
+            <div class="cert-issuer">Snowflake</div>
+            <div class="cert-meta"><span>Issued 2024</span><span class="dot"></span><span class="cert-id">COF-C02</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.33s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">05 · Methodology</span>
+            <div class="cert-title">Certified ScrumMaster (CSM)</div>
+            <div class="cert-issuer">Scrum Alliance</div>
+            <div class="cert-meta"><span>Issued 2022</span><span class="dot"></span><span class="cert-id">CSM · ID 1234567</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.40s" data-observe>
+          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">06 · Programming</span>
+            <div class="cert-title">Python for Data Science &amp; ML – Specialization</div>
+            <div class="cert-issuer">IBM via Coursera</div>
+            <div class="cert-meta"><span>Issued 2022</span><span class="dot"></span><span class="cert-id">Coursera · IBM-DS</span></div>
+            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-nav anim-up" style="--delay:.5s" data-observe>
+      <a href="#skills" class="page-nav-btn">↑ Skills</a>
+      <a href="#contact" class="page-nav-btn">Contact ↓</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section id="contact">
+    <div class="contact-container">
+      <div class="contact-glass anim-card" data-observe>
+        <div class="glass-overlay"></div>
+        <div class="grid-2col">
+          <div class="left-col">
+            <span class="badge anim" style="--delay:.1s" data-observe>Portfolio Insight</span>
+            <div class="title-block">
+              <h2 class="anim" style="--delay:.15s" data-observe>Thamson Antony, Business Analytics Consultant</h2>
+              <p class="anim" style="--delay:.2s" data-observe>Engineer focused on building thoughtful products and clean interfaces. Thamson works with teams to bring ideas from concept to production with care for detail and user experience.</p>
+            </div>
+            <div class="highlights">
+              <div class="highlight-card anim" style="--delay:.1s" data-observe>
+                <p class="highlight-label">Collaborations</p>
+                <p class="highlight-text">Early-stage founders, product teams, and indie makers crafting focused, well-built software.</p>
+              </div>
+              <div class="highlight-card anim" style="--delay:.2s" data-observe>
+                <p class="highlight-label">Latest Work</p>
+                <p class="highlight-text">Personal site refresh – minimal, animated, and fully hand-coded without heavy frameworks.</p>
+              </div>
+              <div class="highlight-card anim" style="--delay:.3s" data-observe>
+                <p class="highlight-label">Availability</p>
+                <p class="highlight-text">Open to new projects · Remote friendly across EU &amp; US time zones.</p>
+              </div>
+            </div>
+            <div class="anim" style="--delay:.3s" data-observe>
+              <a href="#" class="cta-btn">View work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+            </div>
+          </div>
+          <div class="right-col">
+            <div class="contact-profile-glow"></div>
+            <div class="profile-card">
+              <div class="contact-profile-top">
+                <div class="contact-avatar-wrap anim-scale" data-observe>
+                  <div class="contact-avatar-glow"></div>
+                  <img src="avatar.png" alt="Thamson Antony" class="contact-avatar" />
+                </div>
+                <div class="anim" style="--delay:.2s" data-observe>
+                  <p class="contact-name">Thamson Antony</p>
+                  <p class="contact-role">Business Analytics Consultant</p>
+                </div>
+                <p class="contact-bio anim" style="--delay:.3s" data-observe>Building interfaces that feel considered – pairing solid engineering with a sharp eye for design.</p>
+              </div>
+              <div class="social-list" id="social-list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="page-nav" style="padding-top:32px;padding-bottom:0">
+          <a href="#certifications" class="page-nav-btn">↑ Certifications</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SCRIPTS ══════════════ -->
   <script>
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      }),
-      { threshold: 0.12 }
+    const ICONS = {
+      twitter:  `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835-8.161-10.665h7.009l4.258 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+      linkedin: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+      github:   `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`,
+      dribbble: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.816zm-11.62-2.073c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.18zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.46 0-.922.033-1.4.098zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.386z"/></svg>`,
+      arrow:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>`,
+    };
+    const socialLinks = [
+      { label: 'Twitter',  handle: '@thamsonantony', href: '#', icon: ICONS.twitter  },
+      { label: 'LinkedIn', handle: 'Thamson Antony',  href: '#', icon: ICONS.linkedin },
+      { label: 'GitHub',   handle: 'thamsonantony',   href: '#', icon: ICONS.github   },
+      { label: 'Dribbble', handle: 'thamsonantony',   href: '#', icon: ICONS.dribbble },
+    ];
+    const list = document.getElementById('social-list');
+    socialLinks.forEach((s, i) => {
+      const a = document.createElement('a');
+      a.className = 'social-link anim';
+      a.href = s.href; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.style.setProperty('--delay', `${i * 0.08}s`);
+      a.setAttribute('data-observe', '');
+      a.innerHTML = `<div class="social-left"><span class="social-icon">${s.icon}</span><div><p class="social-label">${s.label}</p><p class="social-handle">${s.handle}</p></div></div><span class="social-arrow">${ICONS.arrow}</span>`;
+      list.appendChild(a);
+    });
+
+    const animObserver = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); animObserver.unobserve(e.target); } }),
+      { threshold: 0.08 }
     );
-    document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+    document.querySelectorAll('[data-observe]').forEach(el => animObserver.observe(el));
 
+    const navLinks   = document.querySelectorAll('.nav-bar a[data-section]');
+    const navBar     = document.getElementById('main-nav');
+    const indicator  = document.getElementById('nav-indicator');
+
+    function moveIndicator() {
+      const active = navBar.querySelector('.nav-item.active');
+      if (!active) { indicator.style.opacity = '0'; return; }
+      const span = active.querySelector('span');
+      const icon = active.querySelector('svg');
+      const pillW = 22;
+      // On mobile spans are display:none (offsetWidth 0); fall back to icon
+      const ref = (span && span.offsetWidth > 0) ? span : (icon || active);
+      const left = active.offsetLeft + ref.offsetLeft + (ref.offsetWidth - pillW) / 2;
+      indicator.style.opacity = '1';
+      indicator.style.left = left + 'px';
+    }
+
+    const sectionObserver = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === e.target.id));
+          moveIndicator();
+        }
+      }),
+      { threshold: 0.25, rootMargin: '-80px 0px -35% 0px' }
+    );
+    document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+    window.addEventListener('resize', moveIndicator);
+
+    (function () {
+      const html   = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      const fire   = dark => window.dispatchEvent(new CustomEvent('themechange', { detail: { dark } }));
+      if (localStorage.getItem('theme') === 'dark') { html.classList.add('dark'); }
+      toggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        const dark = html.classList.contains('dark');
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        fire(dark);
+      });
+    })();
+
+    (function () {
+      const flipCard = document.getElementById('home-flip');
+      const backBtn  = document.getElementById('flip-back-btn');
+
+      // Equalize container height so back face content isn't clipped
+      function equalizeFlipHeight() {
+        const front = flipCard.querySelector('.flip-front');
+        const back  = flipCard.querySelector('.flip-back');
+        back.style.minHeight = '';
+        flipCard.style.minHeight = '';
+        const frontH = front.getBoundingClientRect().height;
+        // Temporarily make back visible off-screen to measure natural height
+        back.style.visibility = 'hidden';
+        back.style.transform = 'none';
+        back.style.position = 'relative';
+        const backH = back.scrollHeight;
+        back.style.visibility = '';
+        back.style.transform = '';
+        back.style.position = '';
+        const h = Math.max(frontH, backH);
+        flipCard.style.minHeight = h + 'px';
+      }
+      window.addEventListener('load', equalizeFlipHeight);
+      window.addEventListener('resize', equalizeFlipHeight);
+      let flipped = false;
+      let locked  = false;
+      let lockedY = 0;
+
+      function block(e) { e.preventDefault(); }
+
+      function lockScroll() {
+        locked  = true;
+        lockedY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top      = `-${lockedY}px`;
+        document.body.style.width    = '100%';
+        window.addEventListener('wheel', block, { passive: false });
+      }
+
+      function unlockScroll() {
+        locked = false;
+        document.body.style.position = '';
+        document.body.style.top      = '';
+        document.body.style.width    = '';
+        window.removeEventListener('wheel', block);
+        window.scrollTo(0, lockedY);
+      }
+
+      function onWheel(e) {
+        if (locked || flipped) return;
+        if (e.deltaY > 0) {
+          e.preventDefault();
+          flipped = true;
+          lockScroll();
+          flipCard.classList.add('flipped');
+          setTimeout(unlockScroll, 1050);
+        }
+      }
+      window.addEventListener('wheel', onWheel, { passive: false });
+
+      const returnObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && flipped && !locked) {
+            flipped = false;
+            flipCard.classList.remove('flipped');
+          }
+        });
+      }, { threshold: 0.65 });
+      returnObserver.observe(document.querySelector('.flip-scene'));
+
+      backBtn.addEventListener('click', () => {
+        if (locked) return;
+        flipped = false;
+        flipCard.classList.remove('flipped');
+      });
+    })();
   </script>
 
-  <script type="importmap">
-    { "imports": { "ogl": "https://esm.sh/ogl" } }
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
   </script>
+
+  <script type="importmap">{ "imports": { "ogl": "https://esm.sh/ogl" } }</script>
   <script type="module">
     import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 
-    const vert = `
-      attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
-      void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
-    `;
-    const frag = `
-      precision highp float;
+    const vert = `attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
+      void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }`;
+    const frag = `precision highp float;
       uniform float uTime, uSwirl, uSpeed, uScale, uOffsetX, uOffsetY, uRotation;
       uniform float uWaveAmp, uWaveFreq, uWaveSpeed, uGrain;
       uniform vec3 uColorA, uColorB, uColorC, uResolution;
@@ -410,9 +960,7 @@
       float wave(vec2 uv, float freq, float speed, float time) {
         return sin(uv.x * freq + time * speed) * cos(uv.y * freq + time * speed);
       }
-      float random(vec2 st) {
-        return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-      }
+      float random(vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123); }
       vec3 colorDodge(vec3 base, vec3 blend) { return min(base / (1.0 - blend + 0.0001), 1.0); }
       void main() {
         float mr = min(uResolution.x, uResolution.y);
@@ -434,11 +982,21 @@
         float grain = (random(gl_FragCoord.xy + floor(uTime * 60.0) * vec2(127.1, 311.7)) - 0.5) * uGrain;
         col = colorDodge(col, vec3(0.5 + grain));
         gl_FragColor = vec4(col, 1.0);
-      }
-    `;
+      }`;
 
-    const hexToRgb = hex => { const h = hex.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
-    const [cA, cB, cC] = ['#666666','#333333','#1a1a1a'].map(hexToRgb);
+    const hexToRgb = h => { h = h.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
+
+    const PALETTES = {
+      light: ['#888888','#555555','#2a2a2a'],
+      dark:  ['#2e2e2e','#141414','#050505'],
+    };
+    const isDark = () => document.documentElement.classList.contains('dark');
+    let tgt = PALETTES[isDark() ? 'dark' : 'light'].map(hexToRgb);
+    let cur = tgt.map(c => [...c]);
+    const lerpArr = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
+    window.addEventListener('themechange', e => {
+      tgt = PALETTES[e.detail.dark ? 'dark' : 'light'].map(hexToRgb);
+    });
 
     const ctn = document.getElementById('gradient-bg');
     const renderer = new Renderer({ alpha: false });
@@ -452,9 +1010,9 @@
         uTime:{value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
         uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
         uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.04},
-        uMouse:{value: [0, 0]},
+        uMouse:{value:[0,0]},
         uResolution:{value: new Color(1,1,1)},
-        uColorA:{value: new Color(...cA)}, uColorB:{value: new Color(...cB)}, uColorC:{value: new Color(...cC)},
+        uColorA:{value: new Color(...cur[0])}, uColorB:{value: new Color(...cur[1])}, uColorC:{value: new Color(...cur[2])},
       },
     });
     const mesh = new Mesh(gl, { geometry, program });
@@ -467,7 +1025,7 @@
     window.addEventListener('resize', resize);
     resize();
 
-    const bgMouse = { tx: 0, ty: 0, cx: 0, cy: 0 };
+    const bgMouse = { tx:0, ty:0, cx:0, cy:0 };
     document.addEventListener('mousemove', e => {
       bgMouse.tx =  (e.clientX / innerWidth)  * 2 - 1;
       bgMouse.ty = -((e.clientY / innerHeight) * 2 - 1);
@@ -479,9 +1037,12 @@
       bgMouse.cx += (bgMouse.tx - bgMouse.cx) * 0.045;
       bgMouse.cy += (bgMouse.ty - bgMouse.cy) * 0.045;
       program.uniforms.uMouse.value = [bgMouse.cx, bgMouse.cy];
+      cur = cur.map((c, i) => lerpArr(c, tgt[i], 0.04));
+      program.uniforms.uColorA.value = new Color(...cur[0]);
+      program.uniforms.uColorB.value = new Color(...cur[1]);
+      program.uniforms.uColorC.value = new Color(...cur[2]);
       renderer.render({ scene: mesh });
     })(0);
   </script>
-
 </body>
 </html>
