@@ -97,7 +97,7 @@
       z-index: 100; display: flex; align-items: center; gap: 8px;
     }
     .nav-contact-capsule {
-      display: flex; align-items: center; gap: 6px;
+      position: relative; display: flex; align-items: center; gap: 6px;
       background: var(--card-bg-mid); border: 1px solid var(--border-50);
       border-radius: 9999px; padding: 18px 20px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
@@ -107,6 +107,10 @@
     }
     .nav-contact-capsule:hover { color: var(--fg); background: var(--inner-bg); }
     .nav-contact-capsule.active { color: var(--fg); }
+    .nav-contact-capsule.active::after {
+      content: ''; position: absolute; bottom: 11px; left: 50%; transform: translateX(-50%);
+      height: 4px; width: 22px; border-radius: 9999px; background: var(--fg);
+    }
     .nav-contact-capsule svg { width: 15px; height: 15px; flex-shrink: 0; }
     .nav-sep { width: 1px; height: 18px; background: var(--border-50); margin: 0 4px; flex-shrink: 0; }
 
@@ -857,7 +861,7 @@
     );
     document.querySelectorAll('[data-observe]').forEach(el => animObserver.observe(el));
 
-    const navLinks   = document.querySelectorAll('.nav-bar a[data-section]');
+    const navLinks   = document.querySelectorAll('a[data-section]');
     const navBar     = document.getElementById('main-nav');
     const indicator  = document.getElementById('nav-indicator');
 
