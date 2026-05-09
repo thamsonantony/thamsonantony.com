@@ -64,6 +64,7 @@
 
     #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
     #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
+    #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
     /* ── Nav ── */
     .nav-bar {
@@ -144,7 +145,7 @@
     .glass-card {
       position: relative; z-index: 1; overflow: hidden; width: 100%; max-width: 1020px;
       border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg);
-      padding: 88px 100px;
+      padding: 88px 100px 120px;
       backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
       -webkit-backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
     }
@@ -180,6 +181,13 @@
     }
     .back-item-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
     .back-item-desc  { font-size: 12px; line-height: 1.6; color: var(--fg-70); }
+    .comp-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .comp-chip {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.01em;
+      padding: 6px 12px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--inner-bg);
+      color: var(--fg-70); white-space: nowrap;
+    }
     .flip-back-btn {
       align-self: center; margin-top: 28px;
       display: inline-flex; align-items: center; gap: 8px;
@@ -191,16 +199,17 @@
     .flip-back-btn:hover { background: var(--card-bg-mid); transform: translateY(-1px); }
     .glass-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent, transparent); pointer-events: none; }
     .profile-glow  { position: absolute; inset: 0; border-radius: 2.5rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
-    .profile-top   { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .avatar-wrap   { position: relative; margin-bottom: 24px; }
+    .profile-top   { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
+    .profile-content { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    .avatar-wrap   { position: relative; flex-shrink: 0; }
     .avatar-glow   { position: absolute; inset: 0; margin: auto; width: 148px; height: 148px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
-    .avatar-frame  { position: relative; width: 148px; height: 148px; border-radius: 9999px; border: 1px solid var(--border-50); box-shadow: var(--shadow); overflow: hidden; flex-shrink: 0; }
-    .avatar        { position: absolute; top: 50%; left: 50%; width: 115%; height: 115%; object-fit: cover; transform: translate(-50%,-50%) rotate(-3deg); }
+    .avatar        { position: relative; width: 148px; height: 148px; border-radius: 9999px; object-fit: cover; border: 1px solid var(--border-50); box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
     .profile-name  { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); margin-bottom: 8px; }
     .profile-role  { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-70); }
-    .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); text-align: center; }
+    .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
     .card-below-btn {
       position: relative; z-index: 1; display: flex; align-items: center; gap: 10px;
+      margin-top: 24px;
       padding: 14px 28px; border-radius: 9999px; border: 1px solid var(--border-50);
       background: var(--card-bg-mid); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       font-size: 14px; font-weight: 600; color: var(--fg); text-decoration: none;
@@ -215,7 +224,7 @@
     .page-header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); }
     .page-header p  { margin-top: 8px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-50); }
     .tl-glass {
-      max-width: 1440px; margin: 0 auto; width: 100%;
+      max-width: 1600px; margin: 0 auto; width: 100%;
       border-radius: 2rem; border: 1px solid var(--border-50);
       background: var(--card-bg-mid); padding: 64px 64px 56px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
@@ -239,13 +248,18 @@
     .tl-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; }
     .tl-type  { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
     .tl-type-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-    .tl-type--edu { color: #2563eb; }
-    .tl-type--work { color: #dc2626; }
+    .tl-type--edu { color: #1339a0; }
+    .tl-type--work { color: #c07a1a; }
+    .tl-sub-connector { width: 1px; height: 14px; background: var(--border-50); flex-shrink: 0; }
     .tl-year  { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--fg-40); margin-bottom: 4px; }
     .tl-title { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 2px; line-height: 1.35; }
     .tl-org   { font-size: 12px; font-weight: 600; color: var(--fg-70); }
     .tl-sub   { font-size: 11px; color: var(--fg-50); margin-top: 2px; }
     .tl-meta  { display: inline-block; font-size: 9px; font-weight: 600; color: var(--fg-50); margin-top: 4px; }
+    .tl-cgpa  { display: inline-flex; align-self: flex-start; align-items: center; margin-top: 10px; padding: 7px 16px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--card-bg-mid); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-50); }
+    html.dark .tl-cgpa { background: rgba(255,255,255,0.06); }
+    .tl-logos { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .tl-logos img { height: 40px; width: auto; max-width: 100px; object-fit: contain; opacity: 0.72; }
 
     /* ════════════════════════ SKILLS ════════════════════════ */
     #skills { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -393,6 +407,7 @@
 </head>
 <body>
   <div id="gradient-bg"></div>
+  <canvas id="particle-canvas"></canvas>
 
   <div style="position:fixed;top:20px;left:20px;z-index:200;padding:4px 12px;border-radius:9999px;background:var(--chip-bg);border:1px solid var(--border-50);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--fg-50);">BETA</div>
 
@@ -438,18 +453,15 @@
           <div class="profile-top">
             <div class="avatar-wrap anim-scale" data-observe>
               <div class="avatar-glow"></div>
-              <div class="avatar-frame">
-                <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+              <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+            </div>
+            <div class="profile-content">
+              <div class="anim" style="--delay:.2s" data-observe>
+                <p class="profile-name">Hello!</p>
               </div>
+              <p class="profile-bio anim" style="--delay:.3s" data-observe>
+               I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with a Master's in Business Analytics and 7 years of experience in IT at global technology consulting companies. I bring technical expertise in Python, SQL, Tableau, and ETL pipeline development, enabling the transformation of complex data into unified architectures and real-time dashboards that bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level business goals, I drive evidence-based decision-making that accelerates strategic outcomes. Passionate about turning raw data into actionable insights, I thrive at the intersection of analytics, business intelligence, and storytelling — helping organizations move from data-rich to decision-ready.
             </div>
-            <div class="anim" style="--delay:.2s" data-observe>
-              <p class="profile-name">Hello!</p>
-              <p class="profile-role">Business Analytics Professional</p>
-              <br>
-            </div>
-            <p class="profile-bio anim" style="--delay:.3s" data-observe>
-              I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with an MS in Business Analytics and 8 years of experience in IT. Technical expertise in Python, SQL, and Tableau enabling the architecture of robust ETL pipelines and predictive models. Transforming complex data into unified architectures and real-time dashboards to bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level goals, evidence-based decision-making is integrated into the core of organizational strategy.
-            </p>
           </div>
         </div>
 
@@ -457,40 +469,10 @@
         <div class="flip-face flip-back glass-card">
           <div class="glass-overlay"></div>
           <div class="profile-glow"></div>
-          <div class="stats-strip" style="margin-bottom:28px;">
-            <div class="stat">
-              <div class="stat-num">8<span class="unit">yrs</span></div>
-              <div class="stat-label">In IT &amp; Analytics</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">3.9<span class="unit">/4</span></div>
-              <div class="stat-label">M.S. Analytics GPA</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">2</div>
-              <div class="stat-label">Fortune 500 Clients</div>
-            </div>
-          </div>
           <div class="back-header">
-            <h2>Why Work With Me</h2>
-            <p>Core competencies &amp; what I bring to the table</p>
+            <h2>Highlights</h2>
           </div>
           <div class="back-cols">
-            <div>
-              <p class="back-col-label">Core Competencies</p>
-              <div class="back-item">
-                <p class="back-item-title">Data Engineering &amp; ETL</p>
-                <p class="back-item-desc">Python, SQL, Informatica, Airflow, Snowflake — architecting pipelines that move raw data to production-ready state reliably at scale.</p>
-              </div>
-              <div class="back-item">
-                <p class="back-item-title">Analytics &amp; Predictive Modeling</p>
-                <p class="back-item-desc">Tableau, scikit-learn, regression, A/B testing, forecasting — translating model outputs into dashboards executives can act on.</p>
-              </div>
-              <div class="back-item">
-                <p class="back-item-title">Cloud &amp; Platform Architecture</p>
-                <p class="back-item-desc">AWS, Azure Data Factory, dbt, Snowflake — designing scalable data platforms aligned to business and compliance requirements.</p>
-              </div>
-            </div>
             <div>
               <p class="back-col-label">Why Hire Me</p>
               <div class="back-item">
@@ -502,12 +484,31 @@
                 <p class="back-item-desc">I align engineering roadmaps with executive goals — turning complex technical work into narratives that drive decisions and secure buy-in.</p>
               </div>
               <div class="back-item">
-                <p class="back-item-title">Measurable, Evidence-Based Outcomes</p>
-                <p class="back-item-desc">Every recommendation is backed by data. I integrate evidence-based thinking into strategy so organisations move with confidence, not guesswork.</p>
+                <p class="back-item-title">Fortune 500 Clients</p>
+                <p class="back-item-desc">Delivered analytics solutions for two Fortune 500 organisations — navigating enterprise-scale complexity, compliance requirements, and cross-functional stakeholders.</p>
+              </div>
+            </div>
+            <div>
+              <p class="back-col-label">Core Competencies</p>
+              <div class="comp-grid">
+<span class="comp-chip">ETL Pipelines</span>
+                <span class="comp-chip">Python</span>
+                <span class="comp-chip">SQL</span>
+                <span class="comp-chip">Snowflake</span>
+                <span class="comp-chip">Informatica</span>
+                <span class="comp-chip">Apache Airflow</span>
+                <span class="comp-chip">dbt</span>
+                <span class="comp-chip">Predictive Modeling</span>
+                <span class="comp-chip">A/B Testing</span>
+                <span class="comp-chip">Tableau</span>
+                <span class="comp-chip">scikit-learn</span>
+                <span class="comp-chip">AWS</span>
+                <span class="comp-chip">Azure Data Factory</span>
+                <span class="comp-chip">Stakeholder Reporting</span>
+                <span class="comp-chip">Executive Dashboards</span>
               </div>
             </div>
           </div>
-          <button class="flip-back-btn" id="flip-back-btn">↩ Back to profile</button>
         </div>
 
       </div>
@@ -540,13 +541,16 @@
               <p class="tl-org">Anna University</p>
               <p class="tl-sub">NPR College of Engineering</p>
               <p class="tl-sub">Tamil Nadu, India</p>
-              <span class="tl-meta">CGPA 7.86 / 10</span>
+              <span class="tl-cgpa">CGPA 7.86 / 10</span>
             </div>
           </div>
           <div class="tl-top empty" style="grid-column:2"></div>
           <div class="tl-top tl-item-3" style="grid-column:3">
             <div class="tl-card anim-up" style="--delay:.25s" data-observe>
-              <img src="TCS.png" class="tl-logo" alt="Tata Consultancy Services">
+              <div class="tl-logos">
+                <img src="TCS.png" alt="Tata Consultancy Services">
+                <img src="Citi.png" alt="Citi" style="margin-right:16px;">
+              </div>
               <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
               <span class="tl-year">2022 – 2023</span>
               <p class="tl-title">IT Analyst</p>
@@ -560,7 +564,10 @@
           <div class="tl-bot empty" style="grid-column:1"></div>
           <div class="tl-bot tl-item-2" style="grid-column:2">
             <div class="tl-card anim-up" style="--delay:.2s" data-observe>
-              <img src="cognizant.png" class="tl-logo" alt="Cognizant">
+              <div class="tl-logos">
+                <img src="cognizant.png" alt="Cognizant" style="height:56px;">
+                <img src="FPL.png" alt="Florida Power & Light" style="margin-right:16px;">
+              </div>
               <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
               <span class="tl-year">2016 – 2022</span>
               <p class="tl-title">Associate &amp; Team Lead</p>
@@ -572,20 +579,30 @@
           <div class="tl-bot empty" style="grid-column:3"></div>
           <div class="tl-bot tl-item-4" style="grid-column:4">
             <div class="tl-card anim-up" style="--delay:.3s" data-observe>
-              <img src="shu.png" class="tl-logo" alt="Sacred Heart University">
+              <img src="shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
               <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
               <span class="tl-year">2024 – 2025</span>
               <p class="tl-title">Master of Science (M.S.) in Business Analytics</p>
               <p class="tl-org">Sacred Heart University</p>
-              <p class="tl-sub">Jack Welch College of Business · Fairfield, CT</p>
-              <span class="tl-meta">CGPA 3.9 / 4</span>
+              <p class="tl-sub">Jack Welch College of Business</p>
+              <p class="tl-sub">Fairfield, CT</p>
+              <span class="tl-cgpa">CGPA 3.9 / 4</span>
+            </div>
+            <div class="tl-sub-connector"></div>
+            <div class="tl-card anim-up" style="--delay:.4s" data-observe>
+              <img src="shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
+              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
+              <span class="tl-year">2024 – 2025</span>
+              <p class="tl-title">Graduate Teaching Assistant</p>
+              <p class="tl-org">Sacred Heart University</p>
+              <p class="tl-sub">Jack Welch College of Business</p>
+              <p class="tl-sub">Fairfield, CT</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="#home" class="page-nav-btn">↑ Home</a>
       <a href="#skills" class="page-nav-btn">Skills ↓</a>
     </div>
   </section>
@@ -648,8 +665,7 @@
         </div>
       </div>
     </div>
-    <div class="page-nav anim-up" style="--delay:.55s" data-observe>
-      <a href="#timeline" class="page-nav-btn">↑ Timeline</a>
+    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
       <a href="#certifications" class="page-nav-btn">Certifications ↓</a>
     </div>
   </section>
@@ -723,8 +739,7 @@
         </div>
       </div>
     </div>
-    <div class="page-nav anim-up" style="--delay:.5s" data-observe>
-      <a href="#skills" class="page-nav-btn">↑ Skills</a>
+    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
       <a href="#contact" class="page-nav-btn">Contact ↓</a>
     </div>
   </section>
@@ -776,9 +791,6 @@
               <div class="social-list" id="social-list"></div>
             </div>
           </div>
-        </div>
-        <div class="page-nav" style="padding-top:32px;padding-bottom:0">
-          <a href="#certifications" class="page-nav-btn">↑ Certifications</a>
         </div>
       </div>
     </div>
@@ -860,7 +872,6 @@
 
     (function () {
       const flipCard = document.getElementById('home-flip');
-      const backBtn  = document.getElementById('flip-back-btn');
 
       // Equalize container height so back face content isn't clipped
       function equalizeFlipHeight() {
@@ -907,12 +918,18 @@
       }
 
       function onWheel(e) {
-        if (locked || flipped) return;
-        if (e.deltaY > 0) {
+        if (locked) return;
+        if (!flipped && e.deltaY > 0) {
           e.preventDefault();
           flipped = true;
           lockScroll();
           flipCard.classList.add('flipped');
+          setTimeout(unlockScroll, 1050);
+        } else if (flipped && e.deltaY < 0) {
+          e.preventDefault();
+          flipped = false;
+          lockScroll();
+          flipCard.classList.remove('flipped');
           setTimeout(unlockScroll, 1050);
         }
       }
@@ -928,11 +945,6 @@
       }, { threshold: 0.65 });
       returnObserver.observe(document.querySelector('.flip-scene'));
 
-      backBtn.addEventListener('click', () => {
-        if (locked) return;
-        flipped = false;
-        flipCard.classList.remove('flipped');
-      });
     })();
   </script>
 
@@ -1044,5 +1056,6 @@
       renderer.render({ scene: mesh });
     })(0);
   </script>
+  <script src="particle-net.js"></script>
 </body>
 </html>

@@ -28,6 +28,7 @@
 
     #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
     #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
+    #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
     /* ── Nav ── */
     .nav-bar {
@@ -253,6 +254,7 @@
 </head>
 <body>
   <div id="gradient-bg"></div>
+  <canvas id="particle-canvas"></canvas>
 
   <nav class="nav-bar">
     <a href="home.html" class="nav-btn" aria-label="Home">
@@ -453,5 +455,6 @@
       renderer.render({ scene: mesh });
     })(0);
   </script>
+  <script src="particle-net.js"></script>
 </body>
 </html>

@@ -45,6 +45,7 @@
       height: 100% !important;
       display: block;
     }
+    #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
     /* ── Layout ── */
     .section {
@@ -516,6 +517,7 @@
 </head>
 <body>
   <div id="gradient-bg"></div>
+  <canvas id="particle-canvas"></canvas>
 
   <nav class="nav-bar">
     <a href="home.html" class="nav-btn" aria-label="Home">
@@ -838,5 +840,6 @@
     }
     raf = requestAnimationFrame(update);
   </script>
+  <script src="particle-net.js"></script>
 </body>
 </html>
