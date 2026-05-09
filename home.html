@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Thamson Antony</title>
   <link rel="icon" type="image/png" href="favicon.png" sizes="512x512" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,9 +62,10 @@
       transition: background 0.35s ease, color 0.25s ease;
     }
 
-    #gradient-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    #gradient-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; bottom: env(safe-area-inset-bottom, 0); min-height: 100dvh; z-index: 0; overflow: hidden; }
     #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
     #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+    html { background: var(--bg); }
 
     /* ── Nav ── */
     .nav-bar {
@@ -391,7 +392,7 @@
     /* ════════════════════════ MOBILE ════════════════════════ */
     @media (max-width: 640px) {
       /* ── Nav ── */
-      .nav-wrapper { top: auto; bottom: 18px; transform: translateX(-50%); gap: 6px; }
+      .nav-wrapper { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); gap: 6px; }
       .nav-bar { padding: 5px 7px; }
       .nav-item span { display: none; }
       .nav-item { padding: 9px 11px; }
@@ -402,10 +403,10 @@
       .nav-contact-capsule { width: 44px; height: 44px; padding: 0; justify-content: center; overflow: hidden; }
       .nav-contact-capsule span { display: none; }
       .nav-contact-capsule.active::after { display: none; }
-      .theme-toggle { top: auto; bottom: 18px; right: 16px; width: 40px; height: 40px; }
+      .theme-toggle { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
-      .nav-logo { top: auto; bottom: 18px; left: 16px; }
+      .nav-logo { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); left: 16px; }
       .nav-logo img { height: 40px; }
 
       /* ── Home card ── */
