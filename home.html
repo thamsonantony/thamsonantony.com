@@ -396,15 +396,17 @@
       .nav-item span { display: none; }
       .nav-item { padding: 9px 11px; }
       .nav-sep { height: 16px; }
-      .nav-indicator { bottom: auto; top: 7px; }
-      .nav-contact-capsule { padding: 9px 14px; font-size: 12px; }
+      .nav-indicator { display: none; }
+      .nav-item.active { background: var(--inner-bg); }
+      .nav-contact-capsule.active { background: var(--inner-bg); }
+      .nav-contact-capsule { width: 44px; height: 44px; padding: 0; justify-content: center; overflow: hidden; }
       .nav-contact-capsule span { display: none; }
-      .nav-contact-capsule.active::after { bottom: 7px; top: auto; }
+      .nav-contact-capsule.active::after { display: none; }
       .theme-toggle { top: auto; bottom: 18px; right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
-      .nav-logo { top: 12px; left: 14px; }
-      .nav-logo img { height: 48px; }
+      .nav-logo { top: auto; bottom: 18px; left: 16px; }
+      .nav-logo img { height: 40px; }
 
       /* ── Home card ── */
       .glass-card { padding: 48px 20px 64px; }
@@ -896,7 +898,7 @@
       if (!active) { indicator.style.opacity = '0'; return; }
       const span = active.querySelector('span');
       const icon = active.querySelector('svg');
-      const pillW = 22;
+      const pillW = indicator.offsetWidth || 22;
       // On mobile spans are display:none (offsetWidth 0); fall back to icon
       const ref = (span && span.offsetWidth > 0) ? span : (icon || active);
       const left = active.offsetLeft + ref.offsetLeft + (ref.offsetWidth - pillW) / 2;
