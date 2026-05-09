@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thamson Antony</title>
-  <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
+  <link rel="icon" type="image/png" href="favicon.png" sizes="512x512" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
@@ -68,8 +68,7 @@
 
     /* ── Nav ── */
     .nav-bar {
-      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
-      z-index: 100; display: flex; align-items: center; gap: 2px;
+      display: flex; align-items: center; gap: 2px;
       background: var(--card-bg-mid); border: 1px solid var(--border-50);
       border-radius: 9999px; padding: 10px 26px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
@@ -84,20 +83,44 @@
     .nav-item svg { width: 15px; height: 15px; flex-shrink: 0; }
     .nav-item:hover { color: var(--fg); background: var(--inner-bg); }
     .nav-item.active { color: var(--fg); }
-    .nav-contact-item { color: rgba(140,20,20,0.85); }
-    .nav-contact-item:hover { color: rgba(120,10,10,1); background: rgba(120,10,10,0.08); }
-    .nav-contact-item.active { color: rgba(120,10,10,1); }
+    .nav-contact-item { color: var(--fg-50); }
+    .nav-contact-item:hover { color: var(--fg); background: var(--inner-bg); }
+    .nav-contact-item.active { color: var(--fg); }
     .nav-indicator {
       position: absolute; bottom: 11px; height: 4px; width: 22px; border-radius: 9999px;
       background: var(--fg); pointer-events: none; opacity: 0;
       transition: left 0.35s cubic-bezier(0.4,0,0.2,1),
                   opacity 0.2s, background 0.25s;
     }
-    .nav-contact-item.active ~ .nav-indicator,
-    html:has(.nav-contact-item.active) .nav-indicator { background: rgba(120,10,10,0.9); }
+    .nav-wrapper {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 100; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-contact-capsule {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card-bg-mid); border: 1px solid var(--border-50);
+      border-radius: 9999px; padding: 18px 20px;
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      font-size: 13px; font-weight: 600; color: var(--fg-50);
+      text-decoration: none; transition: color 0.2s, background 0.2s;
+    }
+    .nav-contact-capsule:hover { color: var(--fg); background: var(--inner-bg); }
+    .nav-contact-capsule.active { color: var(--fg); }
+    .nav-contact-capsule svg { width: 15px; height: 15px; flex-shrink: 0; }
     .nav-sep { width: 1px; height: 18px; background: var(--border-50); margin: 0 4px; flex-shrink: 0; }
 
     /* ── Theme Toggle ── */
+    .nav-logo {
+      position: fixed; top: 15px; left: 24px; z-index: 101;
+      display: flex; align-items: center;
+    }
+    .nav-logo img { height: 80px; width: auto; object-fit: contain; }
+    .nav-logo .logo-light { display: block; }
+    .nav-logo .logo-dark  { display: none; }
+    html.dark .nav-logo .logo-light { display: none; }
+    html.dark .nav-logo .logo-dark  { display: block; }
+
     .theme-toggle {
       position: fixed; top: 24px; right: 24px; z-index: 101;
       width: 44px; height: 44px; border-radius: 9999px;
@@ -409,8 +432,13 @@
   <div id="gradient-bg"></div>
   <canvas id="particle-canvas"></canvas>
 
-  <div style="position:fixed;top:20px;left:20px;z-index:200;padding:4px 12px;border-radius:9999px;background:var(--chip-bg);border:1px solid var(--border-50);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--fg-50);">BETA</div>
 
+  <div class="nav-logo">
+    <img src="TA Light.png" class="logo-light" alt="TA" />
+    <img src="TA Dark.png"  class="logo-dark"  alt="TA" />
+  </div>
+
+  <div class="nav-wrapper">
   <nav class="nav-bar" id="main-nav">
     <a href="#home" class="nav-item" data-section="home" aria-label="Home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
@@ -428,13 +456,14 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg>
       <span>Certifications</span>
     </a>
-    <div class="nav-sep"></div>
-    <a href="#contact" class="nav-item nav-contact-item" data-section="contact" aria-label="Contact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      <span>Contact</span>
-    </a>
     <div class="nav-indicator" id="nav-indicator"></div>
   </nav>
+
+  <a href="#contact" class="nav-contact-capsule nav-contact-item" data-section="contact" aria-label="Contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact</span>
+  </a>
+  </div>
 
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
     <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
