@@ -223,13 +223,17 @@
     }
     .back-item-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
     .back-item-desc  { font-size: 12px; line-height: 1.6; color: var(--fg-70); }
-    .comp-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .comp-chip {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.01em;
-      padding: 6px 12px; border-radius: 9999px;
+    .comp-logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .comp-logo-chip {
+      display: flex; flex-direction: column; align-items: center; gap: 7px;
+      padding: 10px 6px 9px; border-radius: 0.875rem;
       border: 1px solid var(--border-50); background: var(--inner-bg);
-      color: var(--fg-70); white-space: nowrap;
+      text-align: center; transition: border-color 0.18s, transform 0.18s;
+      cursor: default;
     }
+    .comp-logo-chip:hover { border-color: var(--border); transform: translateY(-2px); }
+    .comp-logo-chip svg { width: 18px; height: 18px; color: var(--fg-70); flex-shrink: 0; }
+    .comp-logo-chip span { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; color: var(--fg-70); line-height: 1.3; }
     .flip-back-btn {
       align-self: center; margin-top: 28px;
       display: inline-flex; align-items: center; gap: 8px;
@@ -273,7 +277,8 @@
       box-shadow: var(--shadow); position: relative; overflow: hidden;
     }
     .tl-glass::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; border-radius: inherit; }
-    .tl-outer { overflow-x: auto; padding-bottom: 8px; }
+    .tl-outer { overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+    .tl-outer::-webkit-scrollbar { display: none; }
     .tl-grid  { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); grid-template-rows: auto 44px auto; min-width: 1020px; position: relative; }
     .tl-h-line { grid-row: 2; grid-column: 1/-1; align-self: center; height: 1px; background: linear-gradient(to right, transparent, var(--border) 6%, var(--border) 94%, transparent); pointer-events: none; z-index: 0; }
     .tl-dot-wrap { grid-row: 2; display: flex; align-items: center; justify-content: center; z-index: 1; }
@@ -340,7 +345,7 @@
     .tier.tier-familiar .chip { background: transparent; color: var(--fg-70); border-color: var(--border-50); }
 
     /* ════════════════════════ CERTIFICATIONS ════════════════════════ */
-    #certifications { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
+    #credentials { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
     .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1000px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
     .cert-page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
     .cert-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
@@ -358,6 +363,8 @@
     .cert-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--fg-25); }
     .cert-id { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.02em; color: var(--fg-50); }
     .cert-verify { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 8px 14px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
+    .cert-in-progress { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(217,158,10); width: fit-content; }
+    html.dark .cert-in-progress { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); color: rgb(251,191,36); }
     .cert-verify:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
     .cert-verify svg { width: 12px; height: 12px; }
 
@@ -402,25 +409,8 @@
     .social-arrow  { color: var(--fg-40); transition: transform 0.2s, color 0.2s; }
     .social-link:hover .social-arrow { transform: translate(2px,-2px); color: var(--fg-70); }
     .social-arrow svg { width: 16px; height: 16px; display: block; }
-
-    /* ── Beta Marquee ── */
-    .beta-marquee {
-      position: fixed; top: 50%; left: 0; right: 0; z-index: 99; transform: translateY(-50%);
-      overflow: hidden; pointer-events: none;
-    }
-    .beta-marquee-track {
-      display: flex; gap: 32px; width: max-content;
-      animation: marquee-scroll 18s linear infinite;
-    }
-    .beta-marquee-track span {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--fg); opacity: 0.12; white-space: nowrap;
-    }
-    @keyframes marquee-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    @media (max-width: 640px) { .beta-marquee { display: none; } }
+    .contact-center { position: relative; display: flex; justify-content: center; }
+    .contact-center .profile-card { max-width: 440px; width: 100%; height: auto; justify-content: flex-start; }
 
     /* ════════════════════════ MOBILE ════════════════════════ */
     @media (max-width: 640px) {
@@ -451,6 +441,7 @@
       .profile-bio { font-size: 13px; }
       .flip-back.glass-card { padding: 36px 20px; }
       .back-cols { grid-template-columns: 1fr; gap: 20px; }
+      .comp-logo-grid { grid-template-columns: repeat(4, 1fr); }
       .back-header h2 { font-size: 1.4rem; }
 
       /* ── Timeline ── */
@@ -458,7 +449,7 @@
       .tl-card { padding: 20px 80px 20px 16px; }
 
       /* ── Skills / Certs ── */
-      #skills, #certifications { padding: 100px 16px 60px; }
+      #skills, #credentials { padding: 100px 16px 60px; }
       .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
       .stats-strip { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
@@ -519,9 +510,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
       <span>Skills</span>
     </a>
-    <a href="#certifications" class="nav-item" data-section="certifications" aria-label="Certifications">
+    <a href="#credentials" class="nav-item" data-section="credentials" aria-label="Credentials">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg>
-      <span>Certifications</span>
+      <span>Credentials</span>
     </a>
     <div class="nav-indicator" id="nav-indicator"></div>
   </nav>
@@ -534,10 +525,6 @@
       <span>Contact</span>
     </a>
   </div>
-  </div>
-
-  <div class="beta-marquee" aria-hidden="true">
-    <div class="beta-marquee-track"><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span><span>BETA</span><span>·</span></div>
   </div>
 
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
@@ -594,23 +581,23 @@
             </div>
             <div>
               <p class="back-col-label">Core Competencies</p>
-              <div class="comp-grid">
-                <span class="comp-chip">ETL Pipelines</span>
-                <span class="comp-chip">Python</span>
-                <span class="comp-chip">SQL</span>
-                <span class="comp-chip">Predictive Modeling</span>
-                <span class="comp-chip">A/B Testing</span>
-                <span class="comp-chip">Tableau</span>
-                <span class="comp-chip">Looker</span>
-                <span class="comp-chip">scikit-learn</span>
-                <span class="comp-chip">AWS</span>
-                <span class="comp-chip">Stakeholder Reporting</span>
-                <span class="comp-chip">Executive Dashboards</span>
-                <span class="comp-chip">Microsoft Visio</span>
-                <span class="comp-chip">Agile</span>
-                <span class="comp-chip">Jira</span>
-                <span class="comp-chip">Confluence</span>
-                <span class="comp-chip">Mainframe</span>
+              <div class="comp-logo-grid">
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Python</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg><span>SQL</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>ETL Pipelines</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><span>Predictive Modeling</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg><span>A/B Testing</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>Tableau</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Looker</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>scikit-learn</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg><span>AWS</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg><span>Stakeholders</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Dashboards</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg><span>MS Visio</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span>Agile</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Jira</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Confluence</span></div>
+                <div class="comp-logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg><span>Mainframe</span></div>
               </div>
             </div>
           </div>
@@ -625,10 +612,8 @@
 
   <!-- ══════════════ TIMELINE ══════════════ -->
   <section id="timeline">
-    <div class="page-header anim-up" data-observe>
-      <h1>Timeline</h1>
-    </div>
     <div class="tl-glass anim-up" data-observe>
+      <div class="page-header" style="margin-top:-36px;margin-bottom:32px"><h1>Timeline</h1></div>
       <div class="tl-outer">
         <div class="tl-grid">
           <div class="tl-h-line"></div>
@@ -714,132 +699,118 @@
 
   <!-- ══════════════ SKILLS ══════════════ -->
   <section id="skills">
-    <div class="page-header anim-up" data-observe>
-      <h1>Skills</h1>
-    </div>
     <div class="page-card">
+      <div class="page-header" style="margin-bottom:32px"><h1>Skills</h1></div>
       <div class="skills-grid">
+
         <div class="skill-card primary anim-up" style="--delay:.1s" data-observe>
           <div class="skill-head">
             <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-            <div class="skill-meta"><span class="skill-eyebrow">01 · Foundations</span><span class="skill-title">Programming &amp; Data</span></div>
+            <div class="skill-meta"><span class="skill-eyebrow">01 · Core</span><span class="skill-title">Data &amp; Analytics</span></div>
           </div>
-          <p class="skill-desc">Writing the queries, scripts, and pipelines that move data from raw source to ready-to-use.</p>
-          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Pandas</span></div></div>
-          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">NumPy</span><span class="chip">PySpark</span></div></div>
-          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">R</span></div></div>
+          <p class="skill-desc">Querying, scripting, statistical modelling, and machine learning — from raw data to actionable insight.</p>
+          <div class="tier tier-daily"><span class="tier-label">Proficient</span><div class="chip-list"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Plotly</span><span class="chip">Seaborn</span><span class="chip">Scikit-Learn</span><span class="chip">XGBoost</span><span class="chip">Regression</span><span class="chip">A/B Testing</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Basic</span><div class="chip-list"><span class="chip">R</span></div></div>
         </div>
+
         <div class="skill-card primary anim-up" style="--delay:.18s" data-observe>
           <div class="skill-head">
             <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg></div>
-            <div class="skill-meta"><span class="skill-eyebrow">02 · Visualization</span><span class="skill-title">Analytics &amp; BI</span></div>
+            <div class="skill-meta"><span class="skill-eyebrow">02 · Visualisation</span><span class="skill-title">Visualisation &amp; BI</span></div>
           </div>
-          <p class="skill-desc">Turning models and metrics into dashboards executives actually use to make decisions.</p>
-          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Tableau</span><span class="chip">Excel / VBA</span></div></div>
-          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Power BI</span><span class="chip">Looker</span></div></div>
-          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">Plotly</span></div></div>
+          <p class="skill-desc">Building dashboards and reports that turn complex data into clear, executive-ready decisions.</p>
+          <div class="tier tier-daily"><span class="tier-label">Proficient</span><div class="chip-list"><span class="chip">Tableau</span><span class="chip">Microsoft Excel</span></div></div>
+          <div class="tier tier-working"><span class="tier-label">Intermediate</span><div class="chip-list"><span class="chip">Microsoft Power BI</span><span class="chip">Looker</span></div></div>
         </div>
+
         <div class="skill-card secondary anim-up" style="--delay:.26s" data-observe>
           <div class="skill-head">
-            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
-            <div class="skill-meta"><span class="skill-eyebrow">03 · Pipelines</span><span class="skill-title">Data Engineering &amp; ETL</span></div>
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">03 · Delivery</span><span class="skill-title">Project Delivery</span></div>
           </div>
-          <p class="skill-desc">Durable ETL flows, warehouses, and integrations across cloud and on-prem systems.</p>
-          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Informatica</span><span class="chip">Snowflake</span></div></div>
-          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Airflow</span><span class="chip">AWS</span></div></div>
-          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">Azure Data Factory</span><span class="chip">dbt</span></div></div>
+          <p class="skill-desc">Structured end-to-end delivery with cross-functional teams and stakeholder alignment.</p>
+          <div class="tier tier-daily"><span class="tier-label">Proficient</span><div class="chip-list"><span class="chip">Agile</span><span class="chip">Waterfall</span><span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Stakeholder Management</span><span class="chip">Requirements</span></div></div>
         </div>
+
         <div class="skill-card secondary anim-up" style="--delay:.34s" data-observe>
           <div class="skill-head">
-            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6"/><path d="M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24"/><path d="M1 12h6m10 0h6"/><path d="M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/></svg></div>
-            <div class="skill-meta"><span class="skill-eyebrow">04 · Modeling</span><span class="skill-title">Statistics &amp; ML</span></div>
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">04 · Tools</span><span class="skill-title">Tools &amp; Platforms</span></div>
           </div>
-          <p class="skill-desc">Predictive models, forecasts, and experiments grounded in solid statistical methodology.</p>
-          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Regression</span><span class="chip">scikit-learn</span></div></div>
-          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Forecasting</span><span class="chip">A/B Testing</span></div></div>
-          <div class="tier tier-familiar"><span class="tier-label">Familiar</span><div class="chip-list"><span class="chip">XGBoost</span><span class="chip">TensorFlow</span></div></div>
+          <p class="skill-desc">Development, documentation, and cloud tools used day to day.</p>
+          <div class="tier tier-daily"><span class="tier-label">Proficient</span><div class="chip-list"><span class="chip">Microsoft Visio</span><span class="chip">GitHub</span><span class="chip">VSCode</span></div></div>
+          <div class="tier tier-familiar"><span class="tier-label">Basic</span><div class="chip-list"><span class="chip">AWS</span><span class="chip">Azure</span></div></div>
         </div>
+
         <div class="skill-card secondary anim-up" style="--delay:.42s" data-observe>
           <div class="skill-head">
-            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-7L10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><line x1="12" y1="13" x2="12" y2="17"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
-            <div class="skill-meta"><span class="skill-eyebrow">05 · Consulting</span><span class="skill-title">Business &amp; Domain</span></div>
+            <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="skill-meta"><span class="skill-eyebrow">05 · Industry</span><span class="skill-title">Domain Expertise</span></div>
           </div>
-          <p class="skill-desc">Translating between technical teams and executives – aligning data work with strategic outcomes.</p>
-          <div class="tier tier-daily"><span class="tier-label">Daily</span><div class="chip-list"><span class="chip">Stakeholder Mgmt</span><span class="chip">Requirements</span></div></div>
-          <div class="tier tier-working"><span class="tier-label">Working</span><div class="chip-list"><span class="chip">Energy &amp; Utilities</span><span class="chip">Wealth Mgmt</span><span class="chip">Agile / Scrum</span></div></div>
+          <p class="skill-desc">Industries where I've delivered enterprise-scale analytics and consulting engagements.</p>
+          <div class="tier tier-daily"><span class="tier-label">Experience</span><div class="chip-list"><span class="chip">Energy &amp; Utilities</span><span class="chip">Private Banking</span><span class="chip">Wealth Management</span></div></div>
         </div>
+
       </div>
     </div>
     <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="#certifications" class="page-nav-btn">Certifications ↓</a>
+      <a href="#credentials" class="page-nav-btn">Credentials ↓</a>
     </div>
   </section>
 
   <!-- ══════════════ CERTIFICATIONS ══════════════ -->
-  <section id="certifications">
-    <div class="page-header anim-up" data-observe>
-      <h1>Certifications</h1>
-    </div>
+  <section id="credentials">
     <div class="cert-page-card">
+      <div class="page-header" style="margin-bottom:32px"><h1>Credentials</h1></div>
       <div class="cert-grid">
         <div class="cert-card anim-up" style="--delay:.05s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">01 · Cloud</span>
-            <div class="cert-title">AWS Certified Solutions Architect – Associate</div>
-            <div class="cert-issuer">Amazon Web Services</div>
-            <div class="cert-meta"><span>Issued 2024</span><span class="dot"></span><span class="cert-id">SAA-C03 · ID 4F92-A1B7</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <span class="cert-eyebrow">01 · Business Analysis</span>
+            <div class="cert-title">Career Essentials in Business Analysis</div>
+            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+            <div class="cert-meta"><span>April 2026</span></div>
+            <a href="https://www.linkedin.com/learning/certificates/4c3ac29899ffc468e4be3e4107675bf316ecc2916b8137d3f4783685dc704a0e?u=26208178" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.12s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">02 · Data</span>
-            <div class="cert-title">Microsoft Certified: Azure Data Engineer Associate</div>
-            <div class="cert-issuer">Microsoft</div>
-            <div class="cert-meta"><span>Issued 2023</span><span class="dot"></span><span class="cert-id">DP-203 · ID MS-7C81</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <span class="cert-eyebrow">02 · Data Analysis</span>
+            <div class="cert-title">Career Essentials in Data Analysis</div>
+            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+            <div class="cert-meta"><span>April 2026</span></div>
+            <a href="https://www.linkedin.com/learning/certificates/715b5784896a261c4539919064c5f6b4747ecf3f4b7176ff514c86965137baca/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.19s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">03 · Analytics</span>
-            <div class="cert-title">Tableau Desktop Specialist</div>
-            <div class="cert-issuer">Tableau / Salesforce</div>
-            <div class="cert-meta"><span>Issued 2023</span><span class="dot"></span><span class="cert-id">TDS-2023</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <span class="cert-eyebrow">03 · AI &amp; Cloud</span>
+            <div class="cert-title">Microsoft Azure AI Essentials Professional Certificate</div>
+            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+            <div class="cert-meta"><span>Feb 2025</span></div>
+            <a href="https://www.linkedin.com/learning/certificates/f310ad9609e13efb54f8f57fcf8c27e84f549fc31b756babc2c7f6333189630c/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.26s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="PL-300.png" alt="PL-300" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">04 · Data Warehouse</span>
-            <div class="cert-title">SnowPro Core Certified</div>
-            <div class="cert-issuer">Snowflake</div>
-            <div class="cert-meta"><span>Issued 2024</span><span class="dot"></span><span class="cert-id">COF-C02</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <span class="cert-eyebrow">04 · Power BI</span>
+            <div class="cert-title">Microsoft Power BI Data Analyst (PL-300)</div>
+            <div class="cert-issuer">Microsoft</div>
+            <div class="cert-meta"><span>In Progress</span></div>
+            <span class="cert-in-progress">⏳ In Progress</span>
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.33s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="IIBA-CBDA.png" alt="IIBA CBDA" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">05 · Methodology</span>
-            <div class="cert-title">Certified ScrumMaster (CSM)</div>
-            <div class="cert-issuer">Scrum Alliance</div>
-            <div class="cert-meta"><span>Issued 2022</span><span class="dot"></span><span class="cert-id">CSM · ID 1234567</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
-          </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.40s" data-observe>
-          <div class="cert-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">06 · Programming</span>
-            <div class="cert-title">Python for Data Science &amp; ML – Specialization</div>
-            <div class="cert-issuer">IBM via Coursera</div>
-            <div class="cert-meta"><span>Issued 2022</span><span class="dot"></span><span class="cert-id">Coursera · IBM-DS</span></div>
-            <a href="#" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <span class="cert-eyebrow">05 · Business Analytics</span>
+            <div class="cert-title">Certified Business Data Analytics (CBDA)</div>
+            <div class="cert-issuer">IIBA</div>
+            <div class="cert-meta"><span>In Progress</span></div>
+            <span class="cert-in-progress">⏳ In Progress</span>
           </div>
         </div>
       </div>
@@ -854,46 +825,23 @@
     <div class="contact-container">
       <div class="contact-glass anim-card" data-observe>
         <div class="glass-overlay"></div>
-        <div class="grid-2col">
-          <div class="left-col">
-            <span class="badge anim" style="--delay:.1s" data-observe>Portfolio Insight</span>
-            <div class="title-block">
-              <h2 class="anim" style="--delay:.15s" data-observe>Thamson Antony, Business Analytics Consultant</h2>
-              <p class="anim" style="--delay:.2s" data-observe>Engineer focused on building thoughtful products and clean interfaces. Thamson works with teams to bring ideas from concept to production with care for detail and user experience.</p>
-            </div>
-            <div class="highlights">
-              <div class="highlight-card anim" style="--delay:.1s" data-observe>
-                <p class="highlight-label">Collaborations</p>
-                <p class="highlight-text">Early-stage founders, product teams, and indie makers crafting focused, well-built software.</p>
+        <div class="page-header" style="margin-bottom:32px"><h1>Contact</h1></div>
+        <div class="contact-center">
+          <div class="contact-profile-glow"></div>
+          <div class="profile-card">
+            <div class="contact-profile-top">
+              <div class="contact-avatar-wrap anim-scale" data-observe>
+                <div class="contact-avatar-glow"></div>
+                <img src="avatar.png" alt="Thamson Antony" class="contact-avatar" />
               </div>
-              <div class="highlight-card anim" style="--delay:.2s" data-observe>
-                <p class="highlight-label">Latest Work</p>
-                <p class="highlight-text">Personal site refresh – minimal, animated, and fully hand-coded without heavy frameworks.</p>
-              </div>
-              <div class="highlight-card anim" style="--delay:.3s" data-observe>
-                <p class="highlight-label">Availability</p>
-                <p class="highlight-text">Open to new projects · Remote friendly across EU &amp; US time zones.</p>
+              <div class="anim" style="--delay:.2s" data-observe>
+                <p class="contact-name">Thamson Antony Arockiasamy</p>
               </div>
             </div>
-            <div class="anim" style="--delay:.3s" data-observe>
-              <a href="#" class="cta-btn">View work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-            </div>
-          </div>
-          <div class="right-col">
-            <div class="contact-profile-glow"></div>
-            <div class="profile-card">
-              <div class="contact-profile-top">
-                <div class="contact-avatar-wrap anim-scale" data-observe>
-                  <div class="contact-avatar-glow"></div>
-                  <img src="avatar.png" alt="Thamson Antony" class="contact-avatar" />
-                </div>
-                <div class="anim" style="--delay:.2s" data-observe>
-                  <p class="contact-name">Thamson Antony</p>
-                  <p class="contact-role">Business Analytics Consultant</p>
-                </div>
-                <p class="contact-bio anim" style="--delay:.3s" data-observe>Building interfaces that feel considered – pairing solid engineering with a sharp eye for design.</p>
-              </div>
-              <div class="social-list" id="social-list"></div>
+            <div class="social-list">
+              <a href="https://linkedin.com/in/thamsonantony" class="social-link anim" style="--delay:.1s" data-observe target="_blank" rel="noopener noreferrer"><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><div><p class="social-label">LinkedIn</p><p class="social-handle">linkedin.com/in/thamsonantony</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+              <a href="https://github.com/thamsonantony" class="social-link anim" style="--delay:.2s" data-observe target="_blank" rel="noopener noreferrer"><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span><div><p class="social-label">GitHub</p><p class="social-handle">github.com/thamsonantony</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+              <a href="mailto:thamsonantony@outlook.com" class="social-link anim" style="--delay:.3s" data-observe><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></span><div><p class="social-label">Email</p><p class="social-handle">thamsonantony@outlook.com</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
             </div>
           </div>
         </div>
@@ -903,30 +851,6 @@
 
   <!-- ══════════════ SCRIPTS ══════════════ -->
   <script>
-    const ICONS = {
-      twitter:  `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835-8.161-10.665h7.009l4.258 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
-      linkedin: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
-      github:   `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`,
-      dribbble: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.816zm-11.62-2.073c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.18zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.46 0-.922.033-1.4.098zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.386z"/></svg>`,
-      arrow:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>`,
-    };
-    const socialLinks = [
-      { label: 'Twitter',  handle: '@thamsonantony', href: '#', icon: ICONS.twitter  },
-      { label: 'LinkedIn', handle: 'Thamson Antony',  href: '#', icon: ICONS.linkedin },
-      { label: 'GitHub',   handle: 'thamsonantony',   href: '#', icon: ICONS.github   },
-      { label: 'Dribbble', handle: 'thamsonantony',   href: '#', icon: ICONS.dribbble },
-    ];
-    const list = document.getElementById('social-list');
-    socialLinks.forEach((s, i) => {
-      const a = document.createElement('a');
-      a.className = 'social-link anim';
-      a.href = s.href; a.target = '_blank'; a.rel = 'noopener noreferrer';
-      a.style.setProperty('--delay', `${i * 0.08}s`);
-      a.setAttribute('data-observe', '');
-      a.innerHTML = `<div class="social-left"><span class="social-icon">${s.icon}</span><div><p class="social-label">${s.label}</p><p class="social-handle">${s.handle}</p></div></div><span class="social-arrow">${ICONS.arrow}</span>`;
-      list.appendChild(a);
-    });
-
     const animObserver = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); animObserver.unobserve(e.target); } }),
       { threshold: 0.08 }
@@ -1024,6 +948,8 @@
 
       function onWheel(e) {
         if (locked) return;
+        // Only intercept at the very top of the page
+        if (window.scrollY > 5) return;
         if (!flipped && e.deltaY > 0) {
           e.preventDefault();
           flipped = true;
@@ -1039,6 +965,32 @@
         }
       }
       window.addEventListener('wheel', onWheel, { passive: false });
+
+      // Touch swipe to flip (mobile)
+      let touchStartX = 0;
+      let touchStartY = 0;
+      flipCard.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      flipCard.addEventListener('touchend', e => {
+        if (locked) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        // Require clear horizontal swipe (min 44px, more horizontal than vertical)
+        if (Math.abs(dx) < 44 || Math.abs(dx) < Math.abs(dy)) return;
+        if (!flipped && dx < 0) {
+          flipped = true;
+          lockScroll();
+          flipCard.classList.add('flipped');
+          setTimeout(unlockScroll, 1050);
+        } else if (flipped && dx > 0) {
+          flipped = false;
+          lockScroll();
+          flipCard.classList.remove('flipped');
+          setTimeout(unlockScroll, 1050);
+        }
+      }, { passive: true });
 
       const returnObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
