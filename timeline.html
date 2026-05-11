@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
   <title>Timeline – Thamson Antony</title>
   <link rel="icon" type="image/png" href="the_crown_white.png" sizes="256x256" />
   <style>
@@ -112,20 +113,21 @@
 
     .page-header {
       text-align: center;
+      margin-top: 64px;
       margin-bottom: 56px;
     }
     .page-header h1 {
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.03em;
-      color: #000000;
+      color: #ffffff;
     }
     .page-header p {
       margin-top: 8px;
       font-size: 13px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.55);
+      color: rgba(255,255,255,0.55);
     }
 
     /* ── Horizontal timeline ── */
@@ -346,7 +348,7 @@
       transform: translateX(-50%);
       width: 4px; height: 4px;
       border-radius: 50%;
-      background: #000;
+      background: #fff;
       pointer-events: none;
     }
 
@@ -361,16 +363,16 @@
         backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
         box-shadow: 0 8px 28px rgba(0,0,0,0.2);
       }
-      .nav-btn, .nav-timeline, .nav-skills, .nav-contact {
+      .nav-btn, .nav-timeline, .nav-skills, .nav-certs, .nav-contact {
         width: 44px; height: 44px; padding: 0; justify-content: center;
         background: transparent; border: none; box-shadow: none;
       }
-      .nav-btn:hover, .nav-timeline:hover, .nav-skills:hover, .nav-contact:hover {
+      .nav-btn:hover, .nav-timeline:hover, .nav-skills:hover, .nav-certs:hover, .nav-contact:hover {
         width: 44px; background: rgba(255,255,255,0.18); transform: none; box-shadow: none;
       }
-      .nav-label, .nav-timeline-label, .nav-skills-label, .nav-contact-label { display: none; }
+      .nav-label, .nav-timeline-label, .nav-skills-label, .nav-certs-label, .nav-contact-label { display: none; }
       .nav-bar a.active::after { bottom: 4px; left: 50%; }
-      .page { padding: 80px 16px 110px; }
+      .page { padding: 40px 16px 110px; }
     }
 
     /* ── Mobile: collapse to vertical ── */
@@ -406,8 +408,8 @@
         left: -23px; top: 18px;
         width: 10px; height: 10px;
         border-radius: 50%;
-        background: rgba(0,0,0,0.7);
-        border: 2px solid rgba(0,0,0,0.25);
+        background: rgba(255,255,255,0.8);
+        border: 2px solid rgba(255,255,255,0.3);
       }
     }
   </style>
@@ -651,6 +653,14 @@
       program.uniforms.uTime.value = t * 0.001;
       renderer.render({ scene: mesh });
     })(0);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script>
+    (function(){
+      const lenis = new Lenis();
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    })();
   </script>
   <script src="particle-net.js"></script>
 </body>

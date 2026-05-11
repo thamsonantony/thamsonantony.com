@@ -931,6 +931,7 @@
       function lockScroll() {
         locked  = true;
         lockedY = window.scrollY;
+        if (window.__lenis) window.__lenis.stop();
         document.body.style.position = 'fixed';
         document.body.style.top      = `-${lockedY}px`;
         document.body.style.width    = '100%';
@@ -944,6 +945,10 @@
         document.body.style.width    = '';
         window.removeEventListener('wheel', block);
         window.scrollTo(0, lockedY);
+        if (window.__lenis) {
+          window.__lenis.scrollTo(lockedY, { immediate: true });
+          window.__lenis.start();
+        }
       }
 
       function onWheel(e) {
@@ -1154,6 +1159,15 @@
       program.uniforms.uColorC.value = new Color(...cur[2]);
       renderer.render({ scene: mesh });
     })(0);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script>
+    (function(){
+      const lenis = new Lenis();
+      window.__lenis = lenis;
+      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+    })();
   </script>
   <script src="particle-net.js"></script>
 
