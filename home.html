@@ -346,16 +346,17 @@
 
     /* ════════════════════════ CERTIFICATIONS ════════════════════════ */
     #credentials { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
-    .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1000px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+    .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1400px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
     .cert-page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
-    .cert-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px; }
-    .cert-card { position: relative; overflow: hidden; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 24px 24px 22px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; gap: 20px; align-items: flex-start; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+    @media (max-width: 960px) { .cert-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .cert-card { position: relative; overflow: hidden; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 32px 28px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; gap: 20px; align-items: center; justify-content: center; min-height: 200px; }
     .cert-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
     .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
     .cert-badge { flex-shrink: 0; width: 84px; height: 84px; border-radius: 18px; border: 1px solid var(--border-50); background: var(--inner-bg); display: grid; place-items: center; color: var(--fg-70); box-shadow: 0 6px 18px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
     .cert-badge::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.08), transparent 55%); pointer-events: none; }
     .cert-badge svg { width: 36px; height: 36px; position: relative; z-index: 1; }
-    .cert-body    { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+    .cert-body    { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
     .cert-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); }
     .cert-title   { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
     .cert-issuer  { font-size: 13px; font-weight: 600; color: var(--fg-70); margin-top: 2px; }
@@ -366,6 +367,43 @@
     .cert-in-progress { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(217,158,10); width: fit-content; }
     html.dark .cert-in-progress { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); color: rgb(251,191,36); }
     .cert-verify:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+
+    .cert-view {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 8px; padding: 8px 14px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--chip-bg);
+      backdrop-filter: blur(8px); font-size: 12px; font-weight: 600;
+      color: var(--fg); text-decoration: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content;
+    }
+    .cert-view:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    .cert-view svg { width: 12px; height: 12px; }
+
+    /* ── PDF Modal ── */
+    .pdf-modal-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.65); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+    }
+    .pdf-modal-backdrop.open { display: flex; }
+    .pdf-modal {
+      position: relative; width: min(860px, 92vw); height: min(640px, 85vh);
+      border-radius: 1.5rem; overflow: hidden;
+      border: 1px solid var(--border-50);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45);
+      background: #1a1a1a;
+    }
+    .pdf-modal iframe { width: 100%; height: 100%; border: none; display: block; }
+    .pdf-modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border-50);
+      background: rgba(30,30,30,0.85); backdrop-filter: blur(8px);
+      color: #fff; cursor: pointer; display: grid; place-items: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pdf-modal-close:hover { background: rgba(60,60,60,0.9); transform: scale(1.1); }
+    .pdf-modal-close svg { width: 14px; height: 14px; }
     .cert-verify svg { width: 12px; height: 12px; }
 
     /* ════════════════════════ CONTACT ════════════════════════ */
@@ -492,8 +530,8 @@
 
 
   <div class="nav-logo">
-    <img src="TA Light.png" class="logo-light" alt="TA" />
-    <img src="TA Dark.png"  class="logo-dark"  alt="TA" />
+    <img src="assets/images/TA Light.png" class="logo-light" alt="TA" />
+    <img src="assets/images/TA Dark.png"  class="logo-dark"  alt="TA" />
   </div>
 
   <div class="nav-wrapper">
@@ -544,7 +582,7 @@
           <div class="profile-top">
             <div class="avatar-wrap anim-scale" data-observe>
               <div class="avatar-glow"></div>
-              <img src="avatar.png" alt="Thamson Antony" class="avatar" />
+              <img src="assets/images/avatar.png" alt="Thamson Antony" class="avatar" />
             </div>
             <div class="profile-content">
               <div class="anim" style="--delay:.2s" data-observe>
@@ -624,7 +662,7 @@
           <!-- Top: col1=BE 2012, col2=empty, col3=TCS 2022, col4=empty -->
           <div class="tl-top tl-item-1" style="grid-column:1">
             <div class="tl-card anim-up" style="--delay:.15s" data-observe>
-              <img src="anna university.png" class="tl-logo" alt="Anna University">
+              <img src="assets/images/anna university.png" class="tl-logo" alt="Anna University">
               <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
               <span class="tl-year">2012 – 2016</span>
               <p class="tl-title">Bachelor of Engineering (B.E.) in Computer Science</p>
@@ -638,8 +676,8 @@
           <div class="tl-top tl-item-3" style="grid-column:3">
             <div class="tl-card anim-up" style="--delay:.25s" data-observe>
               <div class="tl-logos">
-                <img src="TCS.png" alt="Tata Consultancy Services">
-                <img src="Citi.png" alt="Citi" style="margin-right:16px;">
+                <img src="assets/images/TCS.png" alt="Tata Consultancy Services">
+                <img src="assets/images/Citi.png" alt="Citi" style="margin-right:16px;">
               </div>
               <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
               <span class="tl-year">2022 – 2023</span>
@@ -655,8 +693,8 @@
           <div class="tl-bot tl-item-2" style="grid-column:2">
             <div class="tl-card anim-up" style="--delay:.2s" data-observe>
               <div class="tl-logos">
-                <img src="cognizant.png" alt="Cognizant" style="height:56px;">
-                <img src="FPL.png" alt="Florida Power & Light" style="margin-right:16px;">
+                <img src="assets/images/cognizant.png" alt="Cognizant" style="height:56px;">
+                <img src="assets/images/FPL.png" alt="Florida Power & Light" style="margin-right:16px;">
               </div>
               <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
               <span class="tl-year">2016 – 2022</span>
@@ -669,7 +707,7 @@
           <div class="tl-bot empty" style="grid-column:3"></div>
           <div class="tl-bot tl-item-4" style="grid-column:4">
             <div class="tl-card anim-up" style="--delay:.3s" data-observe>
-              <img src="shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
+              <img src="assets/images/shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
               <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
               <span class="tl-year">2024 – 2025</span>
               <p class="tl-title">Master of Science (M.S.) in Business Analytics</p>
@@ -680,7 +718,7 @@
             </div>
             <div class="tl-sub-connector"></div>
             <div class="tl-card anim-up" style="--delay:.4s" data-observe>
-              <img src="shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
+              <img src="assets/images/shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
               <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
               <span class="tl-year">2024 – 2025</span>
               <p class="tl-title">Graduate Teaching Assistant</p>
@@ -764,7 +802,7 @@
       <div class="page-header" style="margin-bottom:32px"><h1>Credentials</h1></div>
       <div class="cert-grid">
         <div class="cert-card anim-up" style="--delay:.05s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
             <span class="cert-eyebrow">01 · Business Analysis</span>
             <div class="cert-title">Career Essentials in Business Analysis</div>
@@ -774,7 +812,7 @@
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.12s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
             <span class="cert-eyebrow">02 · Data Analysis</span>
             <div class="cert-title">Career Essentials in Data Analysis</div>
@@ -784,29 +822,43 @@
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.19s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
             <span class="cert-eyebrow">03 · AI &amp; Cloud</span>
             <div class="cert-title">Microsoft Azure AI Essentials Professional Certificate</div>
             <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
             <div class="cert-meta"><span>Feb 2025</span></div>
             <a href="https://www.linkedin.com/learning/certificates/f310ad9609e13efb54f8f57fcf8c27e84f549fc31b756babc2c7f6333189630c/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            <button class="cert-view" onclick="document.getElementById('pdf-modal').classList.add('open')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+              View Certificate
+            </button>
           </div>
         </div>
         <div class="cert-card anim-up" style="--delay:.26s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="PL-300.png" alt="PL-300" style="width:56px;height:auto;object-fit:contain;"></div>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/linkedin_logo.jpeg" alt="LinkedIn Learning" style="width:56px;height:auto;object-fit:contain;border-radius:10px;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">04 · Power BI</span>
+            <span class="cert-eyebrow">04 · Analytics</span>
+            <div class="cert-title">Complete Guide to Power BI for Data Analysts</div>
+            <div class="cert-issuer">Microsoft Press · LinkedIn Learning</div>
+            <div class="cert-meta"><span>2025</span></div>
+            <a href="https://www.linkedin.com/learning/certificates/fc83de4251ebabf493220e590b55414b68833d7ce4204a485ee77896a515e221?trk=share_certificate" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+          </div>
+        </div>
+        <div class="cert-card anim-up" style="--delay:.33s" data-observe>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/PL-300.png" alt="PL-300" style="width:56px;height:auto;object-fit:contain;"></div>
+          <div class="cert-body">
+            <span class="cert-eyebrow">05 · Power BI</span>
             <div class="cert-title">Microsoft Power BI Data Analyst (PL-300)</div>
             <div class="cert-issuer">Microsoft</div>
             <div class="cert-meta"><span>In Progress</span></div>
             <span class="cert-in-progress">⏳ In Progress</span>
           </div>
         </div>
-        <div class="cert-card anim-up" style="--delay:.33s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;padding-top:22px;"><img src="IIBA-CBDA.png" alt="IIBA CBDA" style="width:56px;height:auto;object-fit:contain;"></div>
+        <div class="cert-card anim-up" style="--delay:.40s" data-observe>
+          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/IIBA-CBDA.png" alt="IIBA CBDA" style="width:56px;height:auto;object-fit:contain;"></div>
           <div class="cert-body">
-            <span class="cert-eyebrow">05 · Business Analytics</span>
+            <span class="cert-eyebrow">06 · Business Analytics</span>
             <div class="cert-title">Certified Business Data Analytics (CBDA)</div>
             <div class="cert-issuer">IIBA</div>
             <div class="cert-meta"><span>In Progress</span></div>
@@ -832,7 +884,7 @@
             <div class="contact-profile-top">
               <div class="contact-avatar-wrap anim-scale" data-observe>
                 <div class="contact-avatar-glow"></div>
-                <img src="avatar.png" alt="Thamson Antony" class="contact-avatar" />
+                <img src="assets/images/avatar.png" alt="Thamson Antony" class="contact-avatar" />
               </div>
               <div class="anim" style="--delay:.2s" data-observe>
                 <p class="contact-name">Thamson Antony Arockiasamy</p>
@@ -1169,7 +1221,7 @@
       requestAnimationFrame(raf);
     })();
   </script>
-  <script src="particle-net.js"></script>
+  <script src="assets/js/particle-net.js"></script>
 
   <script type="module">
     import * as THREE from 'three';
@@ -1177,7 +1229,6 @@
     const canvas = document.getElementById('three-bg');
     const W = () => window.innerWidth, H = () => window.innerHeight;
 
-    /* ─ Scene ─ */
     const scene  = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, W()/H(), 0.1, 100);
     camera.position.set(0, 0, 5);
@@ -1188,7 +1239,6 @@
     threeRenderer.toneMapping = THREE.ACESFilmicToneMapping;
     threeRenderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    /* ─ Shaders ─ */
     const vertexShader = `
       varying vec2 vUv;
       varying vec3 vWorldPos;
@@ -1375,11 +1425,9 @@
         vec3 color = direct + envSpec + rimCol + glow + pattern*0.015;
         color = clamp(color, 0.0, 4.0);
 
-        // desaturate to black/white/grey
         float luma = dot(color, vec3(0.299, 0.587, 0.114));
         color = vec3(luma);
 
-        // ACES tone + gamma
         float a=2.51,b=0.03,c=2.43,d=0.59,e=0.14;
         color = clamp((color*(a*color+b))/(color*(c*color+d)+e), 0.0, 1.0);
         color = pow(color, vec3(1.0/2.2));
@@ -1389,9 +1437,6 @@
       }
     `;
 
-
-
-    /* ─ Mesh ─ */
     const threeGeometry = new THREE.IcosahedronGeometry(1.55, 5);
     const threeMaterial = new THREE.ShaderMaterial({
       uniforms: {
@@ -1411,40 +1456,46 @@
     const threeMesh = new THREE.Mesh(threeGeometry, threeMaterial);
     scene.add(threeMesh);
 
-    /* ─ Transparent background so fluid bg shows through ─ */
     threeRenderer.setClearColor(0x000000, 0);
 
-    /* ─ Mouse ─ */
     const mouse = { x: 0.5, y: 0.5, sx: 0.5, sy: 0.5 };
     window.addEventListener('mousemove', e => {
       mouse.x = e.clientX / W();
       mouse.y = 1 - e.clientY / H();
     });
 
-    /* ─ Animate ─ */
     const clock = new THREE.Clock();
     (function animate(){
       requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
       mouse.sx += (mouse.x - mouse.sx) * 0.08;
       mouse.sy += (mouse.y - mouse.sy) * 0.08;
-
       threeMaterial.uniforms.uTime.value  = t;
       threeMaterial.uniforms.uMouse.value.set(mouse.sx, mouse.sy);
-
       threeMesh.rotation.x = t * 0.12 + (mouse.sy - 0.5) * 0.4;
       threeMesh.rotation.y = t * 0.18 + (mouse.sx - 0.5) * 0.4;
       threeMesh.position.y = Math.sin(t * 0.45) * 0.06;
-
       threeRenderer.render(scene, camera);
     })();
 
-    /* ─ Resize ─ */
     window.addEventListener('resize', () => {
       camera.aspect = W() / H();
       camera.updateProjectionMatrix();
       threeRenderer.setSize(W(), H());
     });
+  </script>
+
+  <!-- PDF Certificate Modal -->
+  <div class="pdf-modal-backdrop" id="pdf-modal" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="pdf-modal">
+      <button class="pdf-modal-close" onclick="document.getElementById('pdf-modal').classList.remove('open')" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <iframe src="assets/certs/CertificateOfCompletion_Microsoft%20Azure%20AI%20Essentials%20Professional%20Certificate%20by%20Microsoft%20and%20LinkedIn.pdf" title="Azure AI Essentials Certificate"></iframe>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('pdf-modal').classList.remove('open'); });
   </script>
 
 </body>
