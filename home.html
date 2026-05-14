@@ -447,8 +447,37 @@
     .social-arrow  { color: var(--fg-40); transition: transform 0.2s, color 0.2s; }
     .social-link:hover .social-arrow { transform: translate(2px,-2px); color: var(--fg-70); }
     .social-arrow svg { width: 16px; height: 16px; display: block; }
-    .contact-center { position: relative; display: flex; justify-content: center; }
-    .contact-center .profile-card { max-width: 440px; width: 100%; height: auto; justify-content: flex-start; }
+    .contact-center { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .contact-form-card { position: relative; display: flex; flex-direction: column; gap: 20px; height: 100%; overflow: hidden; border-radius: 2.75rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-50); }
+    .form-input, .form-textarea {
+      width: 100%; padding: 13px 16px; border-radius: 1rem;
+      border: 1px solid var(--border-50); background: var(--card-bg-mid);
+      font-size: 14px; font-family: inherit; color: var(--fg);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      resize: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--fg-40); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--border); box-shadow: 0 0 0 3px var(--fg-05); }
+    .form-textarea { min-height: 140px; }
+    .form-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px; border-radius: 9999px;
+      border: 1px solid var(--border-50); background: var(--fg);
+      font-size: 14px; font-weight: 700; font-family: inherit;
+      color: var(--bg); cursor: pointer; letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .form-btn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .form-btn svg { width: 15px; height: 15px; }
+    .form-success { display: none; text-align: center; padding: 24px; font-size: 14px; font-weight: 600; color: var(--fg-70); }
+    @media (max-width: 820px) {
+      .contact-center { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
 
     /* ════════════════════════ MOBILE ════════════════════════ */
     @media (max-width: 640px) {
@@ -893,15 +922,63 @@
             <div class="social-list">
               <a href="https://linkedin.com/in/thamsonantony" class="social-link anim" style="--delay:.1s" data-observe target="_blank" rel="noopener noreferrer"><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><div><p class="social-label">LinkedIn</p><p class="social-handle">linkedin.com/in/thamsonantony</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
               <a href="https://github.com/thamsonantony" class="social-link anim" style="--delay:.2s" data-observe target="_blank" rel="noopener noreferrer"><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></span><div><p class="social-label">GitHub</p><p class="social-handle">github.com/thamsonantony</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
-              <a href="mailto:thamsonantony@outlook.com" class="social-link anim" style="--delay:.3s" data-observe><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></span><div><p class="social-label">Email</p><p class="social-handle">thamsonantony@outlook.com</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+              <a href="https://sacredheart.joinhandshake.com/profiles/thamsonantony" class="social-link anim" style="--delay:.3s" data-observe target="_blank" rel="noopener noreferrer"><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></span><div><p class="social-label">Handshake</p><p class="social-handle">sacredheart.joinhandshake.com</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
+              <a href="mailto:thamsonantony@outlook.com" class="social-link anim" style="--delay:.4s" data-observe><div class="social-left"><span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg></span><div><p class="social-label">Email</p><p class="social-handle">thamsonantony@outlook.com</p></div></div><span class="social-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span></a>
             </div>
           </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card anim" style="--delay:.2s" data-observe>
+            <form id="contact-form" action="https://formspree.io/f/meenwlyl" method="POST">
+              <div style="display:flex;flex-direction:column;gap:20px;">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="cf-name">Name</label>
+                    <input class="form-input" id="cf-name" name="name" type="text" placeholder="Your name" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="cf-email">Email</label>
+                    <input class="form-input" id="cf-email" name="email" type="email" placeholder="your@email.com" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cf-message">Message</label>
+                  <textarea class="form-textarea" id="cf-message" name="message" placeholder="Hi Thamson, I'd love to connect…" required></textarea>
+                </div>
+                <button class="form-btn" type="submit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Send Message
+                </button>
+              </div>
+            </form>
+            <p class="form-success" id="form-success">✓ Message sent — I'll get back to you soon.</p>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
   <!-- ══════════════ SCRIPTS ══════════════ -->
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.form-btn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const res = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = 'Failed — try again';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
   <script>
     const animObserver = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); animObserver.unobserve(e.target); } }),
@@ -954,23 +1031,22 @@
     (function () {
       const flipCard = document.getElementById('home-flip');
 
-      // Equalize container height so back face content isn't clipped
+      // Equalize container height using an off-screen clone — never mutates live faces
       function equalizeFlipHeight() {
-        const front = flipCard.querySelector('.flip-front');
-        const back  = flipCard.querySelector('.flip-back');
-        back.style.minHeight = '';
         flipCard.style.minHeight = '';
-        const frontH = front.getBoundingClientRect().height;
-        // Temporarily make back visible off-screen to measure natural height
-        back.style.visibility = 'hidden';
-        back.style.transform = 'none';
-        back.style.position = 'relative';
-        const backH = back.scrollHeight;
-        back.style.visibility = '';
-        back.style.transform = '';
-        back.style.position = '';
-        const h = Math.max(frontH, backH);
-        flipCard.style.minHeight = h + 'px';
+        const frontH = flipCard.querySelector('.flip-front').getBoundingClientRect().height;
+
+        const clone = flipCard.querySelector('.flip-back').cloneNode(true);
+        Object.assign(clone.style, {
+          transform: 'none', visibility: 'hidden', position: 'fixed',
+          top: '-9999px', left: '0', pointerEvents: 'none',
+          width: flipCard.offsetWidth + 'px',
+        });
+        document.body.appendChild(clone);
+        const backH = clone.getBoundingClientRect().height;
+        document.body.removeChild(clone);
+
+        flipCard.style.minHeight = Math.max(frontH, backH) + 'px';
       }
       window.addEventListener('load', equalizeFlipHeight);
       window.addEventListener('resize', equalizeFlipHeight);
