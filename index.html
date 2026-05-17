@@ -63,9 +63,9 @@
     }
 
     #gradient-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; bottom: env(safe-area-inset-bottom, 0); min-height: 100dvh; z-index: 0; overflow: hidden; }
-    #three-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    /* #three-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; } */
     #gradient-bg canvas { width: 100% !important; height: 100% !important; display: block; }
-    #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+    /* #particle-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; } */
     html { background: var(--bg); }
 
     /* ── Nav ── */
@@ -554,8 +554,8 @@
 </head>
 <body>
   <div id="gradient-bg"></div>
-  <canvas id="particle-canvas"></canvas>
-  <canvas id="three-bg"></canvas>
+  <!-- <canvas id="particle-canvas"></canvas> -->
+  <!-- <canvas id="three-bg"></canvas> -->
 
 
   <div class="nav-logo">
@@ -1252,9 +1252,9 @@
     const program = new Program(gl, {
       vertex: vert, fragment: frag,
       uniforms: {
-        uTime:{value:0}, uSwirl:{value:0.5}, uSpeed:{value:0.8}, uScale:{value:1.0},
+        uTime:{value:0}, uSwirl:{value:0.7}, uSpeed:{value:0.3}, uScale:{value:1.0},
         uOffsetX:{value:0}, uOffsetY:{value:0}, uRotation:{value:90},
-        uWaveAmp:{value:0.04}, uWaveFreq:{value:3.0}, uWaveSpeed:{value:0.2}, uGrain:{value:0.04},
+        uWaveAmp:{value:0.10}, uWaveFreq:{value:5.5}, uWaveSpeed:{value:0.07}, uGrain:{value:0.04},
         uMouse:{value:[0,0]},
         uResolution:{value: new Color(1,1,1)},
         uColorA:{value: new Color(...cur[0])}, uColorB:{value: new Color(...cur[1])}, uColorC:{value: new Color(...cur[2])},
@@ -1278,7 +1278,7 @@
 
     (function update(t) {
       requestAnimationFrame(update);
-      program.uniforms.uTime.value = t * 0.001;
+      program.uniforms.uTime.value = t * 0.0004;
       bgMouse.cx += (bgMouse.tx - bgMouse.cx) * 0.045;
       bgMouse.cy += (bgMouse.ty - bgMouse.cy) * 0.045;
       program.uniforms.uMouse.value = [bgMouse.cx, bgMouse.cy];
@@ -1299,9 +1299,9 @@
       requestAnimationFrame(raf);
     })();
   </script>
-  <script src="assets/js/particle-net.js"></script>
+  <!-- <script src="assets/js/particle-net.js"></script> -->
 
-  <script type="module">
+  <!-- <script type="module">
     import * as THREE from 'three';
 
     const canvas = document.getElementById('three-bg');
@@ -1561,7 +1561,7 @@
       camera.updateProjectionMatrix();
       threeRenderer.setSize(W(), H());
     });
-  </script>
+  </script> -->
 
   <!-- PDF Certificate Modal -->
   <div class="pdf-modal-backdrop" id="pdf-modal" onclick="if(event.target===this)this.classList.remove('open')">
