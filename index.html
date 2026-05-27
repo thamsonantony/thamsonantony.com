@@ -98,24 +98,6 @@
       position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
       z-index: 100; display: flex; align-items: center; gap: 8px;
     }
-    .nav-contact-capsule {
-      position: relative; display: flex; align-items: center; gap: 6px;
-      background: var(--card-bg-mid); border: 1px solid var(--border-50);
-      border-radius: 9999px; padding: 18px 20px;
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-      font-size: 13px; font-weight: 600; color: var(--fg-50);
-      text-decoration: none; transition: color 0.2s, background 0.2s;
-    }
-    .nav-contact-capsule:hover { color: var(--fg); background: var(--inner-bg); }
-    .nav-contact-capsule.active { color: var(--fg); }
-    .nav-contact-capsule.active::after {
-      content: ''; position: absolute; bottom: 11px; left: 50%; transform: translateX(-50%);
-      height: 4px; width: 22px; border-radius: 9999px; background: var(--fg);
-    }
-    .nav-contact-capsule svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-    .contact-glow-wrap { display: contents; }
     .contact-dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: #ff3b3b; flex-shrink: 0;
@@ -130,15 +112,14 @@
     .nav-sep { width: 1px; height: 18px; background: var(--border-50); margin: 0 4px; flex-shrink: 0; }
 
     /* ── Theme Toggle ── */
-    .nav-logo {
-      position: fixed; top: 15px; left: 24px; z-index: 101;
-      display: flex; align-items: center;
+    .nav-logo-item {
+      display: flex; align-items: center; padding: 0 6px 0 0; flex-shrink: 0;
     }
-    .nav-logo img { height: 80px; width: auto; object-fit: contain; }
-    .nav-logo .logo-light { display: block; }
-    .nav-logo .logo-dark  { display: none; }
-    html.dark .nav-logo .logo-light { display: none; }
-    html.dark .nav-logo .logo-dark  { display: block; }
+    .nav-logo-item img { height: 40px; width: auto; object-fit: contain; }
+    .nav-logo-item .logo-light { display: block; }
+    .nav-logo-item .logo-dark  { display: none; }
+    html.dark .nav-logo-item .logo-light { display: none; }
+    html.dark .nav-logo-item .logo-dark  { display: block; }
 
     .theme-toggle {
       position: fixed; top: 24px; right: 24px; z-index: 101;
@@ -344,6 +325,25 @@
     .tier.tier-working .chip { background: rgba(255,255,255,0.20); color: var(--fg); }
     .tier.tier-familiar .chip { background: transparent; color: var(--fg-70); border-color: var(--border-50); }
 
+    /* ════════════════════════ PROJECTS ════════════════════════ */
+    #projects { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 1480px; }
+    .project-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
+    .project-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
+    .project-featured { grid-column: 1 / -1; }
+    .project-featured .project-title { font-size: 1.35rem; }
+    .project-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+    .project-icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 16px; border: 1px solid var(--border-50); background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .project-icon svg { width: 22px; height: 22px; }
+    .project-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); display: block; margin-bottom: 4px; }
+    .project-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
+    .project-desc { font-size: 14px; line-height: 1.65; color: var(--fg-70); margin-bottom: 16px; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 13px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
+    .project-link:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    .project-link svg { width: 13px; height: 13px; }
+
     /* ════════════════════════ CERTIFICATIONS ════════════════════════ */
     #credentials { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
     .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1400px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
@@ -486,18 +486,14 @@
       .nav-bar { padding: 5px 7px; }
       .nav-item span { display: none; }
       .nav-item { padding: 9px 11px; }
-      .nav-sep { height: 16px; }
+      .nav-sep { display: none; }
       .nav-indicator { display: none; }
       .nav-item.active { background: var(--inner-bg); }
-      .nav-contact-capsule.active { background: var(--inner-bg); }
-      .nav-contact-capsule { width: 44px; height: 44px; padding: 0; justify-content: center; overflow: hidden; }
-      .nav-contact-capsule span { display: none; }
-      .nav-contact-capsule.active::after { display: none; }
       .theme-toggle { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
-      .nav-logo { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); left: 16px; }
-      .nav-logo img { height: 40px; }
+      .nav-logo-item { padding: 0 6px 0 0; }
+      .nav-logo-item img { height: 28px; }
 
       /* ── Home card ── */
       .glass-card { padding: 48px 20px 64px; }
@@ -515,8 +511,10 @@
       #timeline { padding: 80px 16px 60px; }
       .tl-card { padding: 20px 80px 20px 16px; }
 
-      /* ── Skills / Certs ── */
-      #skills, #credentials { padding: 100px 16px 60px; }
+      /* ── Skills / Projects / Certs ── */
+      #skills, #projects, #credentials { padding: 100px 16px 60px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 20px; }
       .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
       .stats-strip { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
@@ -549,6 +547,7 @@
     @media (max-width: 1080px) {
       .skill-card.primary   { grid-column: span 3; }
       .skill-card.secondary { grid-column: span 3; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -558,13 +557,13 @@
   <!-- <canvas id="three-bg"></canvas> -->
 
 
-  <div class="nav-logo">
-    <img src="assets/images/TA Light.png" class="logo-light" alt="TA" />
-    <img src="assets/images/TA Dark.png"  class="logo-dark"  alt="TA" />
-  </div>
-
   <div class="nav-wrapper">
   <nav class="nav-bar" id="main-nav">
+    <div class="nav-logo-item">
+      <img src="assets/images/TA Light.png" class="logo-light" alt="TA" />
+      <img src="assets/images/TA Dark.png"  class="logo-dark"  alt="TA" />
+    </div>
+    <div class="nav-sep"></div>
     <a href="#home" class="nav-item" data-section="home" aria-label="Home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
       <span>About Me</span>
@@ -577,21 +576,22 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
       <span>Skills</span>
     </a>
+    <a href="#projects" class="nav-item" data-section="projects" aria-label="Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      <span>Projects</span>
+    </a>
     <a href="#credentials" class="nav-item" data-section="credentials" aria-label="Credentials">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg>
       <span>Credentials</span>
     </a>
-    <div class="nav-indicator" id="nav-indicator"></div>
-  </nav>
-
-  <div class="contact-glow-wrap">
-
-    <a href="#contact" class="nav-contact-capsule nav-contact-item" data-section="contact" aria-label="Contact">
+    <div class="nav-sep"></div>
+    <a href="#contact" class="nav-item nav-contact-item" data-section="contact" aria-label="Contact">
       <span class="contact-dot"></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       <span>Contact</span>
     </a>
-  </div>
+    <div class="nav-indicator" id="nav-indicator"></div>
+  </nav>
   </div>
 
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
@@ -821,6 +821,119 @@
       </div>
     </div>
     <div class="page-nav anim-up" style="--delay:.4s" data-observe>
+      <a href="#projects" class="page-nav-btn">Projects ↓</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ PROJECTS ══════════════ -->
+  <section id="projects">
+    <div class="page-card" style="max-width:1480px">
+      <div class="page-header" style="margin-bottom:32px"><h1>Projects</h1></div>
+      <div class="projects-grid">
+
+        <div class="project-card anim-up" style="--delay:.1s" data-observe>
+          <div class="project-head">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+            </div>
+            <div>
+              <span class="project-eyebrow">01 · Data Visualisation · Tableau</span>
+              <p class="project-title">COVID-19 Recovery &amp; Positive Rate Dashboard</p>
+            </div>
+          </div>
+          <p class="project-desc">An interactive Tableau Public dashboard analysing COVID-19 recovery and positive rates across US states. Features a choropleth map for geographic recovery distribution, a treemap ranking states by positive rate, and a horizontal bar chart for direct state-by-state comparison — enabling rapid, evidence-based public health insights.</p>
+          <div class="project-tags">
+            <span class="chip">Tableau</span>
+            <span class="chip">Data Visualisation</span>
+            <span class="chip">Healthcare Analytics</span>
+            <span class="chip">COVID-19</span>
+            <span class="chip">Geospatial</span>
+            <span class="chip">Public Health</span>
+          </div>
+          <a href="https://public.tableau.com/app/profile/thamson.antony.arockiasamy/viz/ss24buan665bb_arockiasamyt_final_assigment/RecoveryPositiveRateDashboard" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            View on Tableau Public
+          </a>
+        </div>
+
+        <div class="project-card anim-up" style="--delay:.18s" data-observe>
+          <div class="project-head">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="5" cy="9" r="1.5"/><circle cx="16" cy="17" r="1.5"/><circle cx="11" cy="12" r="1.5"/><circle cx="19" cy="13" r="1.5"/></svg>
+            </div>
+            <div>
+              <span class="project-eyebrow">02 · Machine Learning · Clustering · BUAN617A</span>
+              <p class="project-title">Mall Customer Segmentation</p>
+            </div>
+          </div>
+          <p class="project-desc">Applied K-Means and Hierarchical (Agglomerative) clustering to segment mall customers by Annual Income, Age, and Spending Score. Used the elbow method and dendrograms to determine optimal cluster counts, and Pandas Profiling for automated EDA — surfacing five distinct customer personas to inform data-driven marketing strategy.</p>
+          <div class="project-tags">
+            <span class="chip">Python</span>
+            <span class="chip">Scikit-Learn</span>
+            <span class="chip">K-Means</span>
+            <span class="chip">Hierarchical Clustering</span>
+            <span class="chip">EDA</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Matplotlib</span>
+            <span class="chip">Seaborn</span>
+            <span class="chip">Plotly</span>
+          </div>
+        </div>
+
+        <div class="project-card anim-up" style="--delay:.26s" data-observe>
+          <div class="project-head">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <span class="project-eyebrow">03 · Regression Analysis · BUAN660AB</span>
+              <p class="project-title">Automobile Price Prediction</p>
+            </div>
+          </div>
+          <p class="project-desc">Built and compared three OLS Multiple Linear Regression models to predict car prices for an automobile consulting company. Progressed from a single predictor (horsepower) to a multi-feature model (horsepower, curb weight, engine size), validating each with residual analysis and train/test evaluation to identify the best-fit specification.</p>
+          <div class="project-tags">
+            <span class="chip">Python</span>
+            <span class="chip">statsmodels</span>
+            <span class="chip">OLS Regression</span>
+            <span class="chip">Scikit-Learn</span>
+            <span class="chip">EDA</span>
+            <span class="chip">Residual Analysis</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Seaborn</span>
+          </div>
+        </div>
+
+        <div class="project-card project-featured anim-up" style="--delay:.34s" data-observe>
+          <div class="project-head">
+            <div class="project-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <span class="project-eyebrow">04 · Capstone · Time Series · Applied Analytics Practicum · BUAN690AB</span>
+              <p class="project-title">Energy Consumption Forecasting for Smart Grid Sustainability</p>
+            </div>
+          </div>
+          <p class="project-desc">Capstone practicum project forecasting regional electricity demand to support smart grid planning. Integrated federal holiday flags and weather data, then trained and compared three models — SARIMA, XGBoost, and Facebook Prophet with holiday regressors — across multiple US regions. Applied LIME for model explainability and MinMax-scaled LSTM as an additional deep-learning baseline, enabling a rigorous multi-model evaluation of energy demand patterns by season, region, and holiday effect.</p>
+          <div class="project-tags">
+            <span class="chip">Python</span>
+            <span class="chip">SARIMA</span>
+            <span class="chip">XGBoost</span>
+            <span class="chip">Facebook Prophet</span>
+            <span class="chip">LSTM</span>
+            <span class="chip">LIME</span>
+            <span class="chip">TensorFlow / Keras</span>
+            <span class="chip">Time Series Forecasting</span>
+            <span class="chip">Scikit-Learn</span>
+            <span class="chip">Energy Analytics</span>
+            <span class="chip">Smart Grid</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Matplotlib</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
       <a href="#credentials" class="page-nav-btn">Credentials ↓</a>
     </div>
   </section>
@@ -994,7 +1107,7 @@
     function moveIndicator() {
       const active = navBar.querySelector('.nav-item.active');
       if (!active) { indicator.style.opacity = '0'; return; }
-      const span = active.querySelector('span');
+      const span = active.querySelector('span:not(.contact-dot)');
       const icon = active.querySelector('svg');
       const pillW = indicator.offsetWidth || 22;
       // On mobile spans are display:none (offsetWidth 0); fall back to icon
@@ -1136,48 +1249,6 @@
       }, { threshold: 0.65 });
       returnObserver.observe(document.querySelector('.flip-scene'));
 
-    })();
-  </script>
-
-  <script>
-    /* ── Magnetic Contact Button ── */
-    (function () {
-      const el = document.querySelector('.nav-contact-capsule');
-      if (!el) return;
-
-      const STIFFNESS = 400, DAMPING = 100, DISTANCE = 0.6, DT = 1 / 60;
-      let posX = 0, posY = 0, velX = 0, velY = 0;
-      let targetX = 0, targetY = 0;
-      let hovered = false, rafId = null;
-
-      function step() {
-        velX += (targetX - posX) * STIFFNESS * DT - velX * DAMPING * DT;
-        velY += (targetY - posY) * STIFFNESS * DT - velY * DAMPING * DT;
-        posX += velX * DT;
-        posY += velY * DT;
-        el.style.transform = `translate(${posX}px, ${posY}px)`;
-        const stillMoving = Math.abs(targetX - posX) > 0.05 || Math.abs(targetY - posY) > 0.05
-                         || Math.abs(velX) > 0.05 || Math.abs(velY) > 0.05;
-        if (stillMoving) rafId = requestAnimationFrame(step);
-        else { rafId = null; if (!hovered) el.style.transform = 'translate(0,0)'; }
-      }
-
-      function startLoop() { if (!rafId) rafId = requestAnimationFrame(step); }
-
-      document.addEventListener('mousemove', function (e) {
-        if (!hovered) return;
-        const r = el.getBoundingClientRect();
-        targetX = (e.clientX - (r.left + r.width  / 2)) * DISTANCE;
-        targetY = (e.clientY - (r.top  + r.height / 2)) * DISTANCE;
-        startLoop();
-      });
-
-      el.addEventListener('mouseenter', function () { hovered = true; });
-      el.addEventListener('mouseleave', function () {
-        hovered = false;
-        targetX = 0; targetY = 0;
-        startLoop();
-      });
     })();
   </script>
 
