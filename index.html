@@ -327,11 +327,10 @@
 
     /* ════════════════════════ PROJECTS ════════════════════════ */
     #projects { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 100%; max-width: 1480px; }
-    .project-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
+    .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; width: 100%; }
+    .project-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
     .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
     .project-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
-    .project-featured { grid-column: 1 / -1; }
     .project-featured .project-title { font-size: 1.35rem; }
     .project-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
     .project-icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 16px; border: 1px solid var(--border-50); background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
@@ -827,7 +826,7 @@
 
   <!-- ══════════════ PROJECTS ══════════════ -->
   <section id="projects">
-    <div class="page-card" style="max-width:1480px">
+    <div class="page-card" style="max-width:1800px">
       <div class="page-header" style="margin-bottom:32px"><h1>Projects</h1></div>
       <div class="projects-grid">
 
