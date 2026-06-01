@@ -82,7 +82,7 @@
       color: var(--fg-50); text-decoration: none; position: relative;
       transition: color 0.2s, background 0.2s;
     }
-    .nav-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .nav-item svg { display: none; width: 15px; height: 15px; flex-shrink: 0; }
     .nav-item:hover { color: var(--fg); background: var(--inner-bg); }
     .nav-item.active { color: var(--fg); }
     .nav-contact-item { color: var(--fg-50); }
@@ -113,7 +113,7 @@
 
     /* ── Theme Toggle ── */
     .nav-logo-item {
-      display: flex; align-items: center; padding: 0 6px 0 0; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 6px 0 0; flex-shrink: 0; transform: translateY(3px);
     }
     .nav-logo-item img { height: 40px; width: auto; object-fit: contain; }
     .nav-logo-item .logo-light { display: block; }
@@ -327,7 +327,7 @@
 
     /* ════════════════════════ PROJECTS ════════════════════════ */
     #projects { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; width: 100%; }
+    .projects-grid { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .project-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
     .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
     .project-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
@@ -484,6 +484,7 @@
       .nav-wrapper { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); gap: 6px; }
       .nav-bar { padding: 5px 7px; }
       .nav-item span { display: none; }
+      .nav-item svg { display: block; }
       .nav-item { padding: 9px 11px; }
       .nav-sep { display: none; }
       .nav-indicator { display: none; }
@@ -491,7 +492,7 @@
       .theme-toggle { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
-      .nav-logo-item { padding: 0 6px 0 0; }
+      .nav-logo-item { padding: 0 6px 0 0; transform: translate(4px, 2px); }
       .nav-logo-item img { height: 28px; }
 
       /* ── Home card ── */
@@ -512,7 +513,6 @@
 
       /* ── Skills / Projects / Certs ── */
       #skills, #projects, #credentials { padding: 100px 16px 60px; }
-      .projects-grid { grid-template-columns: 1fr; }
       .project-card { padding: 20px; }
       .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
       .stats-strip { grid-template-columns: 1fr; }
@@ -546,7 +546,9 @@
     @media (max-width: 1080px) {
       .skill-card.primary   { grid-column: span 3; }
       .skill-card.secondary { grid-column: span 3; }
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1081px) {
+      .projects-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     }
   </style>
 </head>
@@ -617,7 +619,7 @@
                 <p class="profile-name">Hello!</p>
               </div>
               <p class="profile-bio anim" style="--delay:.3s" data-observe>
-               I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with a Master's in Business Analytics and 7 years of experience in IT at global technology consulting companies. I bring technical expertise in Python, SQL, Tableau, and ETL pipeline development, enabling the transformation of complex data into unified architectures and real-time dashboards that bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level business goals, I drive evidence-based decision-making that accelerates strategic outcomes. Passionate about turning raw data into actionable insights, I thrive at the intersection of analytics, business intelligence, and storytelling.
+               I'm Thamson Antony Arockiasamy, a Business Analytics Consultant with a Master's in Business Analytics and 7 years of experience in IT at global technology consulting companies. I bring technical expertise in Python, SQL, Tableau, and ETL pipeline development, enabling the transformation of complex data into unified architectures and real-time dashboards that bridge the gap between technical teams and executive stakeholders. By aligning technical roadmaps with high-level business goals, I drive evidence-based decision-making that accelerates strategic measurable outcomes. Passionate about turning raw data into actionable insights, I thrive at the intersection of analytics, business intelligence, and storytelling.
             </div>
           </div>
         </div>
@@ -1132,7 +1134,7 @@
       const html   = document.documentElement;
       const toggle = document.getElementById('theme-toggle');
       const fire   = dark => window.dispatchEvent(new CustomEvent('themechange', { detail: { dark } }));
-      if (localStorage.getItem('theme') === 'dark') { html.classList.add('dark'); }
+      if (localStorage.getItem('theme') !== 'light') { html.classList.add('dark'); }
       toggle.addEventListener('click', () => {
         html.classList.toggle('dark');
         const dark = html.classList.contains('dark');
