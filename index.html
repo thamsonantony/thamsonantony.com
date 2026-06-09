@@ -11,6 +11,8 @@
   <meta name="description" content="Thamson Antony – Business Analytics Consultant" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    button { border: none; outline: none; background: none; font-family: inherit; }
+    a { outline: none; }
 
     :root {
       --bg:              #ede9ff;
@@ -71,7 +73,7 @@
     /* ── Nav ── */
     .nav-bar {
       display: flex; align-items: center; gap: 2px;
-      background: var(--card-bg-mid); border: 1px solid var(--border-50);
+      background: var(--card-bg-mid);
       border-radius: 9999px; padding: 10px 26px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       box-shadow: 0 4px 24px rgba(0,0,0,0.10);
@@ -124,11 +126,11 @@
     .theme-toggle {
       position: fixed; top: 24px; right: 24px; z-index: 101;
       width: 44px; height: 44px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg-mid);
+      background: var(--card-bg-mid); border: none; outline: none;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; color: var(--fg); box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-      transition: background 0.2s, border-color 0.2s, transform 0.15s, color 0.25s;
+      transition: background 0.2s, transform 0.15s, color 0.25s;
     }
     .theme-toggle:hover { background: var(--inner-bg); transform: scale(1.08); }
     .theme-toggle svg { width: 18px; height: 18px; }
@@ -144,7 +146,7 @@
     }
     .page-nav-btn {
       display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--card-bg-mid);
+      background: var(--card-bg-mid);
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       font-size: 14px; font-weight: 600; color: var(--fg); text-decoration: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
@@ -167,7 +169,7 @@
     }
     .glass-card {
       position: relative; z-index: 1; overflow: hidden; width: 100%; max-width: 1020px;
-      border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg);
+      border-radius: 3rem; background: var(--card-bg);
       padding: 88px 100px 120px;
       backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
       -webkit-backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
@@ -198,8 +200,8 @@
     .back-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; }
     .back-col-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 14px; }
     .back-item {
-      padding: 16px 18px; border-radius: 1.25rem;
-      border: 1px solid var(--border-50); background: var(--inner-bg);
+      padding: 16px 18px; border-radius: 1.75rem;
+      background: var(--inner-bg);
       margin-bottom: 12px;
     }
     .back-item-title { font-size: 13px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
@@ -207,8 +209,8 @@
     .comp-logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
     .comp-logo-chip {
       display: flex; flex-direction: column; align-items: center; gap: 7px;
-      padding: 10px 6px 9px; border-radius: 0.875rem;
-      border: 1px solid var(--border-50); background: var(--inner-bg);
+      padding: 10px 6px 9px; border-radius: 1.125rem;
+      background: var(--inner-bg);
       text-align: center; transition: border-color 0.18s, transform 0.18s;
       cursor: default;
     }
@@ -219,25 +221,25 @@
       align-self: center; margin-top: 28px;
       display: inline-flex; align-items: center; gap: 8px;
       padding: 10px 26px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--inner-bg);
+      background: var(--inner-bg);
       font-size: 13px; font-weight: 600; color: var(--fg);
       cursor: pointer; transition: background 0.2s, transform 0.15s;
     }
     .flip-back-btn:hover { background: var(--card-bg-mid); transform: translateY(-1px); }
     .glass-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent, transparent); pointer-events: none; }
-    .profile-glow  { position: absolute; inset: 0; border-radius: 2.5rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
+    .profile-glow  { position: absolute; inset: 0; border-radius: 3rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
     .profile-top   { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
     .profile-content { display: flex; flex-direction: column; gap: 16px; align-items: center; }
     .avatar-wrap   { position: relative; flex-shrink: 0; }
     .avatar-glow   { position: absolute; inset: 0; margin: auto; width: 148px; height: 148px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
-    .avatar        { position: relative; width: 148px; height: 148px; border-radius: 9999px; object-fit: cover; border: 1px solid var(--border-50); box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
+    .avatar        { position: relative; width: 148px; height: 148px; border-radius: 9999px; object-fit: cover; box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
     .profile-name  { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--fg); margin-bottom: 8px; }
     .profile-role  { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-70); }
     .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
     .card-below-btn {
       position: relative; z-index: 1; display: flex; align-items: center; gap: 10px;
       margin-top: 24px;
-      padding: 14px 28px; border-radius: 9999px; border: 1px solid var(--border-50);
+      padding: 14px 28px; border-radius: 9999px;
       background: var(--card-bg-mid); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       font-size: 14px; font-weight: 600; color: var(--fg); text-decoration: none;
       box-shadow: 0 4px 24px rgba(0,0,0,0.15);
@@ -252,7 +254,7 @@
     .page-header p  { margin-top: 8px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-50); }
     .tl-glass {
       max-width: 1600px; margin: 0 auto; width: 100%;
-      border-radius: 2rem; border: 1px solid var(--border-50);
+      border-radius: 2.5rem;
       background: var(--card-bg-mid); padding: 64px 64px 56px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       box-shadow: var(--shadow); position: relative; overflow: hidden;
@@ -272,7 +274,7 @@
     .tl-bot.empty { min-height: 40px; }
     .tl-bot:not(.empty)::before { content: ''; width: 1px; height: 14px; flex-shrink: 0; background: var(--border-50); margin-bottom: 6px; }
     .tl-logo { position: absolute; top: 16px; right: 16px; height: 44px; width: auto; max-width: 80px; object-fit: contain; opacity: 0.72; }
-    .tl-card { width: 100%; min-height: 200px; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 22px 100px 22px 24px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+    .tl-card { width: 100%; min-height: 200px; border-radius: 2rem; background: var(--card-bg-mid); padding: 22px 100px 22px 24px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
     .tl-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; }
     .tl-type  { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
     .tl-type-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
@@ -284,30 +286,30 @@
     .tl-org   { font-size: 12px; font-weight: 600; color: var(--fg-70); }
     .tl-sub   { font-size: 11px; color: var(--fg-50); margin-top: 2px; }
     .tl-meta  { display: inline-block; font-size: 9px; font-weight: 600; color: var(--fg-50); margin-top: 4px; }
-    .tl-cgpa  { display: inline-flex; align-self: flex-start; align-items: center; margin-top: 10px; padding: 7px 16px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--card-bg-mid); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-50); }
+    .tl-cgpa  { display: inline-flex; align-self: flex-start; align-items: center; margin-top: 10px; padding: 7px 16px; border-radius: 9999px; background: var(--card-bg-mid); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-50); }
     html.dark .tl-cgpa { background: rgba(255,255,255,0.06); }
     .tl-logos { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
     .tl-logos img { height: 40px; width: auto; max-width: 100px; object-fit: contain; opacity: 0.72; }
 
     /* ════════════════════════ SKILLS ════════════════════════ */
     #skills { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .page-card { position: relative; overflow: hidden; width: 100%; max-width: 1480px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+    .page-card { position: relative; overflow: hidden; width: 100%; max-width: 1480px; border-radius: 3rem; background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
     .page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
     .stats-strip { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-    .stat { position: relative; overflow: hidden; border-radius: 1.25rem; border: 1px solid var(--border-50); background: var(--inner-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); padding: 18px 18px 16px; }
+    .stat { position: relative; overflow: hidden; border-radius: 1.75rem; background: var(--inner-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); padding: 18px 18px 16px; }
     .stat-num   { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; color: var(--fg); line-height: 1.1; }
     .stat-num .unit { font-size: 1rem; font-weight: 600; color: var(--fg-50); margin-left: 2px; }
     .stat-label { margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-50); }
     .skills-grid { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 24px; }
     .skill-card.primary   { grid-column: span 3; }
     .skill-card.secondary { grid-column: span 2; }
-    .skill-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 26px 26px 22px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .skill-card { position: relative; overflow: hidden; border-radius: 2.25rem; background: var(--card-bg-mid); padding: 26px 26px 22px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
     .skill-card.primary { background: var(--card-bg-strong); padding: 32px 32px 28px; }
     .skill-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
     .skill-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
     .skill-head  { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
-    .skill-icon  { flex-shrink: 0; width: 42px; height: 42px; border-radius: 14px; border: 1px solid var(--border-50); background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
-    .skill-card.primary .skill-icon { width: 48px; height: 48px; border-radius: 16px; }
+    .skill-icon  { flex-shrink: 0; width: 42px; height: 42px; border-radius: 18px; background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .skill-card.primary .skill-icon { width: 48px; height: 48px; border-radius: 20px; }
     .skill-icon svg { width: 20px; height: 20px; }
     .skill-card.primary .skill-icon svg { width: 22px; height: 22px; }
     .skill-meta    { display: flex; flex-direction: column; gap: 2px; }
@@ -319,7 +321,7 @@
     .tier        { margin-top: 14px; }
     .tier-label  { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
     .chip-list   { display: flex; flex-wrap: wrap; gap: 7px; }
-    .chip { display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); transition: background 0.2s, transform 0.2s, border-color 0.2s; }
+    .chip { display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 9999px; background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); transition: background 0.2s, transform 0.2s, border-color 0.2s; }
     .chip:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
     .tier.tier-daily   .chip { background: rgba(255,255,255,0.32); color: var(--fg); }
     .tier.tier-working .chip { background: rgba(255,255,255,0.20); color: var(--fg); }
@@ -328,54 +330,79 @@
     /* ════════════════════════ PROJECTS ════════════════════════ */
     #projects { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .projects-grid { display: flex; flex-direction: column; gap: 24px; width: 100%; }
-    .project-card { position: relative; overflow: hidden; border-radius: 1.75rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
+    .project-card { position: relative; overflow: hidden; border-radius: 2.25rem; background: var(--card-bg-mid); padding: 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; }
     .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
     .project-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
     .project-featured .project-title { font-size: 1.35rem; }
     .project-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
-    .project-icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 16px; border: 1px solid var(--border-50); background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+    .project-icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 20px; background: var(--inner-bg); display: flex; align-items: center; justify-content: center; color: var(--fg); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
     .project-icon svg { width: 22px; height: 22px; }
     .project-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); display: block; margin-bottom: 4px; }
     .project-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
     .project-desc { font-size: 14px; line-height: 1.65; color: var(--fg-70); margin-bottom: 16px; flex: 1; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
-    .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 13px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 9999px; background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 13px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
     .project-link:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
     .project-link svg { width: 13px; height: 13px; }
 
     /* ════════════════════════ CERTIFICATIONS ════════════════════════ */
     #credentials { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
-    .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1400px; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+    .cert-page-card { position: relative; overflow: hidden; width: 100%; max-width: 1400px; border-radius: 3rem; background: var(--card-bg-mid); padding: 44px 44px 36px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
     .cert-page-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.05), transparent); pointer-events: none; }
-    .cert-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
-    @media (max-width: 960px) { .cert-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    .cert-card { position: relative; overflow: hidden; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 32px 28px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; gap: 20px; align-items: center; justify-content: center; min-height: 200px; }
-    .cert-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
-    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); border-color: var(--border); }
-    .cert-badge { flex-shrink: 0; width: 84px; height: 84px; border-radius: 18px; border: 1px solid var(--border-50); background: var(--inner-bg); display: grid; place-items: center; color: var(--fg-70); box-shadow: 0 6px 18px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
-    .cert-badge::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.35), transparent 55%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.08), transparent 55%); pointer-events: none; }
-    .cert-badge svg { width: 36px; height: 36px; position: relative; z-index: 1; }
-    .cert-body    { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
-    .cert-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); }
-    .cert-title   { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
-    .cert-issuer  { font-size: 13px; font-weight: 600; color: var(--fg-70); margin-top: 2px; }
-    .cert-meta    { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 12px; color: var(--fg-50); flex-wrap: wrap; }
-    .cert-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--fg-25); }
-    .cert-id { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 11px; letter-spacing: 0.02em; color: var(--fg-50); }
-    .cert-verify { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 8px 14px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 12px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content; }
-    .cert-in-progress { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(217,158,10); width: fit-content; }
-    html.dark .cert-in-progress { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); color: rgb(251,191,36); }
-    .cert-verify:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    /* ── Credentials section structure ── */
+    .cred-section { margin-bottom: 40px; }
+    .cred-section:last-child { margin-bottom: 0; }
+    .cred-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: var(--fg-40); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+    .cred-section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--border-50), transparent); }
 
+    /* Professional certificates — bigger cards */
+    .cert-pro-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .cert-pro-card { position: relative; overflow: hidden; border-radius: 2rem; background: var(--card-bg-mid); padding: 22px 22px 20px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); display: flex; flex-direction: column; gap: 12px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .cert-pro-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
+    .cert-pro-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+    .cert-pro-logo { flex-shrink: 0; width: 52px; height: 52px; border-radius: 14px; background: var(--inner-bg); display: grid; place-items: center; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .cert-pro-logo img { width: 34px; height: auto; object-fit: contain; }
+    .cert-pro-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .cert-pro-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+
+    /* Trainings & courses — compact 2-col */
+    .cert-training-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .cert-training-card { position: relative; overflow: hidden; border-radius: 1.75rem; background: var(--inner-bg); padding: 16px 18px; display: flex; gap: 14px; align-items: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .cert-training-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .cert-training-logo { flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px; background: var(--card-bg-mid); display: grid; place-items: center; overflow: hidden; }
+    .cert-training-logo img { width: 26px; height: auto; object-fit: contain; }
+    .cert-training-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .cert-training-title { font-size: 13px; font-weight: 700; color: var(--fg); line-height: 1.3; }
+    .cert-training-meta { font-size: 11px; color: var(--fg-50); }
+
+    /* In Progress — compact 2-col */
+    .cert-progress-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .cert-progress-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 1.75rem; background: var(--inner-bg); }
+    .cert-progress-logo { flex-shrink: 0; width: 40px; height: 40px; border-radius: 11px; background: var(--card-bg-mid); display: grid; place-items: center; overflow: hidden; }
+    .cert-progress-logo img { width: 26px; height: auto; object-fit: contain; }
+    .cert-progress-body { flex: 1; min-width: 0; }
+    .cert-progress-title { font-size: 13px; font-weight: 700; color: var(--fg); line-height: 1.3; }
+    .cert-progress-issuer { font-size: 11px; color: var(--fg-50); margin-top: 2px; }
+
+    /* Shared text/button styles */
+    .cert-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-40); }
+    .cert-title   { font-size: 1rem; font-weight: 700; letter-spacing: -0.015em; color: var(--fg); line-height: 1.3; }
+    .cert-issuer  { font-size: 12px; font-weight: 600; color: var(--fg-70); margin-top: 2px; }
+    .cert-meta    { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 11px; color: var(--fg-50); }
+    .cert-verify { display: inline-flex; align-items: center; gap: 5px; padding: 7px 13px; border-radius: 9999px; background: var(--chip-bg); backdrop-filter: blur(8px); font-size: 11px; font-weight: 600; color: var(--fg); text-decoration: none; transition: background 0.2s, transform 0.2s; width: fit-content; }
+    .cert-verify:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
+    .cert-in-progress { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(217,158,10); flex-shrink: 0; }
+    html.dark .cert-in-progress { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); color: rgb(251,191,36); }
     .cert-view {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 8px; padding: 8px 14px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--chip-bg);
-      backdrop-filter: blur(8px); font-size: 12px; font-weight: 600;
-      color: var(--fg); text-decoration: none; cursor: pointer;
-      transition: background 0.2s, transform 0.2s, border-color 0.2s; width: fit-content;
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 13px; border-radius: 9999px;
+      background: var(--chip-bg); backdrop-filter: blur(8px);
+      border: none; outline: none;
+      font-size: 11px; font-weight: 600; color: var(--fg);
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s; width: fit-content;
     }
-    .cert-view:hover { background: rgba(255,255,255,0.34); border-color: var(--border); transform: translateY(-1px); }
+    .cert-view:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
     .cert-view svg { width: 12px; height: 12px; }
 
     /* ── PDF Modal ── */
@@ -388,15 +415,15 @@
     .pdf-modal-backdrop.open { display: flex; }
     .pdf-modal {
       position: relative; width: min(860px, 92vw); height: min(640px, 85vh);
-      border-radius: 1.5rem; overflow: hidden;
-      border: 1px solid var(--border-50);
+      border-radius: 2rem; overflow: hidden;
+     
       box-shadow: 0 32px 80px rgba(0,0,0,0.45);
       background: #1a1a1a;
     }
     .pdf-modal iframe { width: 100%; height: 100%; border: none; display: block; }
     .pdf-modal-close {
       position: absolute; top: 14px; right: 14px; z-index: 10;
-      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border-50);
+      width: 32px; height: 32px; border-radius: 50%;
       background: rgba(30,30,30,0.85); backdrop-filter: blur(8px);
       color: #fff; cursor: pointer; display: grid; place-items: center;
       transition: background 0.2s, transform 0.2s;
@@ -408,17 +435,17 @@
     /* ════════════════════════ CONTACT ════════════════════════ */
     #contact { position: relative; z-index: 1; min-height: 100vh; overflow: hidden; padding: 96px 24px; display: flex; align-items: center; }
     .contact-container { width: 100%; max-width: 72rem; margin: 0 auto; }
-    .contact-glass { position: relative; overflow: hidden; border-radius: 2.5rem; border: 1px solid var(--border-50); background: var(--card-bg-mid); padding: 48px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .contact-glass { position: relative; overflow: hidden; border-radius: 3rem; background: var(--card-bg-mid); padding: 48px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
     .grid-2col { position: relative; display: grid; gap: 48px; }
     @media (min-width: 1024px) { .grid-2col { grid-template-columns: 1fr 1fr; } }
     .left-col  { display: flex; flex-direction: column; gap: 32px; }
-    .badge { display: inline-flex; align-items: center; width: fit-content; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 6px 16px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--fg-70); backdrop-filter: blur(8px); transition: background 0.2s; }
+    .badge { display: inline-flex; align-items: center; width: fit-content; border-radius: 9999px; background: var(--inner-bg); padding: 6px 16px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3em; color: var(--fg-70); backdrop-filter: blur(8px); transition: background 0.2s; }
     .badge:hover { background: var(--social-bg); }
     .title-block    { display: flex; flex-direction: column; gap: 16px; }
     .title-block h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.3; color: var(--fg); }
     .title-block p  { max-width: 36rem; font-size: 1rem; line-height: 1.75; color: var(--fg-70); }
     .highlights { display: flex; flex-direction: column; gap: 16px; }
-    .highlight-card { border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 20px; backdrop-filter: blur(8px); transition: border-color 0.2s, box-shadow 0.2s, transform 0.25s; cursor: default; }
+    .highlight-card { border-radius: 2rem; background: var(--inner-bg); padding: 20px; backdrop-filter: blur(8px); transition: border-color 0.2s, box-shadow 0.2s, transform 0.25s; cursor: default; }
     .highlight-card:hover { border-color: var(--border); box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-4px); }
     .highlight-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.25em; color: var(--fg-40); margin-bottom: 8px; }
     .highlight-text  { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
@@ -426,20 +453,20 @@
     .cta-btn:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.18); transform: translateY(-1px); }
     .cta-btn svg { width: 16px; height: 16px; }
     .right-col { position: relative; }
-    .contact-profile-glow { position: absolute; inset: 0; border-radius: 2rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
-    .profile-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; height: 100%; overflow: hidden; border-radius: 2.75rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .contact-profile-glow { position: absolute; inset: 0; border-radius: 2.5rem; background: linear-gradient(to bottom, var(--primary-15), transparent, transparent); filter: blur(48px); pointer-events: none; }
+    .profile-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; height: 100%; overflow: hidden; border-radius: 3.25rem; background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
     .contact-profile-top { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .contact-avatar-wrap { position: relative; margin-bottom: 24px; }
     .contact-avatar-glow { position: absolute; inset: 0; margin: auto; width: 128px; height: 128px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
-    .contact-avatar { position: relative; width: 128px; height: 128px; border-radius: 9999px; object-fit: cover; border: 1px solid var(--border-50); box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
+    .contact-avatar { position: relative; width: 128px; height: 128px; border-radius: 9999px; object-fit: cover; box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
     .contact-name { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; color: var(--fg); margin-bottom: 4px; }
     .contact-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.35em; color: var(--fg-40); }
     .contact-bio  { margin-top: 16px; max-width: 24rem; font-size: 14px; line-height: 1.65; color: var(--fg-70); }
     .social-list { display: flex; flex-direction: column; gap: 12px; }
-    .social-link { display: flex; align-items: center; justify-content: space-between; border-radius: 1.5rem; border: 1px solid var(--border-50); background: var(--social-bg); padding: 12px 16px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+    .social-link { display: flex; align-items: center; justify-content: space-between; border-radius: 2rem; background: var(--social-bg); padding: 12px 16px; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
     .social-link:hover { transform: translateY(-2px) scale(1.01); border-color: var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
     .social-left { display: flex; align-items: center; gap: 12px; }
-    .social-icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; border: 1px solid var(--border-50); background: var(--inner-bg); color: var(--fg-70); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+    .social-icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: var(--inner-bg); color: var(--fg-70); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
     .social-icon svg { width: 16px; height: 16px; }
     .social-label  { font-size: 14px; font-weight: 600; color: var(--fg); }
     .social-handle { font-size: 12px; color: var(--fg-40); }
@@ -447,13 +474,13 @@
     .social-link:hover .social-arrow { transform: translate(2px,-2px); color: var(--fg-70); }
     .social-arrow svg { width: 16px; height: 16px; display: block; }
     .contact-center { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-    .contact-form-card { position: relative; display: flex; flex-direction: column; gap: 20px; height: 100%; overflow: hidden; border-radius: 2.75rem; border: 1px solid var(--border-50); background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
+    .contact-form-card { position: relative; display: flex; flex-direction: column; gap: 20px; height: 100%; overflow: hidden; border-radius: 3.25rem; background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
     .form-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-50); }
     .form-input, .form-textarea {
-      width: 100%; padding: 13px 16px; border-radius: 1rem;
-      border: 1px solid var(--border-50); background: var(--card-bg-mid);
+      width: 100%; padding: 13px 16px; border-radius: 1.25rem;
+      background: var(--card-bg-mid);
       font-size: 14px; font-family: inherit; color: var(--fg);
       outline: none; transition: border-color 0.2s, box-shadow 0.2s;
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -465,7 +492,7 @@
     .form-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       padding: 14px 28px; border-radius: 9999px;
-      border: 1px solid var(--border-50); background: var(--fg);
+      background: var(--fg);
       font-size: 14px; font-weight: 700; font-family: inherit;
       color: var(--bg); cursor: pointer; letter-spacing: 0.02em;
       transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -514,21 +541,18 @@
       /* ── Skills / Projects / Certs ── */
       #skills, #projects, #credentials { padding: 100px 16px 60px; }
       .project-card { padding: 20px; }
-      .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 1.5rem; }
+      .page-card, .cert-page-card { padding: 28px 20px 24px; border-radius: 2rem; }
       .stats-strip { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-card.primary, .skill-card.secondary { grid-column: 1/-1; }
-      .cert-grid { grid-template-columns: 1fr; }
-      .cert-card { padding: 20px; gap: 16px; }
-      .cert-badge { width: 64px; height: 64px; border-radius: 14px; }
-      .cert-badge svg { width: 28px; height: 28px; }
+      .cert-pro-grid, .cert-training-grid, .cert-progress-grid { grid-template-columns: 1fr; }
 
       /* ── Contact ── */
       #contact { padding: 80px 16px; }
       .contact-glass { padding: 28px 20px; }
     }
     @media (max-width: 700px) {
-      .tl-glass { padding: 24px 16px 20px; border-radius: 1.5rem; }
+      .tl-glass { padding: 24px 16px 20px; border-radius: 2rem; }
       .tl-outer { overflow-x: visible; }
       .tl-grid  { display: flex; flex-direction: column; gap: 0; min-width: unset; }
       .tl-h-line { display: none; }
@@ -863,7 +887,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="5" cy="9" r="1.5"/><circle cx="16" cy="17" r="1.5"/><circle cx="11" cy="12" r="1.5"/><circle cx="19" cy="13" r="1.5"/></svg>
             </div>
             <div>
-              <span class="project-eyebrow">02 · Machine Learning · Clustering · BUAN617A</span>
+              <span class="project-eyebrow">02 · AI For Business</span>
               <p class="project-title">Mall Customer Segmentation</p>
             </div>
           </div>
@@ -887,7 +911,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
             </div>
             <div>
-              <span class="project-eyebrow">03 · Regression Analysis · BUAN660AB</span>
+              <span class="project-eyebrow">03 · Regression Analysis</span>
               <p class="project-title">Automobile Price Prediction</p>
             </div>
           </div>
@@ -910,7 +934,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
             <div>
-              <span class="project-eyebrow">04 · Capstone · Time Series · Applied Analytics Practicum · BUAN690AB</span>
+              <span class="project-eyebrow">04 · Capstone · Time Series</span>
               <p class="project-title">Energy Consumption Forecasting for Smart Grid Sustainability</p>
             </div>
           </div>
@@ -942,75 +966,110 @@
   <!-- ══════════════ CERTIFICATIONS ══════════════ -->
   <section id="credentials">
     <div class="cert-page-card">
-      <div class="page-header" style="margin-bottom:32px"><h1>Credentials</h1></div>
-      <div class="cert-grid">
-        <div class="cert-card anim-up" style="--delay:.05s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">01 · Business Analysis</span>
-            <div class="cert-title">Career Essentials in Business Analysis</div>
-            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
-            <div class="cert-meta"><span>April 2026</span></div>
-            <a href="https://www.linkedin.com/learning/certificates/4c3ac29899ffc468e4be3e4107675bf316ecc2916b8137d3f4783685dc704a0e?u=26208178" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+      <div class="page-header" style="margin-bottom:36px"><h1>Credentials</h1></div>
+
+      <!-- ── Professional Certificates ── -->
+      <div class="cred-section anim-up" style="--delay:.05s" data-observe>
+        <div class="cred-section-label">Professional Certificates</div>
+        <div class="cert-pro-grid">
+
+          <div class="cert-pro-card">
+            <div class="cert-pro-logo"><img src="assets/images/Microsoft.png" alt="Microsoft"></div>
+            <div class="cert-pro-body">
+              <span class="cert-eyebrow">Business Analysis</span>
+              <div class="cert-title">Career Essentials in Business Analysis</div>
+              <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+              <div class="cert-meta"><span>April 2026</span></div>
+            </div>
+            <div class="cert-pro-actions">
+              <a href="https://www.linkedin.com/learning/certificates/4c3ac29899ffc468e4be3e4107675bf316ecc2916b8137d3f4783685dc704a0e?u=26208178" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            </div>
           </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.12s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">02 · Data Analysis</span>
-            <div class="cert-title">Career Essentials in Data Analysis</div>
-            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
-            <div class="cert-meta"><span>April 2026</span></div>
-            <a href="https://www.linkedin.com/learning/certificates/715b5784896a261c4539919064c5f6b4747ecf3f4b7176ff514c86965137baca/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+
+          <div class="cert-pro-card">
+            <div class="cert-pro-logo"><img src="assets/images/Microsoft.png" alt="Microsoft"></div>
+            <div class="cert-pro-body">
+              <span class="cert-eyebrow">Data Analysis</span>
+              <div class="cert-title">Career Essentials in Data Analysis</div>
+              <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+              <div class="cert-meta"><span>April 2026</span></div>
+            </div>
+            <div class="cert-pro-actions">
+              <a href="https://www.linkedin.com/learning/certificates/715b5784896a261c4539919064c5f6b4747ecf3f4b7176ff514c86965137baca/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            </div>
           </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.19s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/Microsoft.png" alt="Microsoft" style="width:56px;height:auto;object-fit:contain;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">03 · AI &amp; Cloud</span>
-            <div class="cert-title">Microsoft Azure AI Essentials Professional Certificate</div>
-            <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
-            <div class="cert-meta"><span>Feb 2025</span></div>
-            <a href="https://www.linkedin.com/learning/certificates/f310ad9609e13efb54f8f57fcf8c27e84f549fc31b756babc2c7f6333189630c/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
-            <button class="cert-view" onclick="document.getElementById('pdf-modal').classList.add('open')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-              View Certificate
-            </button>
+
+          <div class="cert-pro-card">
+            <div class="cert-pro-logo"><img src="assets/images/Microsoft.png" alt="Microsoft"></div>
+            <div class="cert-pro-body">
+              <span class="cert-eyebrow">AI &amp; Cloud</span>
+              <div class="cert-title">Microsoft Azure AI Essentials Professional Certificate</div>
+              <div class="cert-issuer">Microsoft &amp; LinkedIn</div>
+              <div class="cert-meta"><span>Feb 2025</span></div>
+            </div>
+            <div class="cert-pro-actions">
+              <a href="https://www.linkedin.com/learning/certificates/f310ad9609e13efb54f8f57fcf8c27e84f549fc31b756babc2c7f6333189630c/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bnv9I5msCTmmxKkYECpKkdg%3D%3D" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+              <button class="cert-view" onclick="document.getElementById('pdf-modal').classList.add('open')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg> View</button>
+            </div>
           </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.26s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/linkedin_logo.jpeg" alt="LinkedIn Learning" style="width:56px;height:auto;object-fit:contain;border-radius:10px;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">04 · Analytics</span>
-            <div class="cert-title">Complete Guide to Power BI for Data Analysts</div>
-            <div class="cert-issuer">Microsoft Press · LinkedIn Learning</div>
-            <div class="cert-meta"><span>2025</span></div>
-            <a href="https://www.linkedin.com/learning/certificates/fc83de4251ebabf493220e590b55414b68833d7ce4204a485ee77896a515e221?trk=share_certificate" target="_blank" rel="noopener" class="cert-verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
-          </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.33s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/PL-300.png" alt="PL-300" style="width:56px;height:auto;object-fit:contain;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">05 · Power BI</span>
-            <div class="cert-title">Microsoft Power BI Data Analyst (PL-300)</div>
-            <div class="cert-issuer">Microsoft</div>
-            <div class="cert-meta"><span>In Progress</span></div>
-            <span class="cert-in-progress">⏳ In Progress</span>
-          </div>
-        </div>
-        <div class="cert-card anim-up" style="--delay:.40s" data-observe>
-          <div style="flex-shrink:0;width:84px;display:flex;align-items:center;justify-content:center;"><img src="assets/images/IIBA-CBDA.png" alt="IIBA CBDA" style="width:56px;height:auto;object-fit:contain;"></div>
-          <div class="cert-body">
-            <span class="cert-eyebrow">06 · Business Analytics</span>
-            <div class="cert-title">Certified Business Data Analytics (CBDA)</div>
-            <div class="cert-issuer">IIBA</div>
-            <div class="cert-meta"><span>In Progress</span></div>
-            <span class="cert-in-progress">⏳ In Progress</span>
-          </div>
+
         </div>
       </div>
+
+      <!-- ── Trainings & Courses ── -->
+      <div class="cred-section anim-up" style="--delay:.15s" data-observe>
+        <div class="cred-section-label">Trainings &amp; Courses</div>
+        <div class="cert-training-grid">
+
+          <div class="cert-training-card">
+            <div class="cert-training-logo"><img src="assets/images/linkedin_logo.jpeg" alt="LinkedIn Learning" style="border-radius:6px"></div>
+            <div class="cert-training-body">
+              <div class="cert-training-title">Complete Guide to Power BI for Data Analysts</div>
+              <div class="cert-training-meta">Microsoft Press · LinkedIn Learning · 2025</div>
+              <a href="https://www.linkedin.com/learning/certificates/fc83de4251ebabf493220e590b55414b68833d7ce4204a485ee77896a515e221?trk=share_certificate" target="_blank" rel="noopener" class="cert-verify" style="margin-top:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            </div>
+          </div>
+
+          <div class="cert-training-card">
+            <div class="cert-training-logo"><img src="assets/images/linkedin_logo.jpeg" alt="LinkedIn Learning" style="border-radius:6px"></div>
+            <div class="cert-training-body">
+              <div class="cert-training-title">Agentic AI for Business Analysis</div>
+              <div class="cert-training-meta">LinkedIn Learning</div>
+              <a href="https://www.linkedin.com/learning/certificates/749d35fa939c31758ccab9452d7eacba4dfa9dd27395324104c7fcea7a939cbf?trk=share_certificate" target="_blank" rel="noopener" class="cert-verify" style="margin-top:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><polyline points="20 6 9 17 4 12"/></svg> Verify</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── In Progress ── -->
+      <div class="cred-section anim-up" style="--delay:.25s" data-observe>
+        <div class="cred-section-label">In Progress</div>
+        <div class="cert-progress-grid">
+
+          <div class="cert-progress-item">
+            <div class="cert-progress-logo"><img src="assets/images/PL-300.png" alt="PL-300"></div>
+            <div class="cert-progress-body">
+              <div class="cert-progress-title">Microsoft Power BI Data Analyst (PL-300)</div>
+              <div class="cert-progress-issuer">Microsoft</div>
+            </div>
+            <span class="cert-in-progress">In Progress</span>
+          </div>
+
+          <div class="cert-progress-item">
+            <div class="cert-progress-logo"><img src="assets/images/IIBA-CBDA.png" alt="IIBA CBDA"></div>
+            <div class="cert-progress-body">
+              <div class="cert-progress-title">Certified Business Data Analytics (CBDA)</div>
+              <div class="cert-progress-issuer">IIBA</div>
+            </div>
+            <span class="cert-in-progress">In Progress</span>
+          </div>
+
+        </div>
+      </div>
+
     </div>
-    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
+    <div class="page-nav anim-up" style="--delay:.35s" data-observe>
       <a href="#contact" class="page-nav-btn">Contact ↓</a>
     </div>
   </section>
