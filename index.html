@@ -125,7 +125,7 @@
 
     .theme-toggle {
       position: fixed; top: 24px; right: 24px; z-index: 101;
-      width: 44px; height: 44px; border-radius: 9999px;
+      width: 60px; height: 60px; border-radius: 9999px;
       background: var(--card-bg-mid); border: none; outline: none;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       display: flex; align-items: center; justify-content: center;
@@ -1284,7 +1284,7 @@
           moveIndicator();
         }
       }),
-      { threshold: 0.25, rootMargin: '-80px 0px -35% 0px' }
+      { threshold: 0, rootMargin: '-80px 0px -50% 0px' }
     );
     document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
     window.addEventListener('resize', moveIndicator);
