@@ -1,0 +1,20 @@
+name = "qev-proxy"
+main = "email-verify.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://thamsonantony.com"
+RESUME_PDF_URL = "https://thamsonantony.com/assets/Thamson%20Antony%20Arockiasamy.pdf"
+RESUME_EMAIL_HTML_URL = "https://thamsonantony.com/assets/resume-email/email.html"
+RESUME_EMAIL_TEXT_URL = "https://thamsonantony.com/assets/resume-email/email.txt"
+RESUME_EMAIL_IMAGES_BASE_URL = "https://thamsonantony.com/assets/resume-email/images/"
+RESUME_FROM_ADDRESS = "resume@thamsonantony.com"
+RESUME_FROM_NAME = "Thamson Antony"
+
+# The QuickEmailVerification API key is NOT set here.
+# Set it as a secret instead, so it never lands in the repo:
+#   wrangler secret put QEV_API_KEY
+
+[[send_email]]
+name = "EMAIL"
+allowed_sender_addresses = ["resume@thamsonantony.com"]
