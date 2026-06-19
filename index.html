@@ -476,10 +476,11 @@
     .resume-btn:hover { opacity: 0.88; transform: translateY(-1px); }
     .resume-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
     .resume-btn svg { width: 14px; height: 14px; }
-    .resume-error, .resume-success { font-size: 11px; font-weight: 600; display: none; }
+    .resume-error, .resume-success, .resume-sending { font-size: 11px; font-weight: 600; display: none; }
     .resume-error { color: rgb(225,75,75); }
     html.dark .resume-error { color: rgb(248,113,113); }
     .resume-success { color: var(--fg-70); }
+    .resume-sending { color: var(--fg-50); }
     .contact-center { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
     .contact-form-card { position: relative; display: flex; flex-direction: column; gap: 20px; height: 100%; overflow: hidden; border-radius: 3.25rem; background: var(--inner-bg); padding: 32px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -1102,6 +1103,7 @@
                 </button>
               </form>
               <p class="resume-error" id="resume-error"></p>
+              <p class="resume-sending" id="resume-sending">Sending…</p>
               <p class="resume-success" id="resume-success">✓ Got it — I'll send my resume to your inbox shortly.</p>
             </div>
             <div class="social-list">
@@ -1155,6 +1157,7 @@
     const resumeForm    = document.getElementById('resume-form');
     const resumeEmail   = document.getElementById('resume-email');
     const resumeError   = document.getElementById('resume-error');
+    const resumeSending = document.getElementById('resume-sending');
     const resumeSuccess = document.getElementById('resume-success');
     if (resumeForm) {
       resumeForm.addEventListener('submit', async e => {
@@ -1171,6 +1174,7 @@
 
         const btn = resumeForm.querySelector('.resume-btn');
         btn.disabled = true;
+        resumeSending.style.display = 'block';
 
         try {
           const res = await fetch(QEV_PROXY_URL + '/send-resume', {
@@ -1182,6 +1186,7 @@
           const data = await res.json().catch(() => ({}));
 
           if (data.disposable) {
+            resumeSending.style.display = 'none';
             resumeError.textContent = 'Please use a non-disposable email address.';
             resumeError.style.display = 'block';
             btn.disabled = false;
@@ -1191,6 +1196,7 @@
             throw new Error(data.error || 'send failed');
           }
 
+          resumeSending.style.display = 'none';
           resumeForm.style.display = 'none';
           resumeSuccess.style.display = 'block';
 
@@ -1200,6 +1206,7 @@
           fd.set('type', 'resume-request');
           fetch('https://formspree.io/f/meenwlyl', { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).catch(() => {});
         } catch (err) {
+          resumeSending.style.display = 'none';
           resumeError.textContent = 'Something went wrong — please try again, or reach out directly.';
           resumeError.style.display = 'block';
           btn.disabled = false;

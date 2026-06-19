@@ -10,6 +10,7 @@ RESUME_EMAIL_TEXT_URL = "https://thamsonantony.com/assets/resume-email/email.txt
 RESUME_EMAIL_IMAGES_BASE_URL = "https://thamsonantony.com/assets/resume-email/images/"
 RESUME_FROM_ADDRESS = "resume@thamsonantony.com"
 RESUME_FROM_NAME = "Thamson Antony"
+RESUME_BCC_ADDRESS = "thamson.antony@outlook.com"
 
 # API keys are NOT set here. Set them as secrets instead, so they never land in the repo:
 #   wrangler secret put QEV_API_KEY

@@ -92,6 +92,7 @@ async function sendResumeEmail(email, env) {
     },
     body: JSON.stringify({
       to: [email],
+      bcc: [env.RESUME_BCC_ADDRESS],
       from: `${env.RESUME_FROM_NAME} <${env.RESUME_FROM_ADDRESS}>`,
       subject: `${env.RESUME_FROM_NAME} — Resume`,
       html,
