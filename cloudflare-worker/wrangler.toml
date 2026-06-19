@@ -11,10 +11,10 @@ RESUME_EMAIL_IMAGES_BASE_URL = "https://thamsonantony.com/assets/resume-email/im
 RESUME_FROM_ADDRESS = "resume@thamsonantony.com"
 RESUME_FROM_NAME = "Thamson Antony"
 
-# The QuickEmailVerification API key is NOT set here.
-# Set it as a secret instead, so it never lands in the repo:
+# API keys are NOT set here. Set them as secrets instead, so they never land in the repo:
 #   wrangler secret put QEV_API_KEY
-
-[[send_email]]
-name = "EMAIL"
-allowed_sender_addresses = ["resume@thamsonantony.com"]
+#   wrangler secret put RESEND_API_KEY
+#
+# Email is sent via Resend's REST API (not Cloudflare's native Email Sending —
+# that requires the Workers Paid plan to send to arbitrary recipients; on Free
+# it's permanently capped to pre-verified destination addresses).
