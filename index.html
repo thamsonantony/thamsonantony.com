@@ -74,26 +74,26 @@
     .nav-bar {
       display: flex; align-items: center; gap: 2px;
       background: var(--card-bg-mid);
-      border-radius: 9999px; padding: 10px 26px;
+      border-radius: 9999px; padding: 7px 26px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
     .nav-item {
-      display: flex; align-items: center; gap: 6px; padding: 8px 14px;
+      display: flex; align-items: center; gap: 6px; padding: 5px 14px;
       border-radius: 9999px; font-size: 13px; font-weight: 600; white-space: nowrap;
-      color: var(--fg-50); text-decoration: none; position: relative;
+      color: var(--fg-50); text-decoration: none; position: relative; z-index: 1;
       transition: color 0.2s, background 0.2s;
     }
     .nav-item svg { display: none; width: 15px; height: 15px; flex-shrink: 0; }
     .nav-item:hover { color: var(--fg); background: var(--inner-bg); }
-    .nav-item.active { color: var(--fg); }
+    .nav-item.active { color: var(--bg); }
     .nav-contact-item { color: var(--fg-50); }
     .nav-contact-item:hover { color: var(--fg); background: var(--inner-bg); }
-    .nav-contact-item.active { color: var(--fg); }
+    .nav-contact-item.active { color: var(--bg); }
     .nav-indicator {
-      position: absolute; bottom: 11px; height: 4px; width: 22px; border-radius: 9999px;
-      background: var(--fg); pointer-events: none; opacity: 0;
-      transition: left 0.35s cubic-bezier(0.4,0,0.2,1),
+      position: absolute; top: 4px; left: 0; height: calc(100% - 8px); width: 0; border-radius: 9999px;
+      background: var(--fg); pointer-events: none; opacity: 0; z-index: 0;
+      transition: left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1),
                   opacity 0.2s, background 0.25s;
     }
     .nav-wrapper {
@@ -117,7 +117,7 @@
     .nav-logo-item {
       display: flex; align-items: center; padding: 0 6px 0 0; flex-shrink: 0; transform: translateY(3px);
     }
-    .nav-logo-item img { height: 40px; width: auto; object-fit: contain; }
+    .nav-logo-item img { height: 28px; width: auto; object-fit: contain; }
     .nav-logo-item .logo-light { display: block; }
     .nav-logo-item .logo-dark  { display: none; }
     html.dark .nav-logo-item .logo-light { display: none; }
@@ -125,7 +125,7 @@
 
     .theme-toggle {
       position: fixed; top: 24px; right: 24px; z-index: 101;
-      width: 60px; height: 60px; border-radius: 9999px;
+      width: 42px; height: 42px; border-radius: 9999px;
       background: var(--card-bg-mid); border: none; outline: none;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       display: flex; align-items: center; justify-content: center;
@@ -486,6 +486,7 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
     .form-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-50); }
+    .form-captcha-note { font-size: 11px; color: var(--fg-40); text-align: center; }
     .form-input, .form-textarea {
       width: 100%; padding: 13px 16px; border-radius: 1.25rem;
       background: var(--card-bg-mid); border: none;
@@ -525,7 +526,7 @@
       .nav-item { padding: 9px 11px; }
       .nav-sep { display: none; }
       .nav-indicator { display: none; }
-      .nav-item.active { background: var(--inner-bg); }
+      .nav-item.active { background: var(--inner-bg); color: var(--fg); }
       .theme-toggle { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
@@ -1104,7 +1105,7 @@
               </form>
               <p class="resume-error" id="resume-error"></p>
               <p class="resume-sending" id="resume-sending">Sending…</p>
-              <p class="resume-success" id="resume-success">✓ Got it — I'll send my resume to your inbox shortly.</p>
+              <p class="resume-success" id="resume-success">✓ Thank you! I have sent my resume to your email.</p>
             </div>
             <div class="social-list">
               <a href="https://linkedin.com/in/thamsonantony" class="social-link anim" style="--delay:.1s" data-observe target="_blank" rel="noopener noreferrer" title="linkedin.com/in/thamsonantony"><span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><span class="social-label">LinkedIn</span></a>
@@ -1133,6 +1134,7 @@
                   <textarea class="form-textarea" id="cf-message" name="message" placeholder="Hi Thamson, I'd love to connect…" required></textarea>
                 </div>
                 <div class="cf-turnstile" data-sitekey="0x4AAAAAADO6-sWhPGZZnm-F" data-theme="auto"></div>
+                <p class="form-captcha-note">Submissions are verified as human (not bot) entries using Cloudflare Turnstile in the background.</p>
                 <button class="form-btn" type="submit">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                   <span class="form-btn-label">Send Message</span>
@@ -1267,14 +1269,9 @@
     function moveIndicator() {
       const active = navBar.querySelector('.nav-item.active');
       if (!active) { indicator.style.opacity = '0'; return; }
-      const span = active.querySelector('span:not(.contact-dot)');
-      const icon = active.querySelector('svg');
-      const pillW = indicator.offsetWidth || 22;
-      // On mobile spans are display:none (offsetWidth 0); fall back to icon
-      const ref = (span && span.offsetWidth > 0) ? span : (icon || active);
-      const left = active.offsetLeft + ref.offsetLeft + (ref.offsetWidth - pillW) / 2;
       indicator.style.opacity = '1';
-      indicator.style.left = left + 'px';
+      indicator.style.left = active.offsetLeft + 'px';
+      indicator.style.width = active.offsetWidth + 'px';
     }
 
     const sectionObserver = new IntersectionObserver(
@@ -1457,6 +1454,11 @@
         col = mix(col, uColorC, (cos(a) + 1.0) * 0.5);
         float grain = (random(gl_FragCoord.xy + floor(uTime * 60.0) * vec2(127.1, 311.7)) - 0.5) * uGrain;
         col = colorDodge(col, vec3(0.5 + grain));
+        // Additive anti-banding dither (~1/255), independent of the stylistic grain above —
+        // 8-bit precision over the dark palette's narrow tonal range otherwise shows visible
+        // gradient "steps" instead of a smooth blend.
+        float dither = (random(gl_FragCoord.xy + uTime * 97.0) - 0.5) / 127.5;
+        col += vec3(dither);
         gl_FragColor = vec4(col, 1.0);
       }`;
 
