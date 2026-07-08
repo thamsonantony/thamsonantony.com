@@ -23,7 +23,7 @@
       --border-50:       rgba(13,13,20,0.10);
       --primary-15:      rgba(100,100,100,0.12);
       --primary-20:      rgba(100,100,100,0.18);
-      --card-bg:         rgba(255,255,255,0.08);
+      --card-bg:         rgba(255,255,255,0.16);
       --card-bg-mid:     rgba(255,255,255,0.13);
       --card-bg-strong:  rgba(255,255,255,0.18);
       --inner-bg:        rgba(255,255,255,0.08);
@@ -44,7 +44,7 @@
       --border-50:       rgba(255,255,255,0.10);
       --primary-15:      rgba(255,255,255,0.05);
       --primary-20:      rgba(255,255,255,0.08);
-      --card-bg:         rgba(255,255,255,0.04);
+      --card-bg:         rgba(255,255,255,0.09);
       --card-bg-mid:     rgba(255,255,255,0.08);
       --card-bg-strong:  rgba(255,255,255,0.14);
       --inner-bg:        rgba(255,255,255,0.06);
@@ -170,8 +170,8 @@
       position: relative; z-index: 1; overflow: hidden; width: 100%; max-width: 1020px;
       border-radius: 3rem; background: var(--card-bg);
       padding: 88px 100px 120px;
-      backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
-      -webkit-backdrop-filter: blur(64px) brightness(1.15) saturate(1.2);
+      backdrop-filter: blur(100px);
+      -webkit-backdrop-filter: blur(100px);
     }
 
     /* ── Flip card ── */
@@ -230,8 +230,7 @@
     .profile-top   { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
     .profile-content { display: flex; flex-direction: column; gap: 16px; align-items: center; }
     .avatar-wrap   { position: relative; flex-shrink: 0; }
-    .avatar-glow   { position: absolute; inset: 0; margin: auto; width: 148px; height: 148px; border-radius: 9999px; background: var(--primary-20); filter: blur(32px); }
-    .avatar        { position: relative; width: 148px; height: 148px; border-radius: 9999px; object-fit: cover; box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
+    .avatar     { position: relative; width: 148px; height: 148px; border-radius: 9999px; object-fit: cover; box-shadow: var(--shadow); display: block; transform: rotate(-3deg); }
     .profile-name  { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.03em; color: var(--fg); margin-bottom: 8px; }
     .profile-role  { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-70); }
     .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
@@ -536,7 +535,6 @@
       .glass-card { padding: 48px 20px 64px; }
       .profile-top { gap: 20px; }
       .avatar { width: 110px; height: 110px; }
-      .avatar-glow { width: 110px; height: 110px; }
       .profile-name { font-size: 1.6rem; }
       .profile-bio { font-size: 13px; }
       .flip-back.glass-card { padding: 36px 20px; }
@@ -641,11 +639,9 @@
 
         <!-- FRONT -->
         <div class="flip-face flip-front glass-card">
-          <div class="glass-overlay"></div>
           <div class="profile-glow"></div>
           <div class="profile-top">
             <div class="avatar-wrap anim-scale" data-observe>
-              <div class="avatar-glow"></div>
               <img src="assets/images/avatar.png" alt="Thamson Antony" class="avatar" />
             </div>
             <div class="profile-content">
@@ -660,7 +656,6 @@
 
         <!-- BACK -->
         <div class="flip-face flip-back glass-card">
-          <div class="glass-overlay"></div>
           <div class="profile-glow"></div>
           <div class="back-header">
             <h2>Highlights</h2>
