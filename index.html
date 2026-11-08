@@ -141,21 +141,6 @@
     html.dark .icon-sun  { display: block; }
     html.dark .icon-moon { display: none; }
 
-    /* ── Shared page-nav ── */
-    .page-nav {
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      gap: 16px; padding: 16px 0 48px; position: relative; z-index: 1;
-    }
-    .page-nav-btn {
-      display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 9999px;
-      background: var(--card-bg-mid);
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      font-size: 14px; font-weight: 400; color: var(--fg); text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .page-nav-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
-
     /* ── Animations ── */
     .anim-card  { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .anim       { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; transition-delay: var(--delay, 0s); }
@@ -237,60 +222,11 @@
     .profile-name  { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.03em; color: var(--fg); margin-bottom: 8px; }
     .profile-role  { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--fg-70); }
     .profile-bio   { font-size: 14px; line-height: 1.65; color: var(--fg-70); }
-    .card-below-btn {
-      position: relative; z-index: 1; display: flex; align-items: center; gap: 10px;
-      margin-top: 24px;
-      padding: 14px 28px; border-radius: 9999px;
-      background: var(--card-bg-mid); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      font-size: 14px; font-weight: 400; color: var(--fg); text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .card-below-btn:hover { background: var(--inner-bg); box-shadow: 0 8px 32px rgba(0,0,0,0.2); transform: translateY(-2px); }
 
-    /* ════════════════════════ TIMELINE ════════════════════════ */
-    #timeline { position: relative; z-index: 1; padding: 140px 24px 60px; }
+    /* ════════════════════════ PAGE HEADER ════════════════════════ */
     .page-header { text-align: center; margin-bottom: 24px; }
     .page-header h1 { font-size: 2.4rem; font-weight: 400; letter-spacing: -0.03em; color: var(--fg); }
     .page-header p  { margin-top: 8px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-50); }
-    .tl-glass {
-      max-width: 1600px; margin: 0 auto; width: 100%;
-      border-radius: 2.5rem;
-      background: var(--card-bg-mid); padding: 64px 64px 56px;
-      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-      box-shadow: var(--shadow); position: relative; overflow: hidden;
-    }
-    .tl-glass::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; border-radius: inherit; }
-    .tl-outer { overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-    .tl-outer::-webkit-scrollbar { display: none; }
-    .tl-grid  { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); grid-template-rows: auto 44px auto; min-width: 1020px; position: relative; }
-    .tl-h-line { grid-row: 2; grid-column: 1/-1; align-self: center; height: 1px; background: linear-gradient(to right, transparent, var(--border) 6%, var(--border) 94%, transparent); pointer-events: none; z-index: 0; }
-    .tl-dot-wrap { grid-row: 2; display: flex; align-items: center; justify-content: center; z-index: 1; }
-    .tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--fg-70); border: 2px solid var(--border-50); box-shadow: 0 0 10px rgba(0,0,0,0.15); flex-shrink: 0; }
-    .tl-dot.current { background: var(--fg); box-shadow: 0 0 18px rgba(0,0,0,0.25); }
-    .tl-top { grid-row: 1; padding: 0 10px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
-    .tl-top.empty { min-height: 40px; }
-    .tl-top:not(.empty)::after { content: ''; width: 1px; height: 14px; flex-shrink: 0; background: var(--border-50); margin-top: 6px; }
-    .tl-bot { grid-row: 3; padding: 0 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; }
-    .tl-bot.empty { min-height: 40px; }
-    .tl-bot:not(.empty)::before { content: ''; width: 1px; height: 14px; flex-shrink: 0; background: var(--border-50); margin-bottom: 6px; }
-    .tl-logo { position: absolute; top: 16px; right: 16px; height: 44px; width: auto; max-width: 80px; object-fit: contain; opacity: 0.72; }
-    .tl-card { width: 100%; min-height: 200px; border-radius: 2rem; background: var(--card-bg-mid); padding: 22px 100px 22px 24px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
-    .tl-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent); pointer-events: none; }
-    .tl-type  { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-40); margin-bottom: 8px; }
-    .tl-type-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-    .tl-type--edu { color: #1339a0; }
-    .tl-type--work { color: #c07a1a; }
-    .tl-sub-connector { width: 1px; height: 14px; background: var(--border-50); flex-shrink: 0; }
-    .tl-year  { display: block; font-size: 11px; font-weight: 400; letter-spacing: 0.05em; color: var(--fg-40); margin-bottom: 4px; }
-    .tl-title { font-size: 14px; font-weight: 400; color: var(--fg); margin-bottom: 2px; line-height: 1.35; }
-    .tl-org   { font-size: 12px; font-weight: 400; color: var(--fg-70); }
-    .tl-sub   { font-size: 11px; color: var(--fg-50); margin-top: 2px; }
-    .tl-meta  { display: inline-block; font-size: 9px; font-weight: 400; color: var(--fg-50); margin-top: 4px; }
-    .tl-cgpa  { display: inline-flex; align-self: flex-start; align-items: center; margin-top: 10px; padding: 7px 16px; border-radius: 9999px; background: var(--card-bg-mid); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); font-size: 9px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-50); }
-    html.dark .tl-cgpa { background: rgba(255,255,255,0.06); }
-    .tl-logos { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-    .tl-logos img { height: 40px; width: auto; max-width: 100px; object-fit: contain; opacity: 0.72; }
 
     /* ════════════════════════ SKILLS ════════════════════════ */
     #skills { position: relative; z-index: 1; padding: 140px 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -405,6 +341,45 @@
     }
     .cert-view:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
     .cert-view svg { width: 12px; height: 12px; }
+
+    /* ════════════════════════ EDUCATION ════════════════════════ */
+    #education { position: relative; z-index: 1; padding: 140px 24px 60px; display: flex; flex-direction: column; align-items: center; }
+    .edu-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; width: 100%; max-width: 1200px; }
+    .edu-card { position: relative; overflow: hidden; border-radius: 2.5rem; background: var(--card-bg-mid); padding: 44px 44px 40px; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); box-shadow: 0 25px 60px rgba(0,0,0,0.25); display: flex; flex-direction: column; }
+    .edu-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--fg-05), transparent 60%); pointer-events: none; }
+    .edu-logo { width: 64px; height: 64px; object-fit: contain; align-self: flex-start; margin-bottom: 24px; }
+    html.dark .edu-logo--invert { filter: invert(1); }
+    .edu-statement { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.015em; line-height: 1.35; color: var(--fg); }
+    .edu-details { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--fg-70); }
+    .edu-details .edu-meta { margin-top: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-50); }
+    .edu-work { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-50); }
+    .edu-work .edu-statement { font-size: 1.05rem; }
+
+    /* ════════════════════════ FOOTER ════════════════════════ */
+    .site-footer { position: relative; z-index: 1; padding: 0 48px 40px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; border-top: 1px solid var(--border-50); padding-top: 28px; }
+    .footer-crumb { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg-70); margin-bottom: 32px; }
+    .footer-crumb img { height: 18px; width: auto; }
+    .footer-crumb .chev { color: var(--fg-40); font-size: 12px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px; }
+    .footer-col h4 { font-size: 12px; font-weight: 500; color: var(--fg); margin-bottom: 14px; letter-spacing: 0.01em; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 12px; color: var(--fg-70); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--fg); }
+    .footer-note { margin: 0; max-width: 760px; text-align: justify; hyphens: auto; font-size: 12px; color: var(--fg-50); line-height: 1.6; }
+    .footer-note a { color: var(--fg-70); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-built { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-50); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 40px; }
+    .made-with { display: inline-flex; align-items: center; gap: 8px; color: var(--fg); flex-shrink: 0; white-space: nowrap; }
+    .made-with-pre { font-size: 12px; color: var(--fg-50); margin-right: 2px; }
+    .made-with-name { font-family: Georgia, "Times New Roman", serif; font-size: 18px; letter-spacing: -0.01em; color: var(--fg); }
+    .claude-mark { width: 18px; height: 18px; flex-shrink: 0; color: #fff; }
+    html:not(.dark) .claude-mark { color: var(--fg); }
+    .footer-bottom { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--border-50); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-size: 12px; color: var(--fg-50); }
+    .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0; }
+    .footer-links a { color: var(--fg-70); text-decoration: none; padding: 0 12px; border-left: 1px solid var(--border); line-height: 1; }
+    .footer-links a:first-child { border-left: none; padding-left: 0; }
+    .footer-links a:hover { color: var(--fg); }
+    html:not(.dark) .footer-crumb .logo-dark, html.dark .footer-crumb .logo-light { display: none; }
 
     /* ── PDF Modal ── */
     .pdf-modal-backdrop {
@@ -545,9 +520,10 @@
       .comp-logo-grid { grid-template-columns: repeat(4, 1fr); }
       .back-header h2 { font-size: 1.4rem; }
 
-      /* ── Timeline ── */
-      #timeline { padding: 80px 16px 60px; }
-      .tl-card { padding: 20px 80px 20px 16px; }
+      /* ── Education ── */
+      #education { padding: 100px 16px 60px; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .edu-card { padding: 28px 24px; border-radius: 2rem; }
 
       /* ── Skills / Projects / Certs ── */
       #skills, #projects, #credentials { padding: 100px 16px 60px; }
@@ -558,25 +534,16 @@
       .skill-card.primary, .skill-card.secondary { grid-column: 1/-1; }
       .cert-pro-grid, .cert-training-grid, .cert-progress-grid { grid-template-columns: 1fr; }
 
+      /* ── Footer ── */
+      .site-footer { padding: 0 24px calc(96px + env(safe-area-inset-bottom, 0px)); }
+      .footer-cols { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px 20px; }
+      .footer-inner { max-width: none; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-built { flex-direction: column; align-items: flex-end; }
+
       /* ── Contact ── */
       #contact { padding: 80px 16px; }
       .contact-glass { padding: 28px 20px; }
-    }
-    @media (max-width: 700px) {
-      .tl-glass { padding: 24px 16px 20px; border-radius: 2rem; }
-      .tl-outer { overflow-x: visible; }
-      .tl-grid  { display: flex; flex-direction: column; gap: 0; min-width: unset; }
-      .tl-h-line { display: none; }
-      .tl-top, .tl-bot { grid-row: unset; grid-column: unset; padding: 0; align-items: flex-start; }
-      .tl-top.empty, .tl-bot.empty { display: none; }
-      .tl-top::after, .tl-bot::before { display: none; }
-      .tl-dot-wrap { display: none; }
-      .tl-card { margin-bottom: 16px; padding: 20px 100px 20px 20px; }
-      /* Chronological order on mobile: 2012→2016→2022→2023 */
-      .tl-item-1 { order: 1; }
-      .tl-item-2 { order: 2; }
-      .tl-item-3 { order: 3; }
-      .tl-item-4 { order: 4; }
     }
     @media (max-width: 1080px) {
       .skill-card.primary   { grid-column: span 3; }
@@ -604,10 +571,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
       <span>About Me</span>
     </a>
-    <a href="#timeline" class="nav-item" data-section="timeline" aria-label="Timeline">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span>Timeline</span>
-    </a>
     <a href="#skills" class="nav-item" data-section="skills" aria-label="Skills">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
       <span>Skills</span>
@@ -619,6 +582,10 @@
     <a href="#credentials" class="nav-item" data-section="credentials" aria-label="Credentials">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 22 12 19 17 22 15.79 13.88"/></svg>
       <span>Credentials</span>
+    </a>
+    <a href="#education" class="nav-item" data-section="education" aria-label="Education">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+      <span>Education</span>
     </a>
     <div class="nav-sep"></div>
     <a href="#contact" class="nav-item nav-contact-item" data-section="contact" aria-label="Contact">
@@ -705,96 +672,6 @@
 
       </div>
     </div>
-    <a href="#timeline" class="card-below-btn anim" style="--delay:.5s" data-observe>
-      Timeline <span style="font-size:14px;line-height:1">↓</span>
-    </a>
-  </section>
-
-  <!-- ══════════════ TIMELINE ══════════════ -->
-  <section id="timeline">
-    <div class="tl-glass anim-up" data-observe>
-      <div class="page-header" style="margin-top:-36px;margin-bottom:32px"><h1>Timeline</h1></div>
-      <div class="tl-outer">
-        <div class="tl-grid">
-          <div class="tl-h-line"></div>
-          <div class="tl-dot-wrap" style="grid-column:1"><div class="tl-dot"></div></div>
-          <div class="tl-dot-wrap" style="grid-column:2"><div class="tl-dot"></div></div>
-          <div class="tl-dot-wrap" style="grid-column:3"><div class="tl-dot"></div></div>
-          <div class="tl-dot-wrap" style="grid-column:4"><div class="tl-dot current"></div></div>
-          <!-- Top: col1=BE 2012, col2=empty, col3=TCS 2022, col4=empty -->
-          <div class="tl-top tl-item-1" style="grid-column:1">
-            <div class="tl-card anim-up" style="--delay:.15s" data-observe>
-              <img src="assets/images/anna university.png" class="tl-logo" alt="Anna University">
-              <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
-              <span class="tl-year">2012 – 2016</span>
-              <p class="tl-title">Bachelor of Engineering (B.E.) in Computer Science</p>
-              <p class="tl-org">Anna University</p>
-              <p class="tl-sub">NPR College of Engineering</p>
-              <p class="tl-sub">Tamil Nadu, India</p>
-              <span class="tl-cgpa">CGPA 7.86 / 10</span>
-            </div>
-          </div>
-          <div class="tl-top empty" style="grid-column:2"></div>
-          <div class="tl-top tl-item-3" style="grid-column:3">
-            <div class="tl-card anim-up" style="--delay:.25s" data-observe>
-              <div class="tl-logos">
-                <img src="assets/images/TCS.png" alt="Tata Consultancy Services">
-                <img src="assets/images/Citi.png" alt="Citi" style="margin-right:16px;">
-              </div>
-              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
-              <span class="tl-year">2022 – 2023</span>
-              <p class="tl-title">IT Analyst</p>
-              <p class="tl-org">Tata Consultancy Services</p>
-              <p class="tl-sub">for Citi – Private Banking &amp; Wealth Management</p>
-              <p class="tl-sub">Chennai, India</p>
-            </div>
-          </div>
-          <div class="tl-top empty" style="grid-column:4"></div>
-          <!-- Bottom: col1=empty, col2=Cognizant 2016, col3=empty, col4=SHU 2023 -->
-          <div class="tl-bot empty" style="grid-column:1"></div>
-          <div class="tl-bot tl-item-2" style="grid-column:2">
-            <div class="tl-card anim-up" style="--delay:.2s" data-observe>
-              <div class="tl-logos">
-                <img src="assets/images/cognizant.png" alt="Cognizant" style="height:56px;">
-                <img src="assets/images/FPL.png" alt="Florida Power & Light" style="margin-right:16px;">
-              </div>
-              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
-              <span class="tl-year">2016 – 2022</span>
-              <p class="tl-title">Associate &amp; Team Lead</p>
-              <p class="tl-org">Cognizant</p>
-              <p class="tl-sub">for Florida Power &amp; Light · NextEra Energy</p>
-              <p class="tl-sub">Chennai, India</p>
-            </div>
-          </div>
-          <div class="tl-bot empty" style="grid-column:3"></div>
-          <div class="tl-bot tl-item-4" style="grid-column:4">
-            <div class="tl-card anim-up" style="--delay:.3s" data-observe>
-              <img src="assets/images/shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
-              <span class="tl-type tl-type--edu"><span class="tl-type-dot"></span>Education</span>
-              <span class="tl-year">2024 – 2025</span>
-              <p class="tl-title">Master of Science (M.S.) in Business Analytics</p>
-              <p class="tl-org">Sacred Heart University</p>
-              <p class="tl-sub">Jack Welch College of Business</p>
-              <p class="tl-sub">Fairfield, CT</p>
-              <span class="tl-cgpa">CGPA 3.9 / 4</span>
-            </div>
-            <div class="tl-sub-connector"></div>
-            <div class="tl-card anim-up" style="--delay:.4s" data-observe>
-              <img src="assets/images/shu.png" class="tl-logo" alt="Sacred Heart University" style="height:64px;">
-              <span class="tl-type tl-type--work"><span class="tl-type-dot"></span>Work</span>
-              <span class="tl-year">2024 – 2025</span>
-              <p class="tl-title">Graduate Teaching Assistant</p>
-              <p class="tl-org">Sacred Heart University</p>
-              <p class="tl-sub">Jack Welch College of Business</p>
-              <p class="tl-sub">Fairfield, CT</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="#skills" class="page-nav-btn">Skills ↓</a>
-    </div>
   </section>
 
   <!-- ══════════════ SKILLS ══════════════ -->
@@ -852,9 +729,6 @@
         </div>
 
       </div>
-    </div>
-    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="#projects" class="page-nav-btn">Projects ↓</a>
     </div>
   </section>
 
@@ -966,9 +840,6 @@
 
       </div>
     </div>
-    <div class="page-nav anim-up" style="--delay:.4s" data-observe>
-      <a href="#credentials" class="page-nav-btn">Credentials ↓</a>
-    </div>
   </section>
 
   <!-- ══════════════ CERTIFICATIONS ══════════════ -->
@@ -1077,8 +948,36 @@
       </div>
 
     </div>
-    <div class="page-nav anim-up" style="--delay:.35s" data-observe>
-      <a href="#contact" class="page-nav-btn">Contact ↓</a>
+  </section>
+
+  <!-- ══════════════ EDUCATION ══════════════ -->
+  <section id="education">
+    <div class="page-header anim-up" style="margin-bottom:32px" data-observe><h1>Education</h1></div>
+    <div class="edu-grid">
+      <div class="edu-card anim-up" style="--delay:.1s" data-observe>
+        <img src="assets/images/anna university.png" class="edu-logo edu-logo--invert" alt="Anna University">
+        <p class="edu-statement">Bachelor of Engineering (B.E.) in Computer Science</p>
+        <p class="edu-statement">Anna University, Chennai</p>
+        <div class="edu-details">
+          <span>NPR College of Engineering and Technology, India</span>
+          <span class="edu-meta">Class of 2016 / CGPA 7.86</span>
+        </div>
+      </div>
+      <div class="edu-card anim-up" style="--delay:.2s" data-observe>
+        <img src="assets/images/shu-icon.png" class="edu-logo" alt="Sacred Heart University">
+        <p class="edu-statement">Master of Science (M.S.) in Business Analytics</p>
+        <p class="edu-statement">Sacred Heart University</p>
+        <div class="edu-details">
+          <span>Jack Welch College of Business and Technology</span>
+          <span class="edu-meta">Class of 2025 / GPA 3.9</span>
+        </div>
+        <div class="edu-work">
+          <p class="edu-statement">Graduate Teaching Assistant</p>
+          <div class="edu-details">
+            <span>Database Management System &amp; Cloud Computing</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1146,6 +1045,64 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-crumb">
+        <img src="assets/images/TA Light.png" class="logo-light" alt="TA">
+        <img src="assets/images/TA Dark.png" class="logo-dark" alt="TA">
+        <span class="chev">›</span>
+        <span>Thamson Antony Arockiasamy</span>
+        <span class="chev">›</span>
+        <span>Business Analytics Consultant</span>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#home">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Background</h4>
+          <ul>
+            <li><a href="#credentials">Credentials</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Request Resume</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://linkedin.com/in/thamsonantony" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/thamsonantony" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="mailto:thamsonantony@outlook.com">Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-built">
+        <p class="footer-note">
+          All company, university and certification names, logos and trademarks shown on this site are the property of their respective owners.
+          They are used here only to identify where I studied, worked or earned a credential, and do not imply endorsement.
+          Claude, Claude Code and the Claude logo are trademarks of Anthropic.
+        </p>
+        <span class="made-with"><span class="made-with-pre">Made with</span><svg class="claude-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.15 12.00 L12.55 0.50 L11.45 0.50 L10.85 12.00Z M12.95 12.64 L17.47 4.87 L16.56 4.26 L11.05 11.36Z M12.57 13.00 L21.44 7.19 L20.89 6.23 L11.43 11.00Z M11.92 13.15 L21.60 13.22 L21.67 12.13 L12.08 10.85Z M11.43 13.00 L21.49 18.11 L22.04 17.16 L12.57 11.00Z M10.97 12.50 L15.34 20.10 L16.33 19.61 L13.03 11.50Z M10.85 12.00 L11.45 22.92 L12.55 22.92 L13.15 12.00Z M11.05 11.36 L6.27 19.51 L7.18 20.13 L12.95 12.64Z M11.43 11.00 L2.76 16.70 L3.31 17.65 L12.57 13.00Z M12.08 10.85 L2.86 10.81 L2.78 11.91 L11.92 13.15Z M12.57 11.00 L2.61 5.95 L2.06 6.90 L11.43 13.00Z M13.03 11.50 L8.16 2.87 L7.17 3.35 L10.97 12.50Z"/></svg><span class="made-with-name">Claude Code</span></span>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Copyright © <span id="footer-year">2026</span> Thamson Antony Arockiasamy. All rights reserved.</span>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#home">Back to top ↑</a>
+        </nav>
+        <span>Fairfield, CT, United States</span>
+      </div>
+    </div>
+  </footer>
 
   <!-- ══════════════ SCRIPTS ══════════════ -->
   <script>
@@ -1258,6 +1215,7 @@
       { threshold: 0.08 }
     );
     document.querySelectorAll('[data-observe]').forEach(el => animObserver.observe(el));
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
     const navLinks   = document.querySelectorAll('a[data-section]');
     const navBar     = document.getElementById('main-nav');
