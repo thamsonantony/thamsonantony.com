@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Thamson Antony</title>
-  <link rel="icon" type="image/png" href="favicon.png" sizes="512x512" />
+  <link rel="icon" type="image/png" href="favicon.png?v=2" sizes="512x512" />
   <meta name="description" content="Thamson Antony – Business Analytics Consultant" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,7 +76,7 @@
     .nav-bar {
       display: flex; align-items: center; gap: 2px;
       background: var(--card-bg-mid);
-      border-radius: 9999px; padding: 7px 26px;
+      border-radius: 9999px; padding: 7px 14px 7px 28px;
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     }
@@ -117,9 +117,9 @@
 
     /* ── Theme Toggle ── */
     .nav-logo-item {
-      display: flex; align-items: center; padding: 0 6px 0 0; flex-shrink: 0; transform: translateY(3px);
+      display: flex; align-items: center; padding: 0 22px 0 0; flex-shrink: 0;
     }
-    .nav-logo-item img { height: 28px; width: auto; object-fit: contain; }
+    .nav-logo-item img { height: 18px; width: auto; object-fit: contain; }
     .nav-logo-item .logo-light { display: block; }
     .nav-logo-item .logo-dark  { display: none; }
     html.dark .nav-logo-item .logo-light { display: none; }
@@ -359,7 +359,7 @@
     .site-footer { position: relative; z-index: 1; padding: 0 48px 40px; }
     .footer-inner { max-width: 1100px; margin: 0 auto; border-top: 1px solid var(--border-50); padding-top: 28px; }
     .footer-crumb { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg-70); margin-bottom: 32px; }
-    .footer-crumb img { height: 18px; width: auto; }
+    .footer-crumb img { height: 12px; width: auto; }
     .footer-crumb .chev { color: var(--fg-40); font-size: 12px; }
     .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px; }
     .footer-col h4 { font-size: 12px; font-weight: 500; color: var(--fg); margin-bottom: 14px; letter-spacing: 0.01em; }
@@ -506,8 +506,8 @@
       .theme-toggle { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 40px; height: 40px; }
 
       /* ── TA Logo ── */
-      .nav-logo-item { padding: 0 6px 0 0; transform: translate(4px, 2px); }
-      .nav-logo-item img { height: 28px; }
+      .nav-logo-item { padding: 0 10px 0 5px; }
+      .nav-logo-item img { height: 18px; }
 
       /* ── Home card ── */
       .glass-card { padding: 48px 20px 64px; }
@@ -563,10 +563,9 @@
   <div class="nav-wrapper">
   <nav class="nav-bar" id="main-nav">
     <div class="nav-logo-item">
-      <img src="assets/images/TA Light.png" class="logo-light" alt="TA" />
-      <img src="assets/images/TA Dark.png"  class="logo-dark"  alt="TA" />
+      <img src="assets/images/ta-mark-light.png" class="logo-light" alt="TA" />
+      <img src="assets/images/ta-mark-dark.png"  class="logo-dark"  alt="TA" />
     </div>
-    <div class="nav-sep"></div>
     <a href="#home" class="nav-item" data-section="home" aria-label="Home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
       <span>About Me</span>
@@ -587,7 +586,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
       <span>Education</span>
     </a>
-    <div class="nav-sep"></div>
     <a href="#contact" class="nav-item nav-contact-item" data-section="contact" aria-label="Contact">
       <span class="contact-dot"></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1050,11 +1048,11 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-crumb">
-        <img src="assets/images/TA Light.png" class="logo-light" alt="TA">
-        <img src="assets/images/TA Dark.png" class="logo-dark" alt="TA">
-        <span class="chev">›</span>
+        <img src="assets/images/ta-mark-light.png" class="logo-light" alt="TA">
+        <img src="assets/images/ta-mark-dark.png" class="logo-dark" alt="TA">
+        <span class="chev">/</span>
         <span>Thamson Antony Arockiasamy</span>
-        <span class="chev">›</span>
+        <span class="chev">/</span>
         <span>Business Analytics Consultant</span>
       </div>
 
@@ -1088,7 +1086,7 @@
       <div class="footer-built">
         <p class="footer-note">
           All company, university and certification names, logos and trademarks shown on this site are the property of their respective owners.
-          They are used here only to identify where I studied, worked or earned a credential, and do not imply endorsement.
+
         </p>
         <span class="made-with"><span class="made-with-pre">Made with</span><svg class="claude-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.15 12.00 L12.55 0.50 L11.45 0.50 L10.85 12.00Z M12.95 12.64 L17.47 4.87 L16.56 4.26 L11.05 11.36Z M12.57 13.00 L21.44 7.19 L20.89 6.23 L11.43 11.00Z M11.92 13.15 L21.60 13.22 L21.67 12.13 L12.08 10.85Z M11.43 13.00 L21.49 18.11 L22.04 17.16 L12.57 11.00Z M10.97 12.50 L15.34 20.10 L16.33 19.61 L13.03 11.50Z M10.85 12.00 L11.45 22.92 L12.55 22.92 L13.15 12.00Z M11.05 11.36 L6.27 19.51 L7.18 20.13 L12.95 12.64Z M11.43 11.00 L2.76 16.70 L3.31 17.65 L12.57 13.00Z M12.08 10.85 L2.86 10.81 L2.78 11.91 L11.92 13.15Z M12.57 11.00 L2.61 5.95 L2.06 6.90 L11.43 13.00Z M13.03 11.50 L8.16 2.87 L7.17 3.35 L10.97 12.50Z"/></svg><span class="made-with-name">Claude Code</span></span>
       </div>
@@ -1421,13 +1419,13 @@
     const hexToRgb = h => { h = h.replace('#',''); return [parseInt(h.slice(0,2),16)/255, parseInt(h.slice(2,4),16)/255, parseInt(h.slice(4,6),16)/255]; };
 
     const PALETTES = {
-      light: ['#888888','#555555','#2a2a2a'],
+      light: ['#a3a3a3','#878787','#6c6c6c'],
       dark:  ['#2e2e2e','#141414','#050505'],
     };
     // Dark mode keeps colorDodge weaker (less whitewash) and contrast higher
     // (crisper fold edges) than light mode, which relies on softer, brighter blending.
     const LOOKS = {
-      light: { dodge: 0.5, contrast: 1.0 },
+      light: { dodge: 0.32, contrast: 0.85 },
       dark:  { dodge: 0.3, contrast: 1.6 },
     };
     const isDark = () => document.documentElement.classList.contains('dark');
